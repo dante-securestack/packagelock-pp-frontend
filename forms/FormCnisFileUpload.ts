@@ -5,6 +5,7 @@ import FileInfo from '@/entities/FileInfo'
 export default class FormCnisFileUpload extends BaseFormModel {
 
   retirementDate: string = ''
+  gender: string = ''
   file: FileInfo = new FileInfo()
   acceptTerms: boolean = false
 
@@ -16,6 +17,7 @@ export default class FormCnisFileUpload extends BaseFormModel {
   get fillable() {
     return [
       'retirementDate',
+      'gender',
       'file',
       'acceptTerms',
       'tried'
@@ -27,6 +29,9 @@ export default class FormCnisFileUpload extends BaseFormModel {
       {
         item: 'retirementDate',
         validator: ['minLength:10', 'dateIsValid']
+      },
+      {
+        item: 'gender',
       },
       {
         item: 'file',

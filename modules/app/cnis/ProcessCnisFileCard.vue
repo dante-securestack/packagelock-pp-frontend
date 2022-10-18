@@ -24,6 +24,31 @@
           >
             Preencha a data corretamente
           </AppInputWithIcon>
+
+          <div class="w-full flex flex-col">
+            <label class="block mb-2">
+              <span class="border-b-4 border-zinc-200 ">Gênero</span>
+            </label>
+            <div class="w-full flex space-x-6">
+              <AppButton 
+                @click="formCnisFileUpload.gender = 'man'" 
+                class="flex flex-col items-center justify-center py-2 px-6 border transition-all duration-100" 
+                :class="[formCnisFileUpload.gender === 'man' ? 'shadow-lg scale-105' : 'border-slate-200 text-gray-300']"
+              >
+                <AppIcons icon="man" />
+                <span>Masculino</span>
+              </AppButton>    
+              <AppButton 
+                @click="formCnisFileUpload.gender = 'female'" 
+                class="flex flex-col items-center justify-center py-2 px-6 border transition-all duration-100" 
+                :class="[formCnisFileUpload.gender === 'female' ? 'shadow-lg scale-105' : 'border-slate-200 text-gray-300']"
+              >
+                <AppIcons icon="woman" />
+                <span>Feminino</span>
+              </AppButton>
+            </div>
+          </div>
+
           <AppUploadInput 
             placeholder="Clique ou arraste aqui um arquivo CNIS (.pdf)"
             v-model="formCnisFileUpload.file" 

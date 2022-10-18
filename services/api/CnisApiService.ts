@@ -2,11 +2,12 @@ import Api from '@/util/Api'
 
 export default class CnisApiService {
 
-  static upload({ file, retirementDate }) {
+  static upload({ file, retirementDate, gender }) {
     const fd = new FormData()
     fd.append('cnisFile', file)
     fd.append('cnisFileName', file.name)
     fd.append('retirementDate', retirementDate)
+    fd.append('gender', gender)
     return Api.post(`/cnis/upload`, fd, { headers: { 'Content-Type': 'multipart/form-data' } })
       .then(({ data }) => {
 
