@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.73](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.72...v0.0.73) (2022-10-18)
+
+
+### Features | Funcionalidades
+
+* Adicionado seleção de genero no upload do cnis ([b1d9b45](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/b1d9b454f6993bf71bf1c8b3f2d5a51357b244a2))
+
 ### [0.0.72](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.71...v0.0.72) (2022-10-06)
 
 
