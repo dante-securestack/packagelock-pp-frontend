@@ -47,6 +47,10 @@
           </button>
           <div class="w-full mt-8">
 
+            <h3 v-if="title" class="h3 border-l-10 border-orange-500 pl-6 leading-normal mb-4">
+              <span>{{ title }}</span>
+            </h3>
+
             <div class="flex flex-col space-y-6" v-if="requireAuth && !loggedUser">
               <h3 class="h3 border-l-10 border-orange-500 pl-6 leading-normal mb-4">
                 <span>Login</span>
@@ -57,6 +61,7 @@
             </div>
 
             <slot v-else />
+
           </div>
         </div>
       </div>
@@ -95,7 +100,11 @@
     requireAuth: {
       type: Boolean,
       default: false
-    }
+    },
+    title: {
+      type: String,
+      default: ''
+    },
   })
 
   const close = () => {

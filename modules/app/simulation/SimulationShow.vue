@@ -39,6 +39,7 @@
     </div>
 
     <ClientEditModal :simulation="simulation || null"/>
+    <SimulationWarningModal/>
   </div>
 </template>
 
@@ -49,6 +50,7 @@
   import SimulationClientCard from'@/modules/app/simulation/SimulationClientCard'
   import RelationTab from'@/modules/app/simulation/relation/RelationTab'
   import ClientEditModal from '@/modules/app/simulation/ClientEditModal.vue'
+  import SimulationWarningModal from '@/modules/app/simulation/SimulationWarningModal.vue'
   import emitter from '@/util/emitter'
   import GraphQL from "@/util/GraphQL"
   import { useAppSimulationStore } from '@/modules/app/simulation/store'

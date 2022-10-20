@@ -4,6 +4,7 @@ import BaseFormModel from "@/forms/BaseFormModel"
 export default class FormSocialSecurityRelation extends BaseFormModel {
 
   id: string = null
+  simulationId: string = null
   nit: string = ''
   relationDocument: string = ''
   relationOrigin: string = ''
@@ -23,6 +24,7 @@ export default class FormSocialSecurityRelation extends BaseFormModel {
   get fillable() {
     return [
       'id',
+      'simulationId',
       'nit',
       'relationDocument',
       'relationOrigin',

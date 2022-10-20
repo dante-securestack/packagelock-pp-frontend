@@ -73,15 +73,19 @@
   const props = defineProps({
     socialSecurityRelation: Object
   })
-  
+
   const openRelationEditModal = () => {
     emitter.emit('openRelationEditModal', { socialSecurityRelation: props.socialSecurityRelation })
   }
 
+  let isLoadingDestroy = false
   const destroy = () => {
+    if(isLoadingDestroy) return
+    isLoadingDestroy = true
     Api.delete(`/app/socialSecurityRelation/destroy/${props.socialSecurityRelation.id}`)
       .then(() => {
         emitter.emit('simulationUpdated')
+        isLoadingDestroy = false
       })
   }
 

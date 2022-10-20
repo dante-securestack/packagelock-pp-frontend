@@ -116,6 +116,7 @@
     emitter.on('openRelationEditModal', ({ socialSecurityRelation: socialSecurityRelationToSet }) => {
       showModal.value = true
       formSocialSecurityRelation.value = new FormSocialSecurityRelation(socialSecurityRelationToSet)
+      formSocialSecurityRelation.value.simulationId = route.params.simulationId
     })
   })
 
