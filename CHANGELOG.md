@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.75](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.74...v0.0.75) (2022-10-20)
+
+
+### Features | Funcionalidades
+
+* Added ignore warning for admin user ([ccbaf94](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/ccbaf9422666c0b61e840aa34e3e83b8be85ac63))
+
 ### [0.0.74](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.73...v0.0.74) (2022-10-20)
 
 
