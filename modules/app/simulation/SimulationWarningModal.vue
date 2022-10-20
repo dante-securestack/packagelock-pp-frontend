@@ -22,14 +22,16 @@
 <script setup>
 
   import { useGeneralStore } from '@/modules/general/store'
+  import { useAuthStore } from "@/modules/auth/store"
   
+  const authStore = useAuthStore()
   const generalStore = useGeneralStore()
   const route = useRoute()
 
   const showModal = ref(false)
 
   setTimeout(() => {
-    if(!generalStore.userDimissSimulationModal.includes(route.params.simulationId)) {
+    if(authStore.loggedUser && authStore.loggedUser.role !== 'ADMIN' || !authStore.loggedUser && !generalStore.userDimissSimulationModal.includes(route.params.simulationId)) {
       showModal.value = true
     }
   }, 2000)
