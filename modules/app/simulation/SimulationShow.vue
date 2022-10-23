@@ -9,9 +9,24 @@
         :simulation="simulation"
       ></SimulationClientCard>
 
-      <div class="w-full flex flex-col bg-white shadow hover:shadow-lg transition-shadow ease-in-out duration-300 bg-white border border-slate-100">
+      <div 
+        class="
+          w-full
+          flex
+          flex-col
+          sm:shadow
+          sm:hover:shadow-lg
+          transition-shadow
+          ease-in-out
+          duration-300
+          sm:bg-white
+          sm:border
+          sm:border-slate-100
+        "
+        :class="[tabSelected.value === 'social-security-relations' ? 'bg-white' : '']"
+        >
 
-        <div class="w-full flex border-b border-zinc-100">
+        <div class="w-full flex border-b border-zinc-100 bg-white">
           <div 
             v-for="(tab, index) in tabsAvailable"
             :key="`simulation-tabs-${index}`"

@@ -1,12 +1,12 @@
 <template>
 
-  <div class="w-full p-6 flex flex-col space-y-6">
+  <div class="w-full mt-4 sm:mt-0 sm:p-4 md:p-6 flex flex-col space-y-6">
 
     <AppLoaderPlaceholder v-if="!socialSecurityRelations" />
 
     <div class="w-full flex justify-end" v-if="socialSecurityRelations">
       <AppButton 
-        bg="bg-brand-gradient text-white text-sm px-2 py-1"
+        bg="bg-brand-gradient text-white text-sm px-2 py-1 mr-4 sm:mr-0"
         @click="openRelationEditModal()"
       >
         <AppIcons icon="add_box" />

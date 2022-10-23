@@ -1,7 +1,7 @@
 <template>
   <div class="w-full block shadow hover:shadow-lg transition-shadow ease-in-out duration-300 bg-white border border-slate-100 flex flex-stratch border-box">
 
-    <div :class="border" class="grow block flex-none"></div>
+    <div :class="border" class="grow flex-none hidden md:block"></div>
 
     <div class="w-full flex flex-col" v-if="$slots.header">
       <div :class="header" class="w-full flex flex-col">

@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full p-6 flex flex-col space-y-6">
+  <div class="w-full sm:p-4 md:p-6 flex flex-col space-y-6">
 
     <AppLoaderPlaceholder v-if="!simulation" />
 

@@ -13,11 +13,11 @@
       <template v-slot:content>
         <div class="py-4 leading-loose article-content" v-html="article.content" />
 
-        <div v-if="!article.hideAuthor" class="border-t border-zinc-100 p-8 lg:p-12 flex">
+        <div v-if="!article.hideAuthor" class="border-t border-zinc-100 lg:p-12 flex flex-wrap md:flex-nowrap">
 
           <img class="w-20 h-20 object-cover rounded-full flex-none mt-2" :src="article.user.pathUrl" />
 
-          <div class="w-full flex flex-col pl-6">
+          <div class="w-full pl-0 md:pl-6 flex flex-col">
             <h3 class="font-semibold">{{ article.user.name }}</h3>
             <p class="text-sm">{{ article.user.description }}</p>
           </div>
