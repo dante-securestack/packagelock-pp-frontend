@@ -1,6 +1,8 @@
 
 import VueNumberFormat from '@igortrindade/vue-number-format'
 import VueTheMask from 'vue-the-mask'
+import dayjs from 'dayjs'
+import 'dayjs/locale/pt-br'
 
 // import AuthForm from '~~/modules/auth/AuthFormModal.vue'
 // import SimulationRetirementOptionDetailDrawer from '@/modules/app/simulation/SimulationRetirementOptionDetailDrawer.vue'
@@ -24,4 +26,6 @@ export default (vueInstance) => {
 
     }
   })
+
+  dayjs.locale('pt-br')
 }

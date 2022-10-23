@@ -3,7 +3,7 @@
 
     <div :class="border" class="grow block flex-none"></div>
 
-    <div class="w-full flex flex-col">
+    <div class="w-full flex flex-col" v-if="$slots.header">
       <div :class="header" class="w-full flex flex-col">
         <slot name="header"></slot>
       </div>
@@ -12,7 +12,9 @@
           <slot name="content"></slot>
         </div>
       </Transition>
+      <slot />
     </div>
+
 
   </div>
 </template>

@@ -129,7 +129,11 @@
         {
           title: 'Segurados',
           action: '/admin/clients'
-        }
+        },
+        {
+          title: 'Dashboard',
+          action: '/admin/dashboard'
+        },
       ]
     },
     {
