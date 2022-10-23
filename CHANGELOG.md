@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.77](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.76...v0.0.77) (2022-10-23)
+
+
+### Features | Funcionalidades
+
+* Melhorando espaçamentos no mobile ([d23d7f2](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/d23d7f2bca2d5e5a5d7578d5fc0a2e413ccbb84a))
+
 ### [0.0.76](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.75...v0.0.76) (2022-10-23)
 
 
