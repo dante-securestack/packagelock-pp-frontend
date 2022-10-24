@@ -4,7 +4,7 @@ dayjs.locale('pt-br')
 export default [
   //Today
   {
-      label: `Today (${dayjs().startOf('day').format('dddd')})`,
+      label: `Hoje (${dayjs().startOf('day').format('dddd')})`,
       init: dayjs().startOf('day').format('DD/MM/YYYY'),
       end: dayjs().add(1, 'days').format('DD/MM/YYYY'),
       compairLabel: `Last ${dayjs().subtract(7, 'days').format('dddd')}`,
@@ -13,7 +13,7 @@ export default [
   },
   //Yerterday
   {
-      label: `Yesterday (${dayjs().subtract(1, 'days').format('dddd')})`,
+      label: `Ontem (${dayjs().subtract(1, 'days').format('dddd')})`,
       init: dayjs().subtract(1, 'days').format('DD/MM/YYYY'),
       end: dayjs().format('DD/MM/YYYY'),
       compairLabel: `Last ${dayjs().subtract(8, 'days').format('dddd')}`,
@@ -31,7 +31,7 @@ export default [
   },
   //This week
   {
-    label: `This week`,
+    label: `Esta semana`,
     init: dayjs().startOf('week').add(1, 'days').format('DD/MM/YYYY'),
     end: dayjs().endOf('week').add(2, 'days').format('DD/MM/YYYY'),
     compairLabel: `Last week`,
@@ -40,7 +40,7 @@ export default [
   },
   // Last week
   {
-    label: `Last week`,
+    label: `Última semana`,
     init: dayjs().subtract(7, 'days').startOf('week').add(1, 'days').format('DD/MM/YYYY'),
     end: dayjs().subtract(7, 'days').endOf('week').add(2, 'days').format('DD/MM/YYYY'),
     compairLabel: `-7 days`,
@@ -49,7 +49,7 @@ export default [
   },
   //This month
   {
-    label: 'This month',
+    label: 'Este mês',
     init: dayjs().startOf('month').format('DD/MM/YYYY'),
     end: dayjs().endOf('month').format('DD/MM/YYYY'),
     compairLabel: `${dayjs().subtract(1, 'month').startOf('month').format('MMMM')}`,
@@ -58,7 +58,7 @@ export default [
   },
   //Last month
   {
-    label: `${dayjs().subtract(1, 'month').format('MMMM')}`,
+    label: `Mês ${dayjs().subtract(1, 'month').format('MM')}`,
     init: dayjs().subtract(1, 'month').startOf('month').format('DD/MM/YYYY'),
     end: dayjs().subtract(1, 'month').endOf('month').format('DD/MM/YYYY'),
     compairLabel: `${dayjs().subtract(2, 'month').startOf('month').format('MMMM')}`,
@@ -67,24 +67,16 @@ export default [
   },
   //Before last month
   {
-    label: `${dayjs().subtract(2, 'month').format('MMMM')}`,
+    label: `Mês ${dayjs().subtract(2, 'month').format('MM')}`,
     init: dayjs().subtract(2, 'month').startOf('month').format('DD/MM/YYYY'),
     end: dayjs().subtract(2, 'month').endOf('month').format('DD/MM/YYYY'),
     compairLabel: `${dayjs().subtract(3, 'month').startOf('month').format('MMMM')}`,
     compairInit: dayjs().subtract(3, 'month').startOf('month').format('DD/MM/YYYY'),
     compairEnd: dayjs().subtract(3, 'month').endOf('month').format('DD/MM/YYYY'),
   },
-  {
-    label: `${dayjs().subtract(3, 'month').format('MMMM')}`,
-    init: dayjs().subtract(3, 'month').startOf('month').format('DD/MM/YYYY'),
-    end: dayjs().subtract(3, 'month').endOf('month').format('DD/MM/YYYY'),
-    compairLabel: `${dayjs().subtract(3, 'month').startOf('month').format('MMMM')}`,
-    compairInit: dayjs().subtract(3, 'month').startOf('month').format('DD/MM/YYYY'),
-    compairEnd: dayjs().subtract(3, 'month').endOf('month').format('DD/MM/YYYY'),
-  },
   // This year
   {
-    label: `This year (${dayjs().format('YYYY')})`,
+    label: `Este ano (${dayjs().format('YYYY')})`,
     init: dayjs().startOf('year').format('DD/MM/YYYY'),
     end: dayjs().endOf('year').format('DD/MM/YYYY'),
     compairLabel: `${dayjs().subtract(1, 'year').format('YYYY')}`,
@@ -93,7 +85,7 @@ export default [
   },
   // Last year
   {
-    label: `${ dayjs().subtract(1, 'year').format('YYYY')}`,
+    label: `Último ano ${ dayjs().subtract(1, 'year').format('YYYY')}`,
     init: dayjs().subtract(1, 'year').startOf('year').format('DD/MM/YYYY'),
     end: dayjs().subtract(1, 'year').endOf('year').format('DD/MM/YYYY'),
     compairLabel: `${dayjs().subtract(2, 'year').format('YYYY')}`,
