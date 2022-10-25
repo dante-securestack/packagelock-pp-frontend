@@ -85,6 +85,11 @@
         </p>
       </div>
     </template>
+    
+    <template v-if="loggedUser && loggedUser.role === 'ADMIN'">
+      <p class="leading-none border-b border-orange-600">Apenas admin's podem ver:</p>
+      <pre class="w-full p-4 bg-zinc-200 text-black">{{ simulationRetirementOption.metaData }}</pre>
+    </template>
   </div>
 </template>
 

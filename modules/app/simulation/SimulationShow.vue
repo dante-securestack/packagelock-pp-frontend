@@ -144,6 +144,7 @@
               contributionsTotal
               requirements
               projectedRetirementDate
+              metaData
               retirementOption {
                 id
                 title
