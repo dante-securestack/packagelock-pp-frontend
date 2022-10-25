@@ -32,17 +32,20 @@
           <span class="ml-2">Adicionar multiplas</span>
         </AppButton>
       </div>
+      <AppAlert v-if="hasContributionsEmpty" type="warning" >
+        Encontramos contribuições sem valor neste vínculo, por favor verifique o lançamento.
+      </AppAlert>
+      <AppAlert v-if="!socialSecurityRelation.contributions.length">Não encontramos contribuições no vínculo {{ socialSecurityRelation.relationOrigin }}, adicione as contribuições manualmente.</AppAlert>
     </div>
 
-    <div class="overflow-x-auto mt-4" v-if="showContent">
+    <div class="overflow-x-auto mt-4" v-if="socialSecurityRelation.contributions.length && showContent">
 
-      <AppAlert v-if="!socialSecurityRelation.contributions.length">Não encontramos contribuições no vínculo {{ socialSecurityRelation.relationOrigin }}, adicione as contribuições manualmente.</AppAlert>
-      <table class="table-auto w-full whitespace-nowrap" v-else>
+      <table class="table-auto w-full whitespace-nowrap">
         <thead>
           <tr>
             <th>Competência</th>
             <th>Valor base</th>
-            <th>#</th>
+            <th>Editar</th>
           </tr>
         </thead>
         <ContributionRow 
@@ -70,8 +73,12 @@
   const contributionMonthReference = ref(null)
   const showContent = ref(false)
 
-  defineProps({
+  const props = defineProps({
     socialSecurityRelation: Object
+  })
+
+  const hasContributionsEmpty = computed(() => {
+    return props.socialSecurityRelation.contributions.filter((contribution) => !contribution.baseValue).length > 0
   })
 
   const openContributionModal = ({ id = null, socialSecurityRelation = null }) => {
