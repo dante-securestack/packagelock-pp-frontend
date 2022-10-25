@@ -24,6 +24,7 @@
         <div class="flex">
           <AppButton 
             title="Editar contribuição"
+            :disabled="!loggedUser"
             @click="openContributionModal({ id: contribution.id })"
             class="text-zinc-400 hover:text-orange-600"
           >
@@ -32,6 +33,7 @@
           <AppButton 
             :title="!contribution.isIgnored ? `Ignorar contribuição` : `Remover ignorado da contribuição`"
             class="text-zinc-400 hover:text-orange-600"
+            :disabled="!loggedUser"
             @click="ignoreContribution(contribution)"
           >
             <AppIcons v-if="!contribution.isIgnored" icon="do_not_disturb_on" />
@@ -40,6 +42,7 @@
           <AppButton 
             title="Contribuições concomitantes no mesmo mês"
             class="hover:text-orange-600"
+            :disabled="!loggedUser"
             :class="[contribution.groupedContributionsQuantity > 1 ? 'text-slate-400' : 'text-slate-400/20']"
             @click="openContributionMonthReferenceDrawer(contribution.monthReference)"  
           >
@@ -68,6 +71,11 @@
   import emitter from '@/util/emitter'
   import getCurrencyType from '@/util/functions/getCurrencyType'
   import Dates from '@/services/Dates'
+
+  import { storeToRefs } from 'pinia'
+  import { useAuthStore } from "@/modules/auth/store"
+  const authStore = useAuthStore()
+  const { loggedUser } = storeToRefs(authStore)
 
   const props = defineProps({
     contribution: Object

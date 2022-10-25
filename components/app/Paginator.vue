@@ -5,7 +5,7 @@
       <AppIcons icon="chevron_left" class="mt-1" />
       <span>Anterior</span>
     </AppButton>
-    <AppButton @click="next()" :disabled="limit > length" class="flex items-center leading-none disabled:text-zinc-300" >
+    <AppButton @click="next()" :disabled="take > length" class="flex items-center leading-none disabled:text-zinc-300" >
       <span>Próximo</span>
       <AppIcons icon="chevron_right" class="mt-1" />
     </AppButton>
@@ -22,19 +22,19 @@
   
   const props = defineProps({
     skip: Number,
-    limit: Number,
+    take: Number,
     length: Number,
   })
 
   const next = () => {
-    const newOffset = props.skip + (props.limit)
+    const newOffset = props.skip + (props.take)
     emit('update:skip', newOffset)
     emit('change')
   }
 
   const prev = () => {
     if(props.skip <= 0) return false
-    const newOffset = props.skip - props.limit
+    const newOffset = props.skip - props.take
     emit('update:skip', newOffset)
     emit('change')
   }

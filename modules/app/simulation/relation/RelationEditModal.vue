@@ -101,9 +101,7 @@
 
 <script setup>
   import { getCurrentInstance } from 'vue'
-  import GraphQL from '@/util/GraphQL'
   import Api from '@/util/Api'
-  import SocialSecurityRelation from '@/entities/SocialSecurityRelation'
   import FormSocialSecurityRelation from '@/forms/FormSocialSecurityRelation'
   import emitter from '@/util/emitter'
   

@@ -10,18 +10,18 @@
             <AppIcons icon="edit" />
           </AppButton>
           <AppButton 
-            @click="destroy()" 
+            @click="openRelationExcludeModal()" 
             class="text-zinc-400 hover:text-orange-600">
             <AppIcons icon="delete_forever" />
           </AppButton>
         </div>
 
         <div class="w-full flex flex-col">
-          <div class="w-full flex space-x-2 pr-12">
+          <div class="w-full flex space-x-2 pr-20">
             <h3 class="h3 flex-none text-slate-400">#{{ socialSecurityRelation.seqNumber }}</h3>
-            <h3 class="h3 flex-none text-slate-400">{{ socialSecurityRelation.relationType }}</h3>
+            <h3 class="h3 break-words text-slate-400">{{ socialSecurityRelation.relationType }}</h3>
           </div>
-          <h3 class="h3 pr-12">{{ socialSecurityRelation.relationOrigin }}</h3>
+          <h3 class="h3 pr-12 break-words">{{ socialSecurityRelation.relationOrigin }}</h3>
 
           <div class="w-full flex flex-wrap">
             <AppLabelValue class="four-cols-breakdown mt-4">
@@ -61,14 +61,9 @@
 </template>
 
 <script setup>
-  import Api from '@/util/Api'
+
   import ContributionList from '@/modules/app/simulation/relation/contribution/ContributionList.vue'
   import emitter from '@/util/emitter'
-  import { storeToRefs } from 'pinia'
-  import { useAuthStore } from "@/modules/auth/store"
-  const authStore = useAuthStore()
-
-  const { loggedUser } = storeToRefs(authStore)
 
   const props = defineProps({
     socialSecurityRelation: Object
@@ -78,15 +73,8 @@
     emitter.emit('openRelationEditModal', { socialSecurityRelation: props.socialSecurityRelation })
   }
 
-  let isLoadingDestroy = false
-  const destroy = () => {
-    if(isLoadingDestroy) return
-    isLoadingDestroy = true
-    Api.delete(`/app/socialSecurityRelation/destroy/${props.socialSecurityRelation.id}`)
-      .then(() => {
-        emitter.emit('simulationUpdated')
-        isLoadingDestroy = false
-      })
+  const openRelationExcludeModal = () => {
+    emitter.emit('openRelationExcludeModal', { socialSecurityRelation: props.socialSecurityRelation })
   }
 
 </script>

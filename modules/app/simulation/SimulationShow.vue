@@ -26,15 +26,15 @@
         :class="[tabSelected.value === 'social-security-relations' ? 'bg-white' : '']"
         >
 
-        <div class="w-full flex border-b border-zinc-100 bg-white">
+        <div class="w-full overflow-x-auto hide-scrollbar flex border-b border-zinc-100 bg-white">
           <div 
             v-for="(tab, index) in tabsAvailable"
             :key="`simulation-tabs-${index}`"
-            class="px-10 pt-4 pb-2 border-b-8 cursor-pointer relative"
+            class="px-4 md:px-10 pt-4 pb-2 border-b-8 cursor-pointer relative"
             :class="[tab == tabSelected ? 'border-orange-400 hover:border-orange-500' : 'border-transparent hover:border-zinc-100']"
             @click="setTabSelected(tab)"
           >
-            <h5 class="h5 mb-0">{{ tab.label }}</h5>
+            <h5 class="h5 mb-0 whitespace-nowrap">{{ tab.label }}</h5>
             <span class="w-3 h-3 bg-orange-600 absolute top-0 right-0 mt-2 mr-2 rounded-full" v-if="tab.value == 'result' && simulation.isPendingUpdate"></span>
           </div>
           

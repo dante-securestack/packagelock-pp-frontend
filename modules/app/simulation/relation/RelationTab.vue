@@ -24,6 +24,7 @@
 
     <!-- SHARED COMPONENTS -->
     <RelationEditModal />
+    <RelationExcludeModal />
     <ContributionEditModal />
     <MultipleContributionEditModal />
     <GroupedContributionDrawer></GroupedContributionDrawer>
@@ -36,6 +37,7 @@
 
   import RelationCard from '@/modules/app/simulation/relation/RelationCard'
   import RelationEditModal from '@/modules/app/simulation/relation/RelationEditModal.vue'
+  import RelationExcludeModal from '@/modules/app/simulation/relation/RelationExcludeModal.vue'
   import ContributionEditModal from '@/modules/app/simulation/relation/contribution/ContributionEditModal'
   import MultipleContributionEditModal from '@/modules/app/simulation/relation/contribution/MultipleContributionEditModal'
   import GroupedContributionDrawer from '@/modules/app/simulation/relation/contribution/GroupedContributionDrawer'
