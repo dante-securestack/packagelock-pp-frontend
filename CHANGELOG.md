@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.79](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.78...v0.0.79) (2022-10-25)
+
+
+### Features | Funcionalidades
+
+* Adicionado alerta quando vinculo tem contribuições sem valor ([8e3fb2e](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/8e3fb2e27b1ccc8da79df6ff9c5b799239c475ce))
+
+
+### Routine tasks | Implementações gerais
+
+* Fix paginação graphql ([f820194](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/f82019442e117c632eac989a130883513bfa3c54))
+
+
+### Bug Fixes | Melhorias
+
+* Evitar que usuário não logado edite recursos na simulação ([3615017](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/3615017730b67a4c087a839f1a12b5272e1c2167))
+
 ### [0.0.78](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.77...v0.0.78) (2022-10-24)
 
 
