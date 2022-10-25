@@ -52,7 +52,7 @@
           </div>
         </div>
 
-        <AppPaginator v-model:skip="skip" :limit="limit" :length="clients.length" @change="get()"/>
+        <AppPaginator v-model:skip="skip" :take="take" :length="clients.length" @change="get()"/>
 
     </div>
   </div>
@@ -63,7 +63,7 @@
   
   const search = ref('')
   const skip = ref(0)
-  const limit = ref(12)
+  const take = ref(12)
   const clients = ref(false)
 
   onMounted(() => {
@@ -76,7 +76,7 @@
       {
         clients (
           skip: ${skip.value}
-          take: ${limit.value}
+          take: ${take.value}
           order: [
             { column: "name", direction: "ASC" }
           ]

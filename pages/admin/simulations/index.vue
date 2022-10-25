@@ -56,7 +56,7 @@
       </div>
     </div>
 
-    <AppPaginator v-model:skip="skip" :limit="limit" :length="simulations.length" @change="get()"/>
+    <AppPaginator v-model:skip="skip" :take="take" :length="simulations.length" @change="get()"/>
 
   </div>
 </template>
@@ -64,39 +64,44 @@
 <script setup>
   import GraphQL from '@/util/GraphQL'
 
+  const router = useRouter()
   const route = useRoute()
 
   const search = ref('')
   const skip = ref(0)
-  const limit = ref(12)
+  const take = ref(12)
   const simulations = ref(false)
 
   onMounted(() => {
     get()
   })
 
-
   const get = () => {
     let whereClause
     if(route.query.clientId) whereClause = `{ column: "clientId", value: "${route.query.clientId}"}`
     if(route.query.userId) whereClause = `{ column: "userId", value: "${route.query.userId}"}`
     
-    const parameters = !whereClause ? '' : `
-      (
-        where: [
-          ${ whereClause }
-          ${
-            !search.value ? '' :  `
-              { column: "title", operation: "ilike", value: "%${search.value}%" }
-            `
-          }
-        ]
-      )
+    const where = !whereClause ? '' : `
+      where: [
+        ${ whereClause }
+        ${
+          !search.value ? '' :  `
+            { column: "title", operation: "ilike", value: "%${search.value}%" }
+          `
+        }
+      ],
     `
     
     const query = `
       {
-        simulations ${ parameters } {
+        simulations (
+          ${ where }
+          order: [
+            { column: "createdAt", direction: "DESC" }
+          ]
+          take: ${take.value}
+          skip: ${skip.value}
+        ) {
           key
           id
           title
@@ -120,7 +125,7 @@
     `
     
     
-    GraphQL({ query })
+    GraphQL({ query, caller: 'AdminSimulationsIndex' })
       .then(({ data }) => {
         simulations.value = data.simulations
         if(!data.simulations.length) skip.value = 0

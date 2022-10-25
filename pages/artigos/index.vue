@@ -18,7 +18,7 @@
 
       </div>
 
-      <AppPaginator v-model:skip="skip" :limit="limit" :length="articles.length" @change="navigate()"/>
+      <AppPaginator v-model:skip="skip" :take="take" :length="articles.length" @change="navigate()"/>
     
     </div>
   </div>
@@ -33,7 +33,7 @@ const router = useRouter()
 const categories = ref([])
 const articles = ref(false)
 const search = ref('')
-const limit = ref(12)
+const take = ref(12)
 const skip = ref(route.query.skip ? parseInt(route.query.skip) : 0)
 
 onMounted(() => {
@@ -83,7 +83,7 @@ const getArticles = () => {
     {
       articleAndCategories (
         skip: ${ route.query.skip ? parseInt(route.query.skip) : 0 }
-        take: ${limit.value}
+        take: ${take.value}
         order: [
           { column: "articles.publishedAt", direction: "DESC" }
         ]
