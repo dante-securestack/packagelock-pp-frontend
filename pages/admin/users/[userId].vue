@@ -109,7 +109,7 @@
 
 <script setup>
 
-import AdminGeneralApiService from '@/services/AdminGeneralApiService'
+import AdminGeneralApiService from '@/services/api/AdminGeneralApiService'
 import FormAdminUser from '@/forms/admin/FormAdminUser'
 import Api from '@/util/Api'
 import GraphQL from '@/util/GraphQL'

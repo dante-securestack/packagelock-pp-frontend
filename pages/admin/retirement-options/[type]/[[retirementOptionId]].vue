@@ -70,7 +70,7 @@
 <script setup>
 
 import FormAdminRetirementOption from '@/forms/admin/FormAdminRetirementOption'
-import AdminGeneralApiService from '@/services/AdminGeneralApiService'
+import AdminGeneralApiService from '@/services/api/AdminGeneralApiService'
 import Api from '@/util/Api'
 import GraphQL from '@/util/GraphQL'
 

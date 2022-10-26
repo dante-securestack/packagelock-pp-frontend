@@ -58,7 +58,7 @@
 
 <script setup>
 
-import AdminGeneralApiService from '@/services/AdminGeneralApiService'
+import AdminGeneralApiService from '@/services/api/AdminGeneralApiService'
 import FormAdminRetirementGroup from '@/forms/admin/FormAdminRetirementGroup'
 import Api from '@/util/Api'
 import GraphQL from '@/util/GraphQL'

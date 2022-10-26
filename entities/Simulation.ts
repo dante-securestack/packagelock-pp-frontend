@@ -15,6 +15,9 @@ export default class Simulation extends BaseModel {
   isPendingUpdate: boolean = false
   createdAt: string = ''
   updatedAt: string = ''
+  status: string = ''
+  isGranted: string = ''
+  firstProjectedRetirementDate: string = ''
 
   user: User = null
   client: Client = null
@@ -40,5 +43,8 @@ export default class Simulation extends BaseModel {
     'client',
     'simulationRetirementGroups',
     'socialSecurityRelations',
+    'status',
+    'isGranted',
+    'firstProjectedRetirementDate',
   ]
 }

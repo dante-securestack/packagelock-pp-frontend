@@ -116,7 +116,7 @@
 
 <script setup>
 
-import AdminGeneralApiService from '@/services/AdminGeneralApiService'
+import AdminGeneralApiService from '@/services/api/AdminGeneralApiService'
 import FormAdminArticle from '@/forms/admin/FormAdminArticle'
 import Api from '@/util/Api'
 import GraphQL from '@/util/GraphQL'

@@ -34,7 +34,7 @@
 <script setup>
 
 import Category from '@/entities/Category'
-import AdminGeneralApiService from '@/services/AdminGeneralApiService'
+import AdminGeneralApiService from '@/services/api/AdminGeneralApiService'
 import Api from '@/util/Api'
 import GraphQL from '@/util/GraphQL'
 
