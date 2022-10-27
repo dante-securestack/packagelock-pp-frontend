@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.82](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.81...v0.0.82) (2022-10-27)
+
+
+### Features | Funcionalidades
+
+* Adicionado simulations admin clients ([0ef9c14](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/0ef9c14474be83ae2061819092c89e5c68480da3))
+
 ### [0.0.81](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.80...v0.0.81) (2022-10-26)
 
 
