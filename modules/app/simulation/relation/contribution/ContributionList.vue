@@ -54,7 +54,6 @@
           :key="`contribution_${ index }`"
         />
       </table>
-
       
     </div>
   </div>
