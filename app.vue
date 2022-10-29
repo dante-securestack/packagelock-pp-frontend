@@ -28,6 +28,8 @@
       <ModalContactForm />
       <ContentDrawer />
 
+      <AppNotifications />
+
     </Body>
   </Html>
 </template>
