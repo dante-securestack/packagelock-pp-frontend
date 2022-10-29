@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.83](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.82...v0.0.83) (2022-10-29)
+
+
+### Routine tasks | Implementações gerais
+
+* Update nuxt ([f047f00](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/f047f004854988a615c9baf5e1e1ce2af8e582a4))
+
+
+### Features | Funcionalidades
+
+* Adicionado novo toast e removido alert default ([39bb10d](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/39bb10db8375fdb4134e831f19b8658f6319be19))
+* Barra de notificações ([3fc9843](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/3fc9843f6f662ab101817850b5189c9f189b32c7))
+
 ### [0.0.82](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.81...v0.0.82) (2022-10-27)
 
 
