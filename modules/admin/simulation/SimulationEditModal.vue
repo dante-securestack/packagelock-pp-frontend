@@ -110,7 +110,7 @@
         emit('close')
       })
       .catch((err) => {
-        alert('Erro ao atualizar Simulação')
+        emitter.emit('addToast', { message: 'Erro ao atualizar Simulação', type: 'error', timeout: 5000 })
         console.log(err)
       })
 

@@ -36,7 +36,7 @@ export const useAuthStore = defineStore('auth', {
       .then(({ data }) => {
         this.loggedUserToken = data.token
         this.getLoggedUser()
-        alert('Logado com sucesso com google')
+        emitter.emit('addToast', { message: 'Logado com sucesso', type: 'success' })
       })
     },
     

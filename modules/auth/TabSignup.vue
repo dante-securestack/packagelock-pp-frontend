@@ -60,6 +60,7 @@
   import FormUserSignup from '@/forms/FormUserSignup'
 
   const { emit } = getCurrentInstance()
+  const emitter = useEmitter()
   defineEmits(['close', 'setTabSelected'])
 
   const authStore = useAuthStore()
@@ -73,14 +74,14 @@
     authStore.signup({  ...formUserSignup.value })
       .then(() => {
         emit('close')
-        alert('Cadastrado com sucesso')
+        emitter.emit('addToast', { message: 'Cadastrado com sucesso', type: 'success' })
       })
       .catch((err) => {
         if(err && err.response.status == 409) {
-          alert('Você já possui cadastro, por favor realize o login')
+          emitter.emit('addToast', { message: 'Você já possui cadastro, por favor realize o login', type: 'error' })
           emit('setTabSelected', 'login')
         } else {
-          alert('Erro ao cadastrar')
+          emitter.emit('addToast', { message: 'Erro ao cadastrar', type: 'error' })
         }
       })
   }

@@ -125,7 +125,7 @@
       })
       .catch((error) => {
         showModalProcessCnisLoader.value = false
-        alert('Erro ao processar CNIS')
+        emitter.emit('addToast', { message: 'Erro ao processar CNIS', type: 'error', timeout: 10000 })
       })
   }
 

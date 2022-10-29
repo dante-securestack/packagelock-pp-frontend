@@ -39,6 +39,7 @@
   import User from '@/entities/User'
 
   const { emit } = getCurrentInstance()
+  const emitter = useEmitter()
 
   defineEmits(['close', 'setTabSelected'])
 
@@ -49,14 +50,14 @@
     authStore.login({ email: user.value.email, unencryptedPassword: user.value.unencryptedPassword })
       .then(() => {
         emit('close')
-        alert('Logado com sucesso')
+        emitter.emit('addToast', { message: 'Logado com sucesso!', type: 'success' })
       })
       .catch((err) => {
         if(err && err.response.status == 404) {
-          alert('Você não possui cadastro, por favor cadastre-se.')
+          emitter.emit('addToast', { message: 'Você não possui cadastro, por favor cadastre-se.', type: 'error' })
           emit('setTabSelected', 'signup')
         } else {
-          alert('Erro ao logar')
+          emitter.emit('addToast', { message: 'Erro ao logar', type: 'error' })
         }
       })
   }
