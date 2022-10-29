@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.84](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.83...v0.0.84) (2022-10-29)
+
+
+### Bug Fixes | Melhorias
+
+* Downgrade nuxt ([ed847d7](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/ed847d73c29230f63c053d0e88718c107b627985))
+
 ### [0.0.83](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.82...v0.0.83) (2022-10-29)
 
 
