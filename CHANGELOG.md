@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.87](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.86...v0.0.87) (2022-10-30)
+
+
+### Bug Fixes | Melhorias
+
+* Adicionado condição para redirecionar quando não localizar o artigo ([007804c](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/007804cdb6a91842cb934efd0d7e3d8d4c8963d8))
+
 ### [0.0.86](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.85...v0.0.86) (2022-10-30)
 
 
