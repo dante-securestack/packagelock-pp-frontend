@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.85](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.84...v0.0.85) (2022-10-30)
+
+
+### Bug Fixes | Melhorias
+
+* Downgrade nuxt to rc-9 to fix css bundler error ([ee97f96](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/ee97f96d2b27893b954cfdc32cfb65d79ea663ea))
+
 ### [0.0.84](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.83...v0.0.84) (2022-10-29)
 
 
