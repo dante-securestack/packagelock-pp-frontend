@@ -1,6 +1,6 @@
 <template>
   
-  <div class="fixed bottom-0 right-0 mt-24 mr-12 z-50">
+  <div class="fixed bottom-0 right-0 mb-12 mr-6 ml-6 z-50">
     <TransitionGroup 
       name="list"
       tag="div"
@@ -8,7 +8,7 @@
       <div 
         v-for="(instance, index) in instances"
         :key="instance"
-        class="shadow-lg mb-6 flex"
+        class="shadow-lg mb-6 flex max-w-screen"
         @click="instances.splice(index, 1)"
         @mouseenter="stopTimeout(instance)"
         @mouseleave="resumeTimeout(instance)"
@@ -65,6 +65,13 @@
       ArrayHelpers.remove(instances.value, { id: instance.id })
     }, instance.timeRemain + 100)
   }
+
+
+  // const addFakeToast = () => {
+  //   addToastInstance({ title: 'Title', message: 'someMessage asdasdas dsa das da as das das das dadasas  asas asd as das da' })
+  // }
+
+  // if(process.client) document.addEventListener("keyup", addFakeToast)
 
 
 </script>
