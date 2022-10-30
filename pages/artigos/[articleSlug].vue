@@ -42,6 +42,7 @@
   import ArticleShowLastArticles from '@/modules/app/article/ArticleShowLastArticles.vue'
 
   const route = useRoute()
+  const router = useRouter()
   const article = ref(false)
 
   const query = `
@@ -70,6 +71,10 @@
   `
 
   const { data } = await useFetchGraphQL({ query, caller: 'ShowArticles' })
+
+  if(!data.articles.length) {
+    router.push(`/artigos?skip=0&search=${route.params.articleSlug}`)
+  }
 
   article.value = data.articles[0]
 

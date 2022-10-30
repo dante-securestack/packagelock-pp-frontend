@@ -7,7 +7,7 @@
 
       <AppSearchBar placeholder="Procurar" v-model:search="search" @search="makeSearch()" /> 
       
-      <p class="w-full" v-if="search && !articles.length">Não encontramos nenhum artigo com o termo: {{ search }}</p>
+      <p class="w-full" v-if="getSearch && !articles.length">Não encontramos nenhum artigo com o termo: {{ getSearch }}</p>
       
       <div class="mt-4 w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-6">
         
@@ -38,6 +38,10 @@ const skip = ref(route.query.skip ? parseInt(route.query.skip) : 0)
 
 onMounted(() => {
   getCategories()
+})
+
+const getSearch = computed(() => {
+  return search.value || route.query.search
 })
 
 
