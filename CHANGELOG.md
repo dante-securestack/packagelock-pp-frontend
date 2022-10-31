@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.88](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.87...v0.0.88) (2022-10-31)
+
+
+### Bug Fixes | Melhorias
+
+* Erro timeout cnis grande ([9897063](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/989706324c6b296799680d7d8157a6f619f8a0d2))
+
 ### [0.0.87](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.86...v0.0.87) (2022-10-30)
 
 
