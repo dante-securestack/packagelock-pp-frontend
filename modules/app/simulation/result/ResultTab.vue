@@ -23,10 +23,7 @@
 
   import ResultRetirementGroupCard from '@/modules/app/simulation/result/ResultRetirementGroupCard'
   import ResultaTabProcessingLoader from '@/modules/app/simulation/result/ResultaTabProcessingLoader'
-  import Api from "@/util/Api"
   import Simulation from "@/entities/Simulation"
-  import GraphQL from "@/util/GraphQL"
-  import emitter from '@/util/emitter'
   import Dates from '@/services/Dates'
   import { useAppSimulationStore } from '@/modules/app/simulation/store'
   
@@ -38,13 +35,13 @@
   })
 
   onMounted(() => {
-    if(props.simulation.isPendingUpdate) {
+    if(props.simulation.isPendingUpdate && props.simulation.socialSecurityRelations.length) {
       appSimulationStore.reprocessSimulation()
     }
   })
 
   watch(() => props.simulation.isPendingUpdate, (newValue) => {
-    if(newValue) {
+    if(newValue && props.simulation.socialSecurityRelations.length) {
       appSimulationStore.reprocessSimulation()
     }
   })

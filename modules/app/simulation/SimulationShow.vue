@@ -78,12 +78,14 @@
   const simulation = ref(false)
 
   const tabsAvailable = computed(() => {
+    if(simulation.value && simulation.value.isPendingUpdate && !simulation.value.socialSecurityRelations.length) return [SIMULATION_RESULT_TAB]
     if(simulation.value && !simulation.value.socialSecurityRelations.length) return [SIMULATION_RELATION_TAB]
     return [SIMULATION_RESULT_TAB, SIMULATION_RELATION_TAB]
   })
 
   const tabSelected = computed(() => {
     if(route.query.tab) return ArrayHelpers.find(tabsAvailable.value, { value: route.query.tab })
+    if(simulation.value && simulation.value.isPendingUpdate && !simulation.value.socialSecurityRelations.length) return ArrayHelpers.find(tabsAvailable.value, { value: SIMULATION_RESULT_TAB.value })
     if(simulation.value && !simulation.value.socialSecurityRelations.length) return ArrayHelpers.find(tabsAvailable.value, { value: SIMULATION_RELATION_TAB.value })
     return ArrayHelpers.find(tabsAvailable.value, { value: SIMULATION_RESULT_TAB.value })
   })
@@ -162,7 +164,7 @@
     
     `
 
-    GraphQL({ query }).then(({ data }) => {
+    GraphQL({ query, caller: 'SimulationShow' }).then(({ data }) => {
       simulation.value = new Simulation(data.simulation)
       orderSimulationItems()
     })
