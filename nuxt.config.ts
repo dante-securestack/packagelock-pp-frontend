@@ -21,6 +21,10 @@ export default defineNuxtConfig({
     }
   },
 
+  pageTransition: {
+    mode: 'out-in'
+  },
+
   build: {
 
     transpile: ['chart.js'],
