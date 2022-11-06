@@ -178,6 +178,7 @@
         socket.emit('addSimulationListener', route.params.simulationId)
         socket.on('simulationProcessed', (payload) => {
           getSimulation()
+          emitter.emit('addToast', { message: 'Simulação processada com sucesso', type: 'success' })
         })
       })
     } else {
@@ -185,6 +186,7 @@
       socket.emit('addSimulationListener', route.params.simulationId)
       socket.on('simulationProcessed', (payload) => {
         getSimulation()
+        emitter.emit('addToast', { message: 'Simulação processada com sucesso', type: 'success' })
       })
     }
   }

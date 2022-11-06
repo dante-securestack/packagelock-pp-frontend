@@ -48,11 +48,15 @@
   })
 
   const addToastInstance = ({ title = '', message = '', type = 'warning', timeout = DEFAULT_TIMEOUT }) => {
-    const id = StringHelpers.randomString(64)
-    const timeoutId = setTimeout(() => {
-      ArrayHelpers.remove(instances.value, { id })
-    }, timeout)
-    instances.value.unshift({ id, title, message, type, timeout, timeoutId, started: new Date().getTime(), timeRemain: 0 })
+
+    const alreadyAdded = ArrayHelpers.find(instances.value, { message })
+    if(!alreadyAdded) {
+      const id = StringHelpers.randomString(64)
+      const timeoutId = setTimeout(() => {
+        ArrayHelpers.remove(instances.value, { id })
+      }, timeout)
+      instances.value.unshift({ id, title, message, type, timeout, timeoutId, started: new Date().getTime(), timeRemain: 0 })
+    }
   }
 
   const stopTimeout = (instance) => {
