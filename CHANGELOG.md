@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.89](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.88...v0.0.89) (2022-11-06)
+
+
+### Tests | Testes
+
+* Testing update nuxt to rc-13 ([a83a3f7](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/a83a3f749f50635a8e4f3cfd9a1d0764d0535506))
+
+
+### Bug Fixes | Melhorias
+
+* Updated nuxt version and fixed nuxt page transition change ([f90e6fe](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/f90e6fe69d3e69f1fac3065ec820d1dc19a1dfd4))
+
+
+### Features | Funcionalidades
+
+* Added notification to simulation processed ([dd02a59](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/dd02a59298c4a61e63a1def3e8744f67627d47cf))
+* Update nuxt and minor changes ([d766ea4](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/d766ea4e1d05b8e9e3e4535299f48e76d602d724))
+
 ### [0.0.88](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.87...v0.0.88) (2022-10-31)
 
 
