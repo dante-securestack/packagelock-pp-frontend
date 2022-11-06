@@ -13,9 +13,9 @@
     "release": "standard-version"
   },
   "devDependencies": {
-    "@nuxtjs/tailwindcss": "^5.0.4",
+    "@nuxtjs/tailwindcss": "6.1.3",
     "concurrently": "^7.2.0",
-    "nuxt": "3.0.0-rc.9",
+    "nuxt": "^3.0.0-rc.13",
     "sass": "^1.51.0",
     "sass-loader": "^10.2.1",
     "standard-version": "^9.5.0",

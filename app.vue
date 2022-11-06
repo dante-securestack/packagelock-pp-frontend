@@ -57,12 +57,6 @@
 
   }
 
-  definePageMeta({
-    pageTransition: {
-      mode: 'out-in'
-    }
-  })
-
   useHead({
     titleTemplate: '%sCálculo e Previdência',
     bodyAttrs: {

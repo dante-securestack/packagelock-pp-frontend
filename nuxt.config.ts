@@ -3,6 +3,10 @@ import { defineNuxtConfig } from 'nuxt'
 // https://v3.nuxtjs.org/docs/directory-structure/nuxt.config
 export default defineNuxtConfig({
   
+  app: {
+    pageTransition: { name: 'page', mode: 'out-in' }
+  },
+  
   modules: [
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
@@ -19,6 +23,10 @@ export default defineNuxtConfig({
     public: {
       apiBaseUrl: '/api'
     }
+  },
+
+  pageTransition: {
+    mode: 'out-in'
   },
 
   build: {
