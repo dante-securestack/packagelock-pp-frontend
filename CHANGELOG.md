@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.90](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.89...v0.0.90) (2022-11-06)
+
+
+### Features | Funcionalidades
+
+* Installed vercel audience analytics ([b4275ce](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/b4275ce34dac5d602fce06abf1d0fe2aa4a2366d))
+
 ### [0.0.89](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.88...v0.0.89) (2022-11-06)
 
 
