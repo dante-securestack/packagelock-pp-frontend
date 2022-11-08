@@ -3,15 +3,15 @@
     <div class="w-full flex flex-col space-y-4">
 
       <h3 class="h3 border-l-10 border-orange-500 pl-6 leading-normal mb-4">
-        Excluír vínculo
+        Excluir vínculo
       </h3>
 
-      <p>Você tem certeza que deseja excluír o vínculo {{ socialSecurityRelation.relationOrigin }} ?</p>
+      <p>Você tem certeza que deseja excluir o vínculo {{ socialSecurityRelation.relationOrigin }} ?</p>
 
       <div class="w-full flex justify-end space-x-4 mt-10 block">
         <AppButton @click="close()">Cancelar</AppButton>
         <AppButton bg="bg-brand-gradient" text="text-white" @click="destroy()">
-          <span>Excluír</span>
+          <span>Excluir</span>
           <AppIcons icon="chevron_right" />
         </AppButton>
       </div>
