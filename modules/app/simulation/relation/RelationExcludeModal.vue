@@ -45,7 +45,7 @@
   const showModal = ref(false)
   const socialSecurityRelation = ref(new SocialSecurityRelation())
 
-  const isLoading = ref(false)
+  let isLoading = false
 
   const close = () => {
     showModal.value = false
@@ -55,10 +55,12 @@
   const destroy = () => {
     if(isLoading) return
     isLoading = true
-    Api.delete(`/app/socialSecurityRelation/destroy/${props.socialSecurityRelation.id}`)
+    Api.delete(`/app/socialSecurityRelation/destroy/${socialSecurityRelation.value.id}`)
       .then(() => {
         emitter.emit('simulationUpdated')
         isLoading = false
+        emitter.emit('addToast', { message: 'Vínculo excluido com sucesso.'})
+        close()
       })
   }
 
