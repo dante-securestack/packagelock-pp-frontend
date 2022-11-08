@@ -66,8 +66,8 @@
   import emitter from '@/util/emitter'
 
   onMounted(() => {
-    emitter.on('openModalEditContribution', ({ id = null, socialSecurityRelationId = null, simulationId = null, monthReference = null, isIgnored = false, ignoredReason = '' }) => {
-      formContribution.value = new FormContribution({ id, socialSecurityRelationId, simulationId, monthReference, isIgnored, ignoredReason })
+    emitter.on('openModalEditContribution', ({ id = null, socialSecurityRelationId = null, simulationId = null, monthReference = null, isIgnored = false, ignoredReason = '', baseValue = 0 }) => {
+      formContribution.value = new FormContribution({ id, socialSecurityRelationId, simulationId, monthReference, isIgnored, ignoredReason, baseValue })
       showModal.value = true
     })
   })
@@ -102,6 +102,7 @@
           baseValue
           isIgnored
           ignoredReason
+          baseValue
         }
       }
     `

@@ -94,8 +94,9 @@
     const monthReference = props.contribution.monthReference
     const isIgnored = props.contribution.isIgnored
     const ignoredReason = props.contribution.ignoredReason
+    const baseValue = props.contribution.baseValue
 
-    emitter.emit('openModalEditContribution', { id, simulationId, socialSecurityRelationId, monthReference, isIgnored, ignoredReason })
+    emitter.emit('openModalEditContribution', { id, simulationId, socialSecurityRelationId, monthReference, isIgnored, ignoredReason, baseValue })
   }
 
   const openContributionMonthReferenceDrawer = (monthReference) => {
