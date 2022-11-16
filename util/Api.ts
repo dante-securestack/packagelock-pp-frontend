@@ -8,7 +8,7 @@ import { useAuthStore } from "@/modules/auth/store"
  */
 axios.defaults.headers.common['Content-Type'] = 'application/json'
 axios.defaults.headers.common['Accept'] = '*/*'
-axios.defaults.baseURL = config[process.env.API_BASE_URL]
+axios.defaults.baseURL = config[process.env.NODE_ENV]['API_BASE_URL']
 
 
 /**
