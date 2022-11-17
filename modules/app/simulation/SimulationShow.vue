@@ -117,6 +117,7 @@
           id
           retirementDate
           isPendingUpdate
+          updatedAt
           client {
             id
             name

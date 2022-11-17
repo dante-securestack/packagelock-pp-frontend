@@ -8,7 +8,7 @@
 
     <ResultaTabProcessingLoader v-else-if="simulation.isPendingUpdate" />
 
-    <div class="w-full flex flex-col space-y-6" v-else>
+    <div id="result-tab-content" class="w-full flex flex-col space-y-6" v-else>
       <AppAlert type="info" v-if="retirementDateIsPreReform">As regras de aposentadoria pós-reforma estão disponíveis apenas para simulação com data de cálculo posteriores à 12/11/2019</AppAlert>
       
       <ResultRetirementGroupCard 
@@ -31,7 +31,7 @@
   import Simulation from "@/entities/Simulation"
   import Dates from '@/services/Dates'
   import { useAppSimulationStore } from '@/modules/app/simulation/store'
-  import BasePdfService from '@/services/pdf/BasePdfService'
+  import SimulationResultService from '@/services/pdf/SimulationResultService'
   
   const route = useRoute()
   const appSimulationStore = useAppSimulationStore()
@@ -59,11 +59,15 @@
 
   const generatePdf = async () => {
 
-    const pdf = new BasePdfService({ filename: 'teste' })
+    const pdf = new SimulationResultService({ 
+      filename: 'teste', simulation: props.simulation,
+      headline: 'Resultado simulação',
+      title: `${ props.simulation.client.name }`,
+      id: props.simulation.id,
+      subtitle: `${ props.simulation.client.cpf }`
+    })
 
-    await pdf.addPage()
-    await pdf.addPage()
-    await pdf.addPage()
+    pdf.generateTable()
 
     await pdf.export()
   }

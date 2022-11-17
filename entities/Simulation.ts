@@ -46,5 +46,7 @@ export default class Simulation extends BaseModel {
     'status',
     'isGranted',
     'firstProjectedRetirementDate',
+    'createdAt',
+    'updatedAt'
   ]
 }
