@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.93](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.92...v0.0.93) (2022-11-17)
+
+
+### Bug Fixes | Melhorias
+
+* Escondendo calculos quando não tiver direito ([10125a4](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/10125a4e4d6c306a61bf644a4c7a9ef23f82e008))
+
 ### [0.0.92](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.91...v0.0.92) (2022-11-08)
 
 
