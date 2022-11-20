@@ -20,7 +20,6 @@
     </div>
 
 
-
   </div>
 </template>
 
@@ -67,7 +66,7 @@
       subtitle: `${ props.simulation.client.cpf }`
     })
 
-    pdf.generateTable()
+    pdf.generateTables()
 
     await pdf.export()
   }
