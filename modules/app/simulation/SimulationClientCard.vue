@@ -38,6 +38,18 @@
           <template v-slot:label>Nome mãe</template>
           <template v-slot:value>{{ client.motherName ? client.motherName : '--' }}</template>
         </AppLabelValue>
+        
+        <div class="w-full">
+          <AppButton 
+              bg="bg-brand-gradient text-white text-sm px-2 py-1 mr-4 sm:mr-0 mt-2"
+              @click="generatePdf()"
+              v-if="!simulation.isPendingUpdate && simulation.simulationRetirementGroups.length"
+            >
+          <AppIcons icon="picture_as_pdf" />
+          <span class="ml-2">Imprimir resultado</span>
+        </AppButton>
+        </div>
+
       </div>
     </template>
     
@@ -47,7 +59,8 @@
 <script setup>
 
   import emitter from '@/util/emitter'
-  
+  import SimulationResultService from '@/services/pdf/SimulationResultService'
+
   const openClientEditModal = () => {
     emitter.emit('openClientEditModal', { ...props.client })
   }
@@ -66,6 +79,21 @@
 
   const toggleCard = () => {
     showContent.value = !showContent.value
+  }
+
+  const generatePdf = async () => {
+
+    const pdf = new SimulationResultService({ 
+      headline: 'Resultado simulação',
+      title: `${ props.simulation.client.name }`,
+      id: props.simulation.id,
+      subtitle: `${ props.simulation.client.cpf }`,
+      simulation: props.simulation
+    })
+
+    pdf.generateTables()
+
+    await pdf.export()
   }
   
 </script>

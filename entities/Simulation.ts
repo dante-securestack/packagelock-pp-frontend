@@ -3,7 +3,7 @@ import User from '@/entities/User'
 import Client from '@/entities/Client'
 import SimulationRetirementGroup from '@/entities/SimulationRetirementGroup'
 import SocialSecurityRelation from '@/entities/SocialSecurityRelation'
-
+import Dates from '@/services/Dates'
 export default class Simulation extends BaseModel {
   key: number = null
   id: string = null
@@ -46,5 +46,19 @@ export default class Simulation extends BaseModel {
     'status',
     'isGranted',
     'firstProjectedRetirementDate',
+    'createdAt',
+    'updatedAt'
   ]
+
+
+  getProjectedRetirementDate (simulationRetirementOption) {
+    if(!simulationRetirementOption.projectedRetirementDate) return false
+    return Dates.format(simulationRetirementOption.projectedRetirementDate, 'dd/MM/yyyy')
+  }
+
+  getProjectedRetirementDateIsAfterToday (simulationRetirementOption) {
+    if(Dates.parse(simulationRetirementOption.projectedRetirementDate) <= new Date()) return false
+    return true
+  }
+
 }

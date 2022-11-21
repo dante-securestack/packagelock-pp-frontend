@@ -5,7 +5,7 @@
 
     <ResultaTabProcessingLoader v-else-if="simulation.isPendingUpdate" />
 
-    <div class="w-full flex flex-col space-y-6" v-else>
+    <div id="result-tab-content" class="w-full flex flex-col space-y-6" v-else>
       <AppAlert type="info" v-if="retirementDateIsPreReform">As regras de aposentadoria pós-reforma estão disponíveis apenas para simulação com data de cálculo posteriores à 12/11/2019</AppAlert>
       
       <ResultRetirementGroupCard 
@@ -26,6 +26,7 @@
   import Simulation from "@/entities/Simulation"
   import Dates from '@/services/Dates'
   import { useAppSimulationStore } from '@/modules/app/simulation/store'
+
   
   const route = useRoute()
   const appSimulationStore = useAppSimulationStore()
