@@ -9,6 +9,8 @@ export default class SimulationResultService extends BasePdfService {
   constructor(args: any) {
     super(args)
     this.simulation = args.simulation
+
+    this.filename = `Resultado Simulação ${ this.simulation.client.name } ${ Dates.format(new Date, 'dd-MM-yyyy HH-mm-ss')}`
   }
 
   async addSpecificPageInfo() {
@@ -71,12 +73,13 @@ export default class SimulationResultService extends BasePdfService {
   generateTable(retirementGroup: any, simulationRetirementOption: any) {
 
     const head = this.getTableHead(retirementGroup, simulationRetirementOption)
-    const body = this.getTableBody()
+    const body = [[]]
 
     autoTable(this.doc, {
       theme: 'plain',
       body,
-      head, 
+      head,
+      pageBreak: 'avoid',
       styles: {
         font: 'Lato-Regular',
         fontSize: 9,
@@ -93,169 +96,84 @@ export default class SimulationResultService extends BasePdfService {
   getTableHead(retirementGroup: any, simulationRetirementOption: any) {
 
     const headers = [
+
       [
-        {
-          colSpan: 4,
-          content: `Regra ${ retirementGroup.title }`,
-          styles: {
-            font: 'Lato-Regular',
-            fontSize: 16,
-          },
-        }
+        this.getTableHeaderRowItemHead('Regra', 2),
       ],
       [
-        {
-          colSpan: 4,
-          content: `${ simulationRetirementOption.retirementOption.title }`,
-          styles: {
-            font: 'Lato-Regular',
-            fontSize: 12,
-          },
-        }
+        this.getTableHeaderRowItemContent(retirementGroup.title, 2, 16),
       ],
       [
-        {
-          content: 'Data base',
-          styles: {
-            font: 'Lato-Bold',
-            textColor: '#ADADAD',
-            cellPadding:{
-              top: 2,
-              bottom: 0,
-              left: 3
-            }
-          }
-        },
-        {
-          content: 'Quantidade de contribuições',
-          styles: {
-            font: 'Lato-Bold',
-            textColor: '#ADADAD',
-            cellPadding:{
-              top: 2,
-              bottom: 0,
-              left: 3
-            }
-          }
-        },
+        this.getTableHeaderRowItemHead(`Modalidade de aposentadoria`),
+        this.getTableHeaderRowItemHead('Resultado'),
       ],
       [
-        {
-          content: `${ simulationRetirementOption.contextDate }`,
-          styles: {
-            font: 'Lato-Regular',
-            fontSize: 10,
-            cellPadding:{
-              top: 0,
-              bottom: 2,
-              left: 3
-            }
-          },
-        },
-        {
-          content: `${ simulationRetirementOption.contributionsTotal }`,
-          styles: {
-            font: 'Lato-Regular',
-            fontSize: 10,
-            cellPadding:{
-              top: 0,
-              bottom: 2,
-              left: 3
-            }
-          },
-        }
+        this.getTableHeaderRowItemContent(simulationRetirementOption.retirementOption.title, 1, 12),
+        this.getTableHeaderRowItemContent(simulationRetirementOption.isGranted ? 'Direito ao Benefício' : 'Não tem direito ao benefício', 1, 12)
       ],
       [
-        {
-          content: 'Idade',
-          styles: {
-            font: 'Lato-Bold',
-            textColor: '#ADADAD',
-            cellPadding:{
-              top: 2,
-              bottom: 0,
-              left: 3
-            }
-          }
-        },
-        {
-          content: 'Tempo de contribuição',
-          styles: {
-            font: 'Lato-Bold',
-            textColor: '#ADADAD',
-            cellPadding:{
-              top: 2,
-              bottom: 0,
-              left: 3
-            }
-          }
-        },
+        this.getTableHeaderRowItemHead('Data base'),
+        this.getTableHeaderRowItemHead('Quantidade de contribuições')
       ],
       [
-        {
-          content: `${ simulationRetirementOption.age.time.timeText }`,
-          styles: {
-            font: 'Lato-Regular',
-            fontSize: 10,
-            cellPadding:{
-              top: 0,
-              bottom: 2,
-              left: 3
-            }
-          },
-        },
-        {
-          content: `${ simulationRetirementOption.contributionTime.time.timeText }`,
-          styles: {
-            font: 'Lato-Regular',
-            fontSize: 10,
-            cellPadding:{
-              top: 0,
-              bottom: 2,
-              left: 3
-            }
-          },
-        }
+        this.getTableHeaderRowItemContent(simulationRetirementOption.contextDate),
+        this.getTableHeaderRowItemContent(simulationRetirementOption.contributionsTotal),
+      ],
+      [
+        this.getTableHeaderRowItemHead('Idade'),
+        this.getTableHeaderRowItemHead('Tempo de contribuição')
+      ],
+      [
+        this.getTableHeaderRowItemContent(simulationRetirementOption.age.time.timeText),
+        this.getTableHeaderRowItemContent(simulationRetirementOption.contributionTime.time.timeText),
       ]
     ]
-
 
     if(this.simulation.getProjectedRetirementDate(simulationRetirementOption) && this.simulation.getProjectedRetirementDateIsAfterToday(simulationRetirementOption)) {
       headers.push(
         [
-          {
-            content: 'Projeção',
-            colSpan: 4,
-            styles: {
-              font: 'Lato-Bold',
-              textColor: '#ADADAD',
-              cellPadding:{
-                top: 2,
-                bottom: 0,
-                left: 3
-              }
-            }
-          },
+          this.getTableHeaderRowItemHead('Projeção', 2),
         ],
         [
-          {
-            content: `Em havendo continuidade das contribuições, a aposentadoria nesta modalidade será cumprida em ${ Dates.format(simulationRetirementOption.projectedRetirementDate, 'dd/MM/yyyy') }.`,
-            colSpan: 4,
-            styles: {
-              font: 'Lato-Regular',
-              fontSize: 10,
-              cellPadding:{
-                top: 0,
-                bottom: 2,
-                left: 3
-              }
-            },
-          },
+          this.getTableHeaderRowItemContent(`Em havendo continuidade das contribuições, a aposentadoria nesta modalidade será cumprida em ${ Dates.format(simulationRetirementOption.projectedRetirementDate, 'dd/MM/yyyy') }.`, 2),
         ]
       )
     }
 
     return headers
+  }
+
+  getTableHeaderRowItemHead(content: string, colSpan: number = 1, fontSize: number = 10) {
+    return {
+      content,
+      colSpan,
+      styles: {
+        fontSize,
+        font: 'Lato-Bold',
+        textColor: '#ADADAD',
+        cellPadding:{
+          top: 2,
+          bottom: 0,
+          left: 3
+        }
+      }
+    }
+  }
+
+  getTableHeaderRowItemContent(content: string, colSpan: number = 1, fontSize: number = 10) {
+    return {
+      content,
+      colSpan,
+      styles: {
+        fontSize,
+        font: 'Lato-Regular',
+        cellPadding:{
+          top: 2,
+          bottom: 2,
+          left: 3
+        }
+      },
+    }
   }
 
 

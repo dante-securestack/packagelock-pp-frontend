@@ -1,10 +1,7 @@
 <template>
   <div class="w-full sm:p-4 md:p-6 flex flex-col space-y-6">
 
-    <AppButton class="bg-red-200" @click="generatePdf()" v-if="isLocalHost()">Gerar PDF</AppButton>
-    
     <AppLoaderPlaceholder v-if="!simulation" />
-    
 
     <ResultaTabProcessingLoader v-else-if="simulation.isPendingUpdate" />
 
@@ -19,7 +16,6 @@
       ></ResultRetirementGroupCard>
     </div>
 
-
   </div>
 </template>
 
@@ -30,7 +26,7 @@
   import Simulation from "@/entities/Simulation"
   import Dates from '@/services/Dates'
   import { useAppSimulationStore } from '@/modules/app/simulation/store'
-  import SimulationResultService from '@/services/pdf/SimulationResultService'
+
   
   const route = useRoute()
   const appSimulationStore = useAppSimulationStore()
@@ -54,25 +50,5 @@
   const retirementDateIsPreReform = computed(() => {
     return Boolean(Dates.parse(props.simulation.retirementDate) < Dates.parse('2019-11-13'))
   })
-
-
-  const generatePdf = async () => {
-
-    const pdf = new SimulationResultService({ 
-      filename: 'teste', simulation: props.simulation,
-      headline: 'Resultado simulação',
-      title: `${ props.simulation.client.name }`,
-      id: props.simulation.id,
-      subtitle: `${ props.simulation.client.cpf }`
-    })
-
-    pdf.generateTables()
-
-    await pdf.export()
-  }
-
-  const isLocalHost = () => {
-    return window && window.location.host === 'localhost:3000'
-  }
 
 </script>
