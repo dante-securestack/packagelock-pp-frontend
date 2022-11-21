@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.94](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.93...v0.0.94) (2022-11-21)
+
+
+### Routine tasks | Implementações gerais
+
+* Updated lazyfy ([dfcf4cf](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/dfcf4cf9683cee39fba5306a3c10fe1a8ee313f9))
+
+
+### Features | Funcionalidades
+
+* BasePdf service ([ea124f5](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/ea124f5bea98aa0a7684e03374fd5cdf8c07493a))
+* Loader processando simulação ([1f65f99](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/1f65f998d6e1ecd5629979f07854c7f630420da5))
+* More progress on pdf ([375b2ca](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/375b2ca5fc668c1e49631819bd23d6ad1620a258))
+* PDF resultado simulação ([b5bf604](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/b5bf6045d174118570840ea08cb17d90cb6339aa))
+* PDF resultado simulação ([271a329](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/271a329d9f63bb2df04125bb511d37daa9d6267a))
+
 ### [0.0.93](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.92...v0.0.93) (2022-11-17)
 
 
