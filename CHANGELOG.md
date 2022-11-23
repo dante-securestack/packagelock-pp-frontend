@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.97](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.96...v0.0.97) (2022-11-23)
+
+
+### Features | Funcionalidades
+
+* Adicionado frases dinamicas no loader de processamento ([0a47bd3](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/0a47bd3252ef7e3792482371f8d1a6949a36ab99))
+
 ### [0.0.96](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.95...v0.0.96) (2022-11-23)
 
 
