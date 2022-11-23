@@ -174,12 +174,13 @@
       showModal.value = true
       formSimulation.value = new FormSimulation(client)
       
-      if(client.id) formSimulation.value.clientId = client.id
+      if(client.id) {
+        formSimulation.value.clientId = client.id
+        authStore.setRedirectTo({ route: route.fullPath })
+      }
       if(props.simulation) {
         formSimulation.value.retirementDate = props.simulation.retirementDate
         formSimulation.value.simulationId = props.simulation.id
-      } else {
-        authStore.setRedirectTo({ route: route.fullPath, event: 'openClientEditModal' })
       }
     })
   })
