@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.96](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.95...v0.0.96) (2022-11-23)
+
+
+### Bug Fixes | Melhorias
+
+* Fix redirecionamento ao clicar em editar dados segurado quando não logado ([cc3590d](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/cc3590d9d867dc17d173c3093ff49f1e5b97ee2a))
+
 ### [0.0.95](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.94...v0.0.95) (2022-11-22)
 
 
