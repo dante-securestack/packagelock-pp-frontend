@@ -50,6 +50,7 @@ export const useAuthStore = defineStore('auth', {
 
         LogRocket.identify(this.loggedUser.id, { name: this.loggedUser.name, email: this.loggedUser.email })
       })
+      .catch(err => console.log(err))
     },
     
     logout() {
@@ -67,10 +68,13 @@ export const useAuthStore = defineStore('auth', {
     redirect() {
       const route = useRoute()
 
+      // console.log(this.redirectTo)
+      // console.log(this.redirectToEvent)
+
       setTimeout(() => {
         this.redirectTo = ''
         this.redirectToEvent = null
-      }, 1500)
+      }, 5000)
 
       if(route.query.skipRedirect || this.redirectTo === false) return
 

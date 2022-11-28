@@ -26,7 +26,10 @@
   import Api from '@/util/Api'
   import SocialSecurityRelation from '@/entities/SocialSecurityRelation'
   import emitter from '@/util/emitter'
+  import { useAuthStore } from "@/modules/auth/store"
   
+  const authStore = useAuthStore()
+  const route = useRoute()
   const { emit } = getCurrentInstance()
   
   defineEmits(['close'])
@@ -35,6 +38,7 @@
     emitter.on('openRelationExcludeModal', ({ socialSecurityRelation: socialSecurityRelationToSet }) => {
       showModal.value = true
       socialSecurityRelation.value = new SocialSecurityRelation(socialSecurityRelationToSet)
+      authStore.setRedirectTo({ route: route.fullPath })
     })
   })
 

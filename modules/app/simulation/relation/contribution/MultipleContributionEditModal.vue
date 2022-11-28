@@ -100,11 +100,16 @@
   import Api from '@/util/Api'
   import emitter from '@/util/emitter'
   import FormMultipleContribution from '@/forms/FormMultipleContribution'
+  import { useAuthStore } from "@/modules/auth/store"
+  
+  const authStore = useAuthStore()
+  const route = useRoute()
 
   onMounted(() => {
     emitter.on('openModalEditMultipleContributions', ({ socialSecurityRelation }) => {
       showModal.value = true
       formMultipleContribution.value = new FormMultipleContribution(socialSecurityRelation)
+      authStore.setRedirectTo({ route: route.fullPath })
     })
   })
 

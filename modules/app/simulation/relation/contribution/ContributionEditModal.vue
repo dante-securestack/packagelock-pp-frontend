@@ -64,11 +64,16 @@
   import Api from '@/util/Api'
   import FormContribution from '@/forms/FormContribution'
   import emitter from '@/util/emitter'
+  import { useAuthStore } from "@/modules/auth/store"
+  
+  const authStore = useAuthStore()
+  const route = useRoute()
 
   onMounted(() => {
     emitter.on('openModalEditContribution', ({ id = null, socialSecurityRelationId = null, simulationId = null, monthReference = null, isIgnored = false, ignoredReason = '', baseValue = 0 }) => {
       formContribution.value = new FormContribution({ id, socialSecurityRelationId, simulationId, monthReference, isIgnored, ignoredReason, baseValue })
       showModal.value = true
+      authStore.setRedirectTo({ route: route.fullPath })
     })
   })
 

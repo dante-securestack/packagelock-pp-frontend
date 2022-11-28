@@ -104,7 +104,9 @@
   import Api from '@/util/Api'
   import FormSocialSecurityRelation from '@/forms/FormSocialSecurityRelation'
   import emitter from '@/util/emitter'
+  import { useAuthStore } from "@/modules/auth/store"
   
+  const authStore = useAuthStore()
   const route = useRoute()
   const { emit } = getCurrentInstance()
   
@@ -115,6 +117,7 @@
       showModal.value = true
       formSocialSecurityRelation.value = new FormSocialSecurityRelation(socialSecurityRelationToSet)
       formSocialSecurityRelation.value.simulationId = route.params.simulationId
+      authStore.setRedirectTo({ route: route.fullPath })
     })
   })
 
