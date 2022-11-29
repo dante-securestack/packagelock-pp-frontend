@@ -2,7 +2,17 @@
   <div class="w-full flex flex-col">
     <AppTitle>Simulações</AppTitle>
 
-    <AppSearchBar placeholder="Procurar por nome da simulação" v-model:search="search" @search="get()" />
+    <div class="w-full flex space-x-2 mt-4">
+      <AppButton
+        class="border border-zinc-200"
+        :class="[statusTypesSelected.includes(status) ? 'bg-brand-gradient text-white' : '' ]"
+        v-for="status in statusTypes" 
+        :key="status"
+        @click="toggleStatus(status)"
+      >
+        {{ status }}
+      </AppButton>
+    </div>
 
     <div class="w-full flex flex-col space-y-6 mt-6">
 
@@ -84,6 +94,7 @@
   import GraphQL from '@/util/GraphQL'
   import LabelIsGranted from '@/modules/app/simulation/result/LabelIsGranted.vue'
   import SimulationEditModal from '@/modules/admin/simulation/SimulationEditModal.vue'
+  import { ArrayHelpers } from '@igortrindade/lazyfy'
 
   const emitter = useEmitter()
   const route = useRoute()
@@ -92,31 +103,32 @@
   const skip = ref(0)
   const take = ref(12)
   const simulations = ref(false)
+  const showDropdown = ref(false)
+  const statusTypes = ref(['PENDENTE', 'CRIADA POR ADMIN', 'CRIADA POR USUÁRIO', 'ENTRAR EM CONTATO'])
+  const statusTypesSelected = ref(['PENDENTE', 'CRIADA POR ADMIN', 'CRIADA POR USUÁRIO', 'ENTRAR EM CONTATO'])
 
   onMounted(() => {
     get()
   })
 
   const get = () => {
-    let whereClause
-    if(route.query.clientId) whereClause = `{ column: "clientId", value: "${route.query.clientId}"}`
-    if(route.query.userId) whereClause = `{ column: "userId", value: "${route.query.userId}"}`
+    let whereClause = ``
+    if(route.query.clientId) whereClause += `{ column: "clientId", value: "${route.query.clientId}"}`
+    if(route.query.userId) whereClause += `{ column: "userId", value: "${route.query.userId}"}`
+
+    const statusToSearch = `[ ${statusTypesSelected.value.map((s) => `\\"${s}\\"`).join(',')}]`
     
-    const where = !whereClause ? '' : `
+    whereClause += `
       where: [
         ${ whereClause }
-        ${
-          !search.value ? '' :  `
-            { column: "title", operation: "ilike", value: "%${search.value}%" }
-          `
-        }
+        { column: "status", operation: "in", value: "${statusToSearch}" }
       ],
     `
     
     const query = `
       {
         simulations (
-          ${ where }
+          ${ whereClause }
           order: [
             { column: "createdAt", direction: "DESC" }
           ]
@@ -160,6 +172,11 @@
 
   const openSimulationEditModal = (simulation) => {
     emitter.emit('openSimulationEditModal', { simulation })
+  }
+
+  const toggleStatus = (status) => {
+    ArrayHelpers.toggleInArray(statusTypesSelected.value, status)
+    get()
   }
 
   
