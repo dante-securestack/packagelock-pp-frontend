@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.101](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.100...v0.0.101) (2022-11-29)
+
+
+### Features | Funcionalidades
+
+* Filtro simulações por status ([5454c88](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/5454c88b2626e9d5f30da51cef491c6d02b31f3b))
+
 ### [0.0.100](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.99...v0.0.100) (2022-11-29)
 
 
