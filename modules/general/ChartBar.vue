@@ -21,6 +21,13 @@
     height: {
       type: Number,
       default: 400
+    },
+    type: {
+      type: String,
+      default: 'bar'
+    },
+    labels: {
+      default: false
     }
   })
 
@@ -42,14 +49,22 @@
   let chartInstance = null
 
   const initChart = () => {
+    if(props.type === 'bar') {
+      initChartBar()
+    } else if(props.type === 'bar-stacked') {
+      initChartBarStacked()
+    }
+  }
+
+  const initChartBar = () => {
     const ctx = document.getElementById(randomId.value).getContext('2d')
     chartInstance = new Chart(ctx, {
       type: 'bar',
       data: {
         datasets: [{
-            data: props.data,
-            backgroundColor: colors,
-            borderColor: colors
+          data: props.data,
+          backgroundColor: colors,
+          borderColor: colors
         }]
       },
       options: {
@@ -57,19 +72,30 @@
           legend: {
             display: false
           }
+        }
+      }
+    })
+  }
+
+  const initChartBarStacked = () => {
+    const ctx = document.getElementById(randomId.value).getContext('2d')
+    chartInstance = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: props.labels,
+        datasets: props.data
+      },
+      options: {
+        interaction: {
+          intersect: false,
         },
         scales: {
-          xAxis:{
-            grid: {
-              display: false
-            }
+          x: {
+            stacked: true,
           },
-          yAxis:{
-            grid: {
-              borderDash: [4, 6],
-              color: '#e4e4e7'
-            }
-          }
+          y: {
+            stacked: true
+          },
         }
       }
     })

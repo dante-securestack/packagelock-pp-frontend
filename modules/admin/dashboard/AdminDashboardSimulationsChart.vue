@@ -3,7 +3,7 @@
     <template v-slot:header>
       <h3 class="h3 leading-relaxed">Simulações por mês</h3>
     </template>
-    <ChartBar class="p-4 pr-8" :data="data" :height="200"/>
+    <ChartBar class="p-4 pr-8" :data="data.datasets" :labels="data.labels" :height="200" type="bar-stacked"/>
   </AppCard>
 </template>
 
@@ -11,6 +11,8 @@
 
   import ChartBar from '@/modules/general/ChartBar'
   import Dates from '@/services/Dates'
+  import { ArrayHelpers } from '@igortrindade/lazyfy'
+  import { colors } from '@/util/functions/chartDefaultOptions'
   
   const Api = useApi()
 
@@ -22,12 +24,36 @@
   const result = ref([])
 
   const data = computed(() => {
-    return result.value.map((item) => {
+
+    const labels = []
+
+    const months = result.value.reduce((acc, item) => {
+      if(!acc.includes(item.month)) acc.push(item.month)
+      return acc
+    }, [])
+
+    const statuses = result.value.reduce((acc, item) => {
+      if(!acc.includes(item.status)) acc.push(item.status)
+      return acc
+    }, [])
+
+    const datasets = statuses.map((status, index) => {
+      const data = months.map((month) => {
+        const finded = ArrayHelpers.find(result.value, { month, status })
+        return finded ? finded.count : 0
+      })
       return {
-        x: Dates.getMonthString(item.month),
-        y: parseInt(item.count)
+        label: status,
+        backgroundColor: colors[index],
+        data
       }
     })
+
+
+    return {
+      labels: months.map((m) => Dates.getMonthString(m)),
+      datasets
+    }
   })
 
   watch(() => [props.init, props.end], (newValue) => {
