@@ -45,7 +45,7 @@
       } else {
         changeCurrentPhrase(currentPhrase.value + 1)
       }
-    }, 5000)
+    }, 10000)
   })
 
 
