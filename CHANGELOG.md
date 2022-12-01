@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.103](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.102...v0.0.103) (2022-12-01)
+
+
+### Features | Funcionalidades
+
+* Aumento tempo frases ([7377d14](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/7377d14c9e4a21a8e8e6a6797fed32b4583efc05))
+
 ### [0.0.102](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.101...v0.0.102) (2022-11-30)
 
 
