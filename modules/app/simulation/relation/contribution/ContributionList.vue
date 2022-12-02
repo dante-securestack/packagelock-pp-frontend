@@ -45,6 +45,8 @@
           <tr>
             <th>Competência</th>
             <th>Valor base</th>
+            <th>Valor corrigido</th>
+            <th>Fator correção</th>
             <th>Editar</th>
           </tr>
         </thead>

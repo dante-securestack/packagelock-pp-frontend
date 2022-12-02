@@ -134,6 +134,7 @@
               valueAfterCheckLimit
               valueAfterCorrection
               finalValue
+              contributionFactorValue
               isIgnored
               ignoredReason
               groupedContributionsQuantity

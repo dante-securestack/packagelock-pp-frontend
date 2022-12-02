@@ -10,6 +10,7 @@ export default class Contribution {
   valueAfterCheckLimit: number = 0
   valueAfterCorrection: number = 0
   finalValue: number = 0
+  contributionFactorValue: number = 0
   contributionValue: string = ''
   contributionDate: string = ''
   indicators: string = ''

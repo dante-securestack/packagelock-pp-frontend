@@ -20,6 +20,8 @@
         </div>
       </td>
       <td>{{ vueNumberFormat(contribution.baseValue, getCurrencyFormatter(contribution.monthReference)) }}</td>
+      <td>{{ vueNumberFormat(contribution.finalValue, getCurrencyFormatter(contribution.monthReference)) }}</td>
+      <td>{{ contribution.contributionFactorValue }}</td>
       <td>
         <div class="flex">
           <AppButton 
