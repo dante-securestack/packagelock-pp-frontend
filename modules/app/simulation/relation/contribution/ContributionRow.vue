@@ -57,8 +57,10 @@
       <td class="pl-3 border-y" colspan="5" v-if="showContent">
         <h5 class="h5 mb-2">Histórico de edições</h5>
         <div class="pl-3">
-          <ul class="w-full list-disc pl-3">
-            <li v-for="(history, index) in contribution.history" :key="`${contribution.id}_${index}`" >{{ history }}</li>
+          <ul class="w-full list-disc pl-3 whitespace-normal">
+            <li v-for="(history, index) in contribution.history" :key="`${contribution.id}_${index}`" >
+              {{ history }}
+            </li>
           </ul>
           <p v-if="!contribution.history.length">Não existem alterações nesta contribuição</p>
         </div>
