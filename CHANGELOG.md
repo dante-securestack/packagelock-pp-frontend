@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.105](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.104...v0.0.105) (2022-12-02)
+
+
+### Bug Fixes | Melhorias
+
+* Fixed colspan ([b64fdbe](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/b64fdbef06ea93ad0a7b55edd2aa70a132b1d4c6))
+
 ### [0.0.104](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.103...v0.0.104) (2022-12-02)
 
 
