@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.104](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.103...v0.0.104) (2022-12-02)
+
+
+### Features | Funcionalidades
+
+* Adicionar contributionFactorValue e finalValue na lista de contribuições ([fe51eac](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/fe51eac5dd8d02cb53fdf766f362b87c58a807d1))
+
 ### [0.0.103](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.102...v0.0.103) (2022-12-01)
 
 
