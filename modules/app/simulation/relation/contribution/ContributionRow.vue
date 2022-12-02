@@ -54,7 +54,7 @@
       </td>
     </tr>
     <tr>
-      <td class="pl-3 border-y" colspan="3" v-if="showContent">
+      <td class="pl-3 border-y" colspan="5" v-if="showContent">
         <h5 class="h5 mb-2">Histórico de edições</h5>
         <div class="pl-3">
           <ul class="w-full list-disc pl-3">
