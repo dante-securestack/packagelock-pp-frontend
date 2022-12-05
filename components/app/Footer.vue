@@ -2,15 +2,25 @@
   
   <div class="w-full flex flex-col p-10 footer bg-brand-gradient">
 
-    <div class="border-b border-slate-500 flex items-center justify-between pb-8">
+    <div class="border-b border-slate-500 flex md:items-center flex-col md:flex-row justify-between pb-8">
       <nuxt-link to="/">
         <img src="/images/logo/1x/LOGO_2_1_1x.png" class="h-14" alt="Logo Calculo e previdência"/>
       </nuxt-link>
-      <NuxtLink to="/calcule-sua-aposentadoria">
-        <AppButton class="sm:block bg-amber-600 text-white rounded-full px-6">
-          Calcule sua aposentadoria
+
+      <div class="md:ml-auto md:space-x-4 flex flex-col md:flex-row items-start space-y-4 md:space-y-0">
+        <NuxtLink to="/calcule-sua-aposentadoria">
+          <AppButton class="sm:block bg-amber-600 text-white rounded-full px-6">
+            Calcule sua aposentadoria
+          </AppButton>
+        </NuxtLink> 
+
+        <AppButton 
+          @click="emitter.emit('openContactModal')"
+          class="sm:block w-auto bg-amber-600 text-white rounded-full px-6"
+        >
+          Revisão da Vida Toda
         </AppButton>
-      </NuxtLink> 
+      </div>
     </div>
 
     <div class="border-b border-slate-500 flex flex-wrap justify-between mt-6 text-zinc-200 ">

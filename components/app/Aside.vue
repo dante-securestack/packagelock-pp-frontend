@@ -96,6 +96,12 @@
           action: '/calcule-sua-aposentadoria'
         },
         {
+          title: 'Revisão da Vida Toda',
+          action: () => {
+            emitter.emit('openContactModal')
+          }
+        },
+        {
           title: 'Artigos e notícias',
           action: '/artigos'
         },

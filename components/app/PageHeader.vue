@@ -27,10 +27,18 @@
 
     <div class="flex items-center space-x-6">
       <NuxtLink to="/calcule-sua-aposentadoria">
-        <AppButton class="hidden sm:block bg-amber-600 text-white rounded-full px-6">
+        <AppButton class="hidden lg:block bg-amber-600 text-white rounded-full px-6">
           Calcule sua aposentadoria
         </AppButton>
       </NuxtLink> 
+
+      <AppButton 
+        @click="emitter.emit('openContactModal')"
+        class="sm:block w-auto hidden md:block bg-amber-600 text-white rounded-full px-6"
+      >
+        Revisão da Vida Toda
+      </AppButton>
+
       <button 
         @click.stop="toggleMenu()"
         class="menu-toggle" 
@@ -49,6 +57,7 @@
 <script setup>
 
   const route = useRoute()
+  const emitter = useEmitter()
 
   const childred  = ref()
 

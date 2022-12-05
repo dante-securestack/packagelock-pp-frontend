@@ -7,7 +7,7 @@
         <span>Fale conosco</span>
       </h3>
 
-      <p class="p">Fale diretamente com nossos analistas previdenciários.</p>
+      <p class="p">Fale diretamente com nossos especialistas previdenciários para <b>calcular sua aposentadoria</b> ou <b>Revisão da Vida Toda</b>.</p>
 
       <div class="w-full flex flex-col space-y-6">
 
