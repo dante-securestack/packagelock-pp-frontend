@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.107](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.106...v0.0.107) (2022-12-05)
+
+
+### Features | Funcionalidades
+
+* CTA Revisão Toda Vida ([5c67042](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/5c67042ef8c6eefa707a3de194496e8ef538590a))
+
 ### [0.0.106](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.105...v0.0.106) (2022-12-02)
 
 
