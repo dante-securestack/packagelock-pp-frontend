@@ -3,10 +3,9 @@
     :to="`/artigos/${ article.slug }`"
     class="border border-zinc-200 hover:shadow-lg"
   >
-    <AppIcons 
-      :icon="article.pathUrl" 
-      iconClasses="aspect-square w-full object-contains bg-zinc-100" 
-      errorIcon="/images/general/noticias.jpg"
+    <img 
+      class="aspect-square w-full object-contains bg-zinc-100"
+      :src="article.pathUrl"
     />
     <div class="ml-auto p-4 lg: p-6">
       <div class="w-full flex flex-col">
