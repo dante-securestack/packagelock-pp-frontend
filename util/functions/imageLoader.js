@@ -41,7 +41,7 @@ export default ({ imageUrl, onProgress = null, returnsBase64 = true }) => {
     }
 
     xhr.onerror = (err) => {
-      reject()
+      reject(err)
     }
 
     xhr.send()

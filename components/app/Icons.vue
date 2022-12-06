@@ -139,7 +139,8 @@ export default {
         .then(() => {
           this.finishedImageLoad = true
         })
-        .catch(() => {
+        .catch((err) => {
+          console.log(err)
           this.imageLoadError = true
         })
     }
