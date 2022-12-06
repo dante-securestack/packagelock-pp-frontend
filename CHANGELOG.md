@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.109](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.108...v0.0.109) (2022-12-06)
+
+
+### Bug Fixes | Melhorias
+
+* Fix carregamento imagem ([a70e7ba](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/a70e7bacfd20ac99a669b863531d7aca960f1c78))
+
 ### [0.0.108](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.107...v0.0.108) (2022-12-06)
 
 
