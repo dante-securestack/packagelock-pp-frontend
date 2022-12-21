@@ -49,7 +49,7 @@
         </div>
       </div>
 
-      <div class="w-full flex flex-col" v-if="forceShowDetail || getProjectedRetirementDate && getProjectedRetirementDateIsAfterToday">
+      <div class="w-full flex flex-col" v-if="showDetail">
         <p class="p text-slate-400 leading-none mb-2">
           Projeção de aposentadoria
         </p>
@@ -114,12 +114,17 @@
   })
 
   const getProjectedRetirementDateIsAfterToday = computed(() => {
+    if(!props.simulationRetirementOption.projectedRetirementDate) return false
     if(Dates.parse(props.simulationRetirementOption.projectedRetirementDate) <= new Date()) return false
     return true
   })
 
   const forceShowDetail = computed(() => {
     return loggedUser.value && ['igortrindademe@gmail.com', 'brunofa23@gmail.com'].includes(loggedUser.value.email)
+  })
+
+  const showDetail = computed(() => {
+    return forceShowDetail.value || Boolean(!props.simulationRetirementOption.isGranted && getProjectedRetirementDateIsAfterToday.value)
   })
   
 </script>
