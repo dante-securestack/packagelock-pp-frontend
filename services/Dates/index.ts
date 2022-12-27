@@ -4,6 +4,7 @@ import add from '@/services/Dates/add'
 import sub from '@/services/Dates/sub'
 import isValid from '@/services/Dates/isValid'
 import getMonthString from '@/services/Dates/getMonthString'
+import getMonthNumber from '@/services/Dates/getMonthNumber'
 
 export default {
   parse,
@@ -11,5 +12,6 @@ export default {
   sub,
   format,
   isValid,
-  getMonthString
+  getMonthString,
+  getMonthNumber
 }

@@ -21,6 +21,7 @@
         @keydown.enter="$emit('keydown.enter', $event.target.value)"
         class="input-classes"
         :class="getInputClass"
+        :disabled="disabled"
       />
       <input
         v-else
@@ -33,6 +34,7 @@
         v-mask="mask"
         class="input-classes"
         :class="getInputClass"
+        :disabled="disabled"
       />
     </div>
 
@@ -54,6 +56,10 @@
     mask: [Array, String],
     value: [String, Number],
     hasError: {
+      type: Boolean,
+      default: false
+    },
+    disabled: {
       type: Boolean,
       default: false
     }

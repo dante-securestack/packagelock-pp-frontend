@@ -4,11 +4,11 @@ export default class BaseFormModel {
 
   tried: boolean = false
   
-  get fillable() {
+  get fillable(): any {
     return []
   }
 
-  get requireds() {
+  get requireds(): any {
     return []
   }
 

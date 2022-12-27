@@ -155,6 +155,10 @@
           action: '/admin/categories'
         },
         {
+          title: 'Tabelas de correção',
+          action: '/admin/contribution-factors'
+        },
+        {
           title: 'Grupos de aposentadoria',
           action: '/admin/retirement-groups'
         },

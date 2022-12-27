@@ -66,7 +66,7 @@ export default {
     }
   },
 
-  emits: ['update:modelValue'],
+  emits: ['update:modelValue', 'change'],
 
   data() {
     return {
@@ -79,7 +79,7 @@ export default {
       if (event.target.files && event.target.files[0]) {
         // console.log(event.target.files[0])
         this.$emit('update:modelValue', event.target.files[0]) 
-        // this.$emit('updated')
+        this.$emit('change', event)
       }
     }
   }
