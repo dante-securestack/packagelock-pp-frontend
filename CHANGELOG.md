@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.111](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.110...v0.0.111) (2022-12-27)
+
+
+### Features | Funcionalidades
+
+* Importar tabelas de correção monetária e indice de correção ([a39387a](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/a39387a9f7883ba8ca9119c30f05d3bb7e0bc146))
+
 ### [0.0.110](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.109...v0.0.110) (2022-12-21)
 
 
