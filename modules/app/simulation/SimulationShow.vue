@@ -117,6 +117,10 @@
           id
           retirementDate
           isPendingUpdate
+          hasCustomInputs
+          customInitialDate
+          customRetirementFactor
+          customContributionsPercentage
           updatedAt
           client {
             id
