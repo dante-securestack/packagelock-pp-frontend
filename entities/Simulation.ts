@@ -5,6 +5,7 @@ import SimulationRetirementGroup from '@/entities/SimulationRetirementGroup'
 import SocialSecurityRelation from '@/entities/SocialSecurityRelation'
 import Dates from '@/services/Dates'
 export default class Simulation extends BaseModel {
+  
   key: number = null
   id: string = null
   cnisFileId: string = null
@@ -18,6 +19,10 @@ export default class Simulation extends BaseModel {
   status: string = ''
   isGranted: string = ''
   firstProjectedRetirementDate: string = ''
+  hasCustomInputs = false
+  customInitialDate = ''
+  customRetirementFactor = 0
+  customContributionsPercentage = 0
 
   user: User = null
   client: Client = null
@@ -47,7 +52,11 @@ export default class Simulation extends BaseModel {
     'isGranted',
     'firstProjectedRetirementDate',
     'createdAt',
-    'updatedAt'
+    'updatedAt',
+    'hasCustomInputs',
+    'customInitialDate',
+    'customRetirementFactor',
+    'customContributionsPercentage',
   ]
 
 
