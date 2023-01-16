@@ -1,11 +1,11 @@
 
 import BaseFormModel from "@/forms/BaseFormModel"
-import Validators from '@/forms/Validators'
+
 export default class FormSimulation extends BaseFormModel {
 
   retirementDate: string = ''
-  simulationId: string = ''
-  clientId: string = ''
+  simulationId: string = null
+  clientId: string = null
   name: string = ''
   email: string = ''
   phone: string = ''
@@ -13,12 +13,8 @@ export default class FormSimulation extends BaseFormModel {
   motherName: string = ''
   cpf: string = ''
   nit: string = ''
-  gender: string = ''
+  gender: string = null
   acceptTerms: boolean = false
-  hasCustomInputs: boolean = false
-  customContributionsPercentage: number = 0
-  customRetirementFactor: number = 0
-  customInitialDate: string = ''
 
   constructor(data) {
     super()
@@ -39,10 +35,6 @@ export default class FormSimulation extends BaseFormModel {
       'nit',
       'gender',
       'acceptTerms',
-      'hasCustomInputs',
-      'customContributionsPercentage',
-      'customRetirementFactor',
-      'customInitialDate',
     ]
   }
 
@@ -82,32 +74,10 @@ export default class FormSimulation extends BaseFormModel {
         item: 'gender',
         label: 'gênero do segurado(a)',
       },
-      {
-        item: 'customContributionsPercentage',
-        label: 'porcentagem de cálculos',
-        validator: (value: number, instance: FormSimulation) => {
-          if(!instance.hasCustomInputs) return false
-          return !(value > 0 && value <= 100)
-        }
-      },
-      {
-        item: 'customInitialDate',
-        label: 'data inicial do cálculo',
-        validator: (value: string, instance: FormSimulation) => {
-          if(!instance.hasCustomInputs) return false
-          if(Validators.minLength(value, 10)) return true
-          if(Validators.dateIsValid(value)) return true
-          return false
-        }
-      },
-      {
-        item: 'customRetirementFactor',
-        label: 'fator de aposentadoria',
-        validator: (value: number, instance: FormSimulation) => {
-          if(!instance.hasCustomInputs) return false
-          return !(value > 0 && value <= 100)
-        }
-      },
+      // {
+      //   item: 'acceptTerms',
+      //   validator: 'booleanShouldBeTrueValidation'
+      // },
     ]
   }
 

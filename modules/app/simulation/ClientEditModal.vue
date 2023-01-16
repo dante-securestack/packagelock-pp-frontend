@@ -115,52 +115,6 @@
           placeholder="Insira o NIT do segurado" 
         />
 
-        <AppCheckBox
-          v-model:value="formSimulation.customInputs"
-          label="Autorizo que meus dados pessoais e previdenciários sejam utilizados para simulações   de cálculos de benefícios a que faço jus e orientações técnicas dos nossos analistas. "
-        >
-          Personalizar cálculos da simulação
-        </AppCheckBox>
-
-        <AppInputWithIcon 
-          v-if="formSimulation.customInputs"
-          v-model:value="formSimulation.customContributionsPercentage" 
-          icon="today"
-          label="Percentual contribuições"
-          :mask="['##.##']"
-          type="tel"
-          placeholder="80,00 %" 
-          :hasError="formSimulation.tried && formSimulation.validateInput('customContributionsPercentage')"
-        >
-          Preencha o percentual das contribuições
-        </AppInputWithIcon>
-
-        <AppInputWithIcon 
-          v-if="formSimulation.customInputs"
-          v-model:value="formSimulation.customInitialDate" 
-          icon="today"
-          label="Data inicial do cálculo"
-          :mask="['##/##/####']"
-          type="tel"
-          placeholder="DD/MM/AAAA" 
-          :hasError="formSimulation.tried && formSimulation.validateInput('customInitialDate')"
-        >
-          Preencha a data inicial do cálculo
-        </AppInputWithIcon>
-        
-        <AppInputWithIcon 
-          v-if="formSimulation.customInputs"
-          v-model:value="formSimulation.customRetirementFactor" 
-          icon="today"
-          label="Fator de contribuição"
-          :mask="['#.#####']"
-          type="tel"
-          placeholder="1,35" 
-          :hasError="formSimulation.tried && formSimulation.validateInput('customRetirementFactor')"
-        >
-          Preencha o fator de contribuição
-        </AppInputWithIcon>
-
         <p v-if="formSimulation.hasError" v-html="formSimulation.validationPhraseHtml"></p>
 
         <div class="w-full flex justify-end mt-10 block">
@@ -227,10 +181,6 @@
       if(props.simulation) {
         formSimulation.value.retirementDate = props.simulation.retirementDate
         formSimulation.value.simulationId = props.simulation.id
-        formSimulation.value.customContributionsPercentage = props.simulation.customContributionsPercentage
-        formSimulation.value.customRetirementFactor = props.simulation.customRetirementFactor
-        formSimulation.value.customInitialDate = props.simulation.customInitialDate
-
         authStore.setRedirectTo({ route: route.fullPath })
       }
     })
