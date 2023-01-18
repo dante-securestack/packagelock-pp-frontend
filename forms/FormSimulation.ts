@@ -1,6 +1,7 @@
 
 import BaseFormModel from "@/forms/BaseFormModel"
 import Validators from '@/forms/Validators'
+import { useAuthStore } from "@/modules/auth/store"
 export default class FormSimulation extends BaseFormModel {
 
   retirementDate: string = ''
@@ -17,8 +18,8 @@ export default class FormSimulation extends BaseFormModel {
   acceptTerms: boolean = false
   hasCustomInputs: boolean = false
   customContributionsPercentage: number = 0
-  customRetirementFactor: number = 0
-  customInitialDate: string = ''
+  customRetirementFactor: number | null = null
+  customInitialDate: string | null = null
 
   constructor(data) {
     super()
@@ -61,12 +62,22 @@ export default class FormSimulation extends BaseFormModel {
       {
         item: 'email',
         label: 'email',
-        validator: 'emailValidator'
+        validator: (value: number, instance: FormSimulation) => {
+          const authStore = useAuthStore()
+          if(authStore.loggedUser?.role == 'ADMIN') return false
+          if(Validators.emailValidator(value)) return true
+          return false
+        }
       },
       {
         item: 'phone',
         label: 'telefone',
-        validator: 'phoneValidator'
+        validator: (value: number, instance: FormSimulation) => {
+          const authStore = useAuthStore()
+          if(authStore.loggedUser?.role == 'ADMIN') return false
+          if(Validators.phoneValidator(value)) return true
+          return false
+        }
       },
       {
         item: 'birthDate',
@@ -86,7 +97,7 @@ export default class FormSimulation extends BaseFormModel {
         item: 'customContributionsPercentage',
         label: 'porcentagem de cálculos',
         validator: (value: number, instance: FormSimulation) => {
-          if(!instance.hasCustomInputs) return false
+          if(!instance.hasCustomInputs || value === null) return false
           return !(value > 0 && value <= 100)
         }
       },
@@ -94,7 +105,7 @@ export default class FormSimulation extends BaseFormModel {
         item: 'customInitialDate',
         label: 'data inicial do cálculo',
         validator: (value: string, instance: FormSimulation) => {
-          if(!instance.hasCustomInputs) return false
+          if(!instance.hasCustomInputs || value === null) return false
           if(Validators.minLength(value, 10)) return true
           if(Validators.dateIsValid(value)) return true
           return false
@@ -105,10 +116,19 @@ export default class FormSimulation extends BaseFormModel {
         label: 'fator de aposentadoria',
         validator: (value: number, instance: FormSimulation) => {
           if(!instance.hasCustomInputs) return false
+          if(value == 0 || value == null) return false
           return !(value > 0 && value <= 100)
         }
       },
     ]
+  }
+
+  clearCustomInputs() {
+    if(!this.hasCustomInputs) {
+      this.customContributionsPercentage = 80
+      this.customRetirementFactor = null
+      this.customInitialDate = null
+    }
   }
 
 }

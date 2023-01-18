@@ -116,50 +116,49 @@
         />
 
         <AppCheckBox
-          v-model:value="formSimulation.customInputs"
+          v-model:value="formSimulation.hasCustomInputs"
+          @change="formSimulation.clearCustomInputs()"
           label="Autorizo que meus dados pessoais e previdenciários sejam utilizados para simulações   de cálculos de benefícios a que faço jus e orientações técnicas dos nossos analistas. "
         >
           Personalizar cálculos da simulação
         </AppCheckBox>
 
-        <AppInputWithIcon 
-          v-if="formSimulation.customInputs"
+        <AppMoneyInput
+          v-if="formSimulation.hasCustomInputs"
           v-model:value="formSimulation.customContributionsPercentage" 
-          icon="today"
-          label="Percentual contribuições"
-          :mask="['##.##']"
-          type="tel"
+          icon="percent"
+          label="Percentual contribuições" 
           placeholder="80,00 %" 
-          :hasError="formSimulation.tried && formSimulation.validateInput('customContributionsPercentage')"
+          :inputOptions="{ prefix: '', suffix: ' %', decimals: ',', precision: 2 }"
+          :hasError="formSimulation.validateInput('customContributionsPercentage')"
         >
-          Preencha o percentual das contribuições
-        </AppInputWithIcon>
+          Preencha o percentual da contribuição (de 0% à 100%)
+        </AppMoneyInput>
 
         <AppInputWithIcon 
-          v-if="formSimulation.customInputs"
+          v-if="formSimulation.hasCustomInputs"
           v-model:value="formSimulation.customInitialDate" 
           icon="today"
           label="Data inicial do cálculo"
           :mask="['##/##/####']"
           type="tel"
           placeholder="DD/MM/AAAA" 
-          :hasError="formSimulation.tried && formSimulation.validateInput('customInitialDate')"
+          :hasError="formSimulation.validateInput('customInitialDate')"
         >
           Preencha a data inicial do cálculo
         </AppInputWithIcon>
-        
-        <AppInputWithIcon 
-          v-if="formSimulation.customInputs"
+
+        <AppMoneyInput
+          v-if="formSimulation.hasCustomInputs"
           v-model:value="formSimulation.customRetirementFactor" 
-          icon="today"
-          label="Fator de contribuição"
-          :mask="['#.#####']"
-          type="tel"
-          placeholder="1,35" 
-          :hasError="formSimulation.tried && formSimulation.validateInput('customRetirementFactor')"
+          icon="calculate"
+          label="Fator de previdênciário" 
+          placeholder="1,50 %" 
+          :inputOptions="{ prefix: '', suffix: '', decimals: ',', precision: 2 }"
+          :hasError="formSimulation.validateInput('customRetirementFactor')"
         >
-          Preencha o fator de contribuição
-        </AppInputWithIcon>
+          Preencha o fator previdênciário (acima de 0)
+        </AppMoneyInput>
 
         <p v-if="formSimulation.hasError" v-html="formSimulation.validationPhraseHtml"></p>
 
@@ -227,6 +226,7 @@
       if(props.simulation) {
         formSimulation.value.retirementDate = props.simulation.retirementDate
         formSimulation.value.simulationId = props.simulation.id
+        formSimulation.value.hasCustomInputs = props.simulation.hasCustomInputs
         formSimulation.value.customContributionsPercentage = props.simulation.customContributionsPercentage
         formSimulation.value.customRetirementFactor = props.simulation.customRetirementFactor
         formSimulation.value.customInitialDate = props.simulation.customInitialDate
