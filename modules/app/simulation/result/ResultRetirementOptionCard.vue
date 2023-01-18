@@ -86,8 +86,8 @@
       </div>
     </template>
     
-    <template v-if="forceShowDetail">
-      <p class="leading-none border-b border-orange-600">Apenas admin's podem ver:</p>
+    <template v-if="showOnlyAdmin">
+      <p class="leading-none border-b border-orange-600">Apenas usuários admin's podem ver:</p>
       <pre class="w-full p-4 bg-zinc-200 text-black">{{ simulationRetirementOption.metaData }}</pre>
     </template>
   </div>
@@ -121,6 +121,10 @@
 
   const forceShowDetail = computed(() => {
     return loggedUser.value && ['igortrindademe@gmail.com', 'brunofa23@gmail.com'].includes(loggedUser.value.email)
+  })
+
+  const showOnlyAdmin = computed(() => {
+    return loggedUser.value && loggedUser.value.role == 'ADMIN'
   })
 
   const showDetail = computed(() => {
