@@ -14,8 +14,10 @@
         :simulationRetirementGroup="simulationRetirementGroup"
         :simulation="simulation"
       ></ResultRetirementGroupCard>
-    </div>
 
+      <DrawerCalcules />
+      
+    </div>
   </div>
 </template>
 
@@ -23,6 +25,7 @@
 
   import ResultRetirementGroupCard from '@/modules/app/simulation/result/ResultRetirementGroupCard'
   import ResultaTabProcessingLoader from '@/modules/app/simulation/result/ResultaTabProcessingLoader'
+  import DrawerCalcules from '@/modules/app/simulation/result/calcules/DrawerCalcules'
   import Simulation from "@/entities/Simulation"
   import Dates from '@/services/Dates'
   import { useAppSimulationStore } from '@/modules/app/simulation/store'

@@ -6,18 +6,17 @@
     </div>
 
     <div class="w-full grid grid-cols-1 lg:grid-cols-2 gap-4">
-      <AppInputWithIcon 
-        class="w-full"
-        v-model:value="baseMonth" 
-        type="tel"
-        :mask="'##/####'" 
-        label="Mês base" 
-        icon="calendar_month" 
-        placeholder="DD/MM/AAAA"
-        :disabled="contributionFactors.length"
+
+      <AppSelectInput
+        v-model:value="baseMonth"
+        :items="distinctContributionFactorByBaseMonths"
+         icon="calendar_month"
+        label="Mês de referência"
+        placeholder="Selecione um mês"
+        @update:value="getItems()"
       >
-        Preencha a data corretamente
-      </AppInputWithIcon>
+        Meses cadastrados
+      </AppSelectInput>
 
       <div class="w-full flex flex-col">
         <label class="block mb-2">
@@ -27,7 +26,7 @@
           <AppButton 
             v-for="type in sheetTypes"
             :key="type"
-            @click="sheetTypeSelected = type" 
+            @click="setType(type)" 
             class="w-full py-3 px-6 border transition-all duration-100" 
             :class="[sheetTypeSelected === type ? 'shadow-lg scale-105 bg-white' : 'border-slate-200 text-gray-300']"
           >
@@ -68,7 +67,7 @@
       <AdminContributionFactorTable
         v-if="contributionFactors.length"
         :contributionFactors="contributionFactors"
-        :baseMonth="baseMonth"
+        :baseMonth="getBaseMonthForList"
       />
 
     </div>
@@ -86,42 +85,75 @@
   
   const sheetTypes = ref(SHEET_TYPE)
   const sheetTypeSelected = ref(SHEET_TYPE[0])
-  const baseMonth = ref(Dates.format(new Date(), 'MM/yyyy'))
+  const baseMonth = ref('')
   const contributionFactors = ref([])
   const isEmpty = ref(false)
+  const distinctContributionFactorByBaseMonths = ref([])
 
-  const getItems = () => {
+  onMounted(() => {
+    getMonthsAvailable()
+  })
+
+  const getBaseMonthForList = computed(() => Dates.format(baseMonth.value, 'MM/yyyy'))
+
+  const getMonthsAvailable = () => {
     const query = `
-      {
-        contributionFactors(
-          where: [
-            { column: "baseMonth", value: "${ Dates.format(baseMonth.value, 'yyyy-MM-dd') }" },
-            { column: "type", value: "${ sheetTypeSelected.value.value }" }
-          ]
-        ) {
-          id
+      { 
+        distinctContributionFactorByBaseMonths(type: "${ sheetTypeSelected.value.value }") {
           baseMonth
-          monthReference
-          type
-          factor
         }
       }
     `
-
-    Graphql({ query })
+    Graphql({ query, caller: 'AdminContributionFactorIndex.getMonthsAvailable' })
       .then(({ data }) => {
-        contributionFactors.value = data.contributionFactors.map((i) => {
-          return {
-            ...i,
-            baseMonth: Dates.format(i.baseMonth, 'yyyy-MM-dd'),
-            monthReference: Dates.format(i.monthReference, 'yyyy-MM-dd')
-          }
+        distinctContributionFactorByBaseMonths.value = data.distinctContributionFactorByBaseMonths.map((i) => {
+          return { value: i.baseMonth, label: Dates.format(i.baseMonth, 'MM/yyyy') }
         })
 
-        isEmpty.value = !contributionFactors.value.length
+        getItems()
       })
 
+  }
 
+  const getItems = () => {
+
+    contributionFactors.value = []
+    setTimeout(() => {
+      const query = `
+        {
+          contributionFactors(
+            where: [
+              { column: "baseMonth", value: "${ baseMonth.value }" },
+              { column: "type", value: "${ sheetTypeSelected.value.value }" }
+            ]
+          ) {
+            id
+            baseMonth
+            monthReference
+            type
+            factor
+          }
+        }
+      `
+  
+      Graphql({ query })
+        .then(({ data }) => {
+          contributionFactors.value = data.contributionFactors.map((i) => {
+            return {
+              ...i,
+              baseMonth: Dates.format(i.baseMonth, 'yyyy-MM-dd'),
+              monthReference: Dates.format(i.monthReference, 'yyyy-MM-dd')
+            }
+          })
+  
+          isEmpty.value = !contributionFactors.value.length
+        })
+    }, 200)
+  }
+
+  const setType = (type) => {
+    sheetTypeSelected.value = type
+    getMonthsAvailable()
   }
 
 </script>

@@ -1,17 +1,17 @@
 
 export default function getMonths() {
   return [
-    { number: 1, name: 'Janeiro' },
-    { number: 2, name: 'Fevereiro' },
-    { number: 3, name: 'Março' },
-    { number: 4, name: 'Abril' },
-    { number: 5, name: 'Maio' },
-    { number: 6, name: 'Junho' },
-    { number: 7, name: 'Julho' },
-    { number: 8, name: 'Agosto' },
-    { number: 9, name: 'Setembro' },
-    { number: 10, name: 'Outubro' },
-    { number: 11, name: 'Novembro' },
-    { number: 12, name: 'Dezembro' }
+    { number: '01', name: 'Janeiro' },
+    { number: '02', name: 'Fevereiro' },
+    { number: '03', name: 'Março' },
+    { number: '04', name: 'Abril' },
+    { number: '05', name: 'Maio' },
+    { number: '06', name: 'Junho' },
+    { number: '07', name: 'Julho' },
+    { number: '08', name: 'Agosto' },
+    { number: '09', name: 'Setembro' },
+    { number: '10', name: 'Outubro' },
+    { number: '11', name: 'Novembro' },
+    { number: '12', name: 'Dezembro' }
   ];
 }

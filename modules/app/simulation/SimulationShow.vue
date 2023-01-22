@@ -1,6 +1,9 @@
 <template>
   <div class="w-full flex flex-col space-y-8">
-    <AppLoaderPlaceholder v-if="!simulation" />
+
+    <!-- <pre>{{ simulation }}</pre> -->
+
+    <AppLoaderPlaceholder v-if="!simulationIsReady" />
 
     <div v-else class="w-full flex flex-col space-y-8">
 
@@ -69,13 +72,16 @@
   import emitter from '@/util/emitter'
   import GraphQL from "@/util/GraphQL"
   import { useAppSimulationStore } from '@/modules/app/simulation/store'
+  import { useSharedSimulationStore } from '@/modules/app/simulation/shared-simulation-store'
   import { ArrayHelpers } from '@igortrindade/lazyfy'
   import { SIMULATION_RESULT_TAB, SIMULATION_RELATION_TAB } from './enums'
+  import { storeToRefs } from 'pinia'
   const route = useRoute()
   const router = useRouter()
   const appSimulationStore = useAppSimulationStore()
+  const sharedSimulationStore = useSharedSimulationStore()
 
-  const simulation = ref(false)
+  const { simulation, simulationIsReady } = storeToRefs(sharedSimulationStore)
 
   const tabsAvailable = computed(() => {
     if(simulation.value && simulation.value.isPendingUpdate && !simulation.value.socialSecurityRelations.length) return [SIMULATION_RESULT_TAB]
@@ -91,12 +97,12 @@
   })
 
   onMounted(() => {
-    getSimulation(true)
+    appSimulationStore.setSimulationId(route.params.simulationId)
+    getSimulation()
     emitter.on('simulationUpdated', getSimulation)
     emitter.on('simulationIsPending', () => {
       simulation.value.isPendingUpdate = true
     })
-    appSimulationStore.setSimulationId(route.params.simulationId)
   })
 
   onBeforeUnmount(() => {
@@ -105,76 +111,8 @@
   })
 
   const getSimulation = () => {
-    const query = `
-
-      {
-
-        simulation ( 
-          where: [
-            { column: "id", value: "${route.params.simulationId}" }
-          ]
-        ) {
-          id
-          retirementDate
-          isPendingUpdate
-          hasCustomInputs
-          customInitialDate
-          customRetirementFactor
-          customContributionsPercentage
-          updatedAt
-          client {
-            id
-            name
-            motherName
-            email
-            phone
-            cpf
-            nit
-            gender
-            birthDate
-          }
-          simulationRetirementGroups  {
-            id
-            retirementGroup {
-              id
-              title
-              description
-              order
-              isPreReform
-            }
-            simulationRetirementOptions {
-              id
-              isGranted
-              contextDate
-              age
-              contributionTime
-              contributionsTotal
-              requirements
-              projectedRetirementDate
-              metaData
-              retirementOption {
-                id
-                title
-                description
-                order
-                showForNotLoggedUsers
-              }
-            }
-          }
-          socialSecurityRelations {
-            id
-          }
-        }
-      }
-    
-    `
-
-    GraphQL({ query, caller: 'SimulationShow' }).then(({ data }) => {
-      simulation.value = new Simulation(data.simulation)
-      orderSimulationItems()
-    })
+    sharedSimulationStore.getSimulation(route.params.simulationId)
   }
-  
 
   if(process.client) {
     const socket = inject('socket')
@@ -198,24 +136,6 @@
 
   const setTabSelected = (tab) => {
     router.replace({ ...route, query: { tab: tab.value } })
-  }
-
-  const orderSimulationItems = () => {
-
-    simulation.value.simulationRetirementGroups.sort((a, b) => {
-      return a.retirementGroup.order - b.retirementGroup.order
-    })
-
-    simulation.value.simulationRetirementGroups.forEach((simulationRetirementGroup) => {
-      simulationRetirementGroup.simulationRetirementOptions.sort((a, b) => {
-        return a.retirementOption.order - b.retirementOption.order
-      })
-    })
-
-    simulation.value.simulationRetirementGroups = simulation.value.simulationRetirementGroups.sort((a, b) => {
-      return a.retirementGroup.order - b.retirementGroup.order
-    })
-
   }
 
 </script>

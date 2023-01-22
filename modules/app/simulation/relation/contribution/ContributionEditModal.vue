@@ -13,7 +13,7 @@
         icon="badge"
         label="Competência" 
         placeholder="Competência"
-        disabled="true" 
+        :disabled="true" 
         :mask="'##/####'"
         type="tel"
         :hasError="formContribution.tried && formContribution.validateInput('monthReference')"

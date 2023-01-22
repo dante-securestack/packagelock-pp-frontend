@@ -35,7 +35,7 @@
 
     <template v-if="loggedUser || simulationRetirementOption.retirementOption.showForNotLoggedUsers">
       <!-- REQUIREMENTS RESULT -->
-      <div class="w-full flex flex-col" v-if="forceShowDetail">
+      <!-- <div class="w-full flex flex-col" v-if="forceShowDetail">
         <p class="p text-slate-400 leading-none mb-2">
           Checklist de requisitos
         </p>
@@ -47,7 +47,7 @@
           <AppIcons :icon="requirement.isGranted ? 'check' : 'warning'" :class="[!requirement.isGranted ? 'text-red-400' : 'text-green-600']" />
           <p class="ml-2 p truncate text-slate-600 leading-relaxed ...">{{ requirement.content }}</p>
         </div>
-      </div>
+      </div> -->
 
       <div class="w-full flex flex-col" v-if="showDetail">
         <p class="p text-slate-400 leading-none mb-2">
@@ -86,10 +86,20 @@
       </div>
     </template>
     
-    <template v-if="showOnlyAdmin">
+    <!-- <template v-if="showOnlyAdmin">
       <p class="leading-none border-b border-orange-600">Apenas usuários admin's podem ver:</p>
       <pre class="w-full p-4 bg-zinc-200 text-black">{{ simulationRetirementOption.metaData }}</pre>
-    </template>
+    </template> -->
+
+    <div class="w-full">
+      <AppButton 
+          bg="bg-brand-gradient text-white text-sm px-2 py-1 mr-4 sm:mr-0 mt-2"
+          @click="emitter.emit('openModalResultContributionList', { simulationRetirementOption })" 
+        >
+        <AppIcons icon="calculate" />
+        <span class="ml-2">Ver cálculos</span>
+      </AppButton>
+    </div>
   </div>
 </template>
 

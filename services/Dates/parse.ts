@@ -1,5 +1,12 @@
 import { parse } from 'date-fns'
 import { regexYearMonthAndDay, regexMonthAndYear, regexDayMonthAndYear, regexHoursMinutesSeconds } from './customRegex'
+
+const getNewDate = (d) => {
+  let date = new Date(d)
+  date.setHours(date.getHours() + 3)
+  return date
+}
+
 export default (date: string | any) => {
 
   if(!date) return null
@@ -10,12 +17,12 @@ export default (date: string | any) => {
 
   // Timestamp
   if(typeof(date) === 'number') {
-    return new Date(date)
+    return getNewDate(date)
   }
   
   // YYYY-MM-DD
   if(regexYearMonthAndDay.test(date)) {
-    return new Date(date)
+    return getNewDate(date)
   }
   //MM/YYYY
   if(regexMonthAndYear.test(date)) {

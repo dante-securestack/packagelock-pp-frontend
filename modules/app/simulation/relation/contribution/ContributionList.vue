@@ -47,6 +47,8 @@
             <th>Valor base</th>
             <th>Valor corrigido</th>
             <th>Fator correção</th>
+            <th>Valor monetário atualizado</th>
+            <th>Indíce monetário utilizado</th>
             <th>Editar</th>
           </tr>
         </thead>

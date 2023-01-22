@@ -6,13 +6,13 @@ export const useAppSimulationStore = defineStore('appSimulation', {
   persist: true,
 
   state: () => ({
-    simulationsToAttach: [],
-    simulationId: null
+    simulationsToAttach: [] as Array<string>,
+    simulationId: null as string | null,
   }),
 
   actions: {
 
-    addSimulationToAttach(simulationId) {
+    addSimulationToAttach(simulationId: string) {
       this.simulationsToAttach.push(simulationId)
     },
     
@@ -27,13 +27,13 @@ export const useAppSimulationStore = defineStore('appSimulation', {
         })
     },
 
-    setSimulationId(simulationId) {
+    setSimulationId(simulationId: string) {
       this.simulationId = simulationId
     },
 
     reprocessSimulation() {
       return Api.get(`/app/simulation/reprocess/${this.simulationId}`)
-    },
+    }
 
   },
 })

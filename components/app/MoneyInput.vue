@@ -1,5 +1,5 @@
 <template>
-  <div class="block my-3 w-full">
+  <div class="block w-full">
     <label v-if="label">
       <span class="border-b-4 border-zinc-200">{{ label }}</span>
     </label>
@@ -53,7 +53,7 @@
     }
   })
 
-  defineEmits(['update:value'])
+  defineEmits(['update:value', 'change'])
 
 
   const getVueNumberFormatOptions = computed(() => {
@@ -75,6 +75,7 @@
     },
     set(val) {
       emit('update:value', val)
+      emit('change', val)
     }
   })
 

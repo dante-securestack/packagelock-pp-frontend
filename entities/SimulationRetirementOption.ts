@@ -1,25 +1,24 @@
 import RetirementOption from '@/entities/RetirementOption'
 
 interface RequirementRuleInterface {
-  isGranted: boolean,
+  isGranted: boolean
   content: string
 }
 
-export default interface SimulationRetirementOption {
-  key: number
-  id: string
-  simulationId: string
-  simulationRetirementGroupId: string
-  retirementOptionId: string
-  isGranted: string
-  requirements: string
-  contextDate: string
-  age: string
-  contributionTime: string
-  contributionsTotal: string
-  retirementDate: RequirementRuleInterface[]
-  createdAt: string
-  updatedAt: string
-
-  retirementOption: RetirementOption
+export default class SimulationRetirementOption {
+  key = 0
+  id = ''
+  simulationId = ''
+  simulationRetirementGroupId = ''
+  retirementOptionId = ''
+  isGranted = ''
+  requirements = ''
+  contextDate = ''
+  age = ''
+  contributionTime = ''
+  contributionsTotal = ''
+  retirementDate = [] as RequirementRuleInterface[]
+  createdAt = ''
+  updatedAt = ''
+  retirementOption = new RetirementOption()
 }

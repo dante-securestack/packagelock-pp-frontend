@@ -10,6 +10,7 @@ export default class RetirementGroup extends BaseModel {
   content: string = ''
   isPreReform: boolean = false
   retirementDate: string
+  order: number = null
   createdAt: string = ''
   updatedAt: string = ''
 

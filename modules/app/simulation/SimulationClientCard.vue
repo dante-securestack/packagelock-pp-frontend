@@ -45,9 +45,9 @@
               @click="generatePdf()"
               v-if="!simulation.isPendingUpdate && simulation.simulationRetirementGroups.length"
             >
-          <AppIcons icon="picture_as_pdf" />
-          <span class="ml-2">Imprimir resultado</span>
-        </AppButton>
+            <AppIcons icon="picture_as_pdf" />
+            <span class="ml-2">Imprimir resultado</span>
+          </AppButton>
         </div>
 
       </div>
