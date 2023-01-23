@@ -3,9 +3,9 @@
     <table class="w-full table-auto text-sm w-full whitespace-nowrap">
       <thead>
         <tr class="bg-gray-200">
-          <th class="sticky top-0 left-0 bg-gray-200 border-t-2 z-10">
-            <div class="flex justify-between">
-              <span class="border-r">Vínculo</span>
+          <th class="sticky top-0 md:left-0 bg-gray-200 border-t-2 z-10">
+            <div class="flex justify-between ">
+              <span class="border-r max-w-[25vw]">Vínculo</span>
               <div class="flex cursor-pointer" @click="setOrder('monthReference')">
                 <span>Mês</span>
                 <AppIcons 
@@ -54,8 +54,8 @@
       </thead>
       <tbody>
         <tr v-for="contribution in getOrderedContributions" :key="contribution">
-          <td class="border border-zinc-200/50 sticky left-0 bg-gray-200 flex justify-between">
-            <span class="border-r mr-3">{{ contribution.relationOrigin }}</span>
+          <td class="border border-zinc-200/50 md:sticky left-0 bg-gray-200 flex justify-between">
+            <span class="border-r mr-3 truncate ... max-w-[25vw]">{{ contribution.relationOrigin }}</span>
             <span>{{ contribution.monthReference }}</span>
           </td>
           <td class="border border-zinc-200/50 right-0">{{ vueNumberFormat(contribution.baseValue, getCurrencyFormatter(contribution.monthReference)) }}</td>

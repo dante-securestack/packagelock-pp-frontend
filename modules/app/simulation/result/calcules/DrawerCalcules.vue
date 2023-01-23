@@ -1,5 +1,5 @@
 <template>
-  <AppBaseDrawer @close="close" :showDrawer="showModal" dialogClasses="w-full max-w-[80vw]">
+  <AppBaseDrawer @close="close" :showDrawer="showModal" dialogClasses="w-full md:max-w-[80vw]">
     <div class="w-full flex flex-col space-y-6">
 
       <h3 class="h3 border-l-10 border-orange-500 pl-6 leading-normal mb-4">Cálculos: {{ simulationRetirementOption.retirementOption.title }}</h3>
