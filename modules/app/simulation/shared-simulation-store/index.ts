@@ -42,6 +42,14 @@ export const useSharedSimulationStore = defineStore('sharedSimulationStore', {
         const isBeforeEndDate = !this.endDate || !Dates.isValid(this.endDate) ? true : Dates.parse(contribution.monthReference) <= Dates.parse(this.endDate)
         return isAfterInitialDate && isBeforeEndDate
       }).sort((a, b) => b[this.valueKey] - a[this.valueKey])
+    },
+
+    getterFilteredExcludedContributions() {
+      return this.getterMappedContributtions.filter((contribution: any) => {
+        const isAfterInitialDate = !this.initialDate || !Dates.isValid(this.initialDate) ? true : Dates.parse(contribution.monthReference) >= Dates.parse(this.initialDate)
+        const isBeforeEndDate = !this.endDate || !Dates.isValid(this.endDate) ? true : Dates.parse(contribution.monthReference) <= Dates.parse(this.endDate)
+        return !isAfterInitialDate || !isBeforeEndDate
+      }).sort((a, b) => b[this.valueKey] - a[this.valueKey])
     }
   },
 

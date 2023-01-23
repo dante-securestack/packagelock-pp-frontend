@@ -50,9 +50,7 @@
 
 <script setup>
   
-  const { emit } = getCurrentInstance()
-
-  defineEmits(['close', 'open'])
+  const emit = defineEmits(['close', 'open'])
 
   const props = defineProps({
     showDrawer: {

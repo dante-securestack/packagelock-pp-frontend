@@ -63,6 +63,10 @@
       <div class="flex justify-between">
         <AppLabelValue>
           <template v-slot:label>Total contribuições</template>
+          <template v-slot:value>{{ getterMappedContributtions.length }}</template>
+        </AppLabelValue>
+        <AppLabelValue>
+          <template v-slot:label>Soma contribuições incluídas</template>
           <template v-slot:value>{{ vueNumberFormat(includedContributionsTotal) }}</template>
         </AppLabelValue>
         <AppLabelValue>
@@ -71,9 +75,7 @@
         </AppLabelValue>
       </div>
 
-      <AppAlert>
-        Utilizando a tabela {{ valueKey == 'monetaryCorrectionFinalValue' ? 'CORREÇÃO MONETÁRIA' : 'ÍNDICE DE CORREÇÃO' }} para correção dos valores das contribuições.
-      </AppAlert>
+      
 
       <AppCollapseItem>
         <template v-slot:header-left>
@@ -94,7 +96,20 @@
           <CalculesContributionList :contributions="excludedContributions" />
         </template>
       </AppCollapseItem>
+      
+      <AppCollapseItem>
+        <template v-slot:header-left>
+           <h3 class="h3 flex-none text-slate-400">Contribuições fora do período selecionado</h3>
+          <p class="text-xs italic">{{ getterFilteredExcludedContributions.length }} contribuições</p>
+        </template>
+        <template v-slot:content>
+          <CalculesContributionList :contributions="getterFilteredExcludedContributions" />
+        </template>
+      </AppCollapseItem>
 
+      <AppAlert>
+        Utilizando a tabela {{ valueKey == 'monetaryCorrectionFinalValue' ? 'CORREÇÃO MONETÁRIA' : 'ÍNDICE DE CORREÇÃO' }} para correção dos valores das contribuições.
+      </AppAlert>
 
     </div>
   </AppBaseDrawer>
@@ -118,7 +133,9 @@
     excludedContributions,
     valueKey,
     includedContributionsTotal,
-    includedContributionsAvg
+    includedContributionsAvg,
+    getterMappedContributtions,
+    getterFilteredExcludedContributions
   } = storeToRefs(sharedSimulationStore)
 
   const showModal = ref(false)

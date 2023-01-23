@@ -59,8 +59,14 @@
             <span>{{ contribution.monthReference }}</span>
           </td>
           <td class="border border-zinc-200/50 right-0">{{ vueNumberFormat(contribution.baseValue, getCurrencyFormatter(contribution.monthReference)) }}</td>
-          <td class="border border-zinc-200/50 right-0">{{ contribution[valueKeyIndex] }}</td>
-          <td class="border border-zinc-200/50 right-0">{{ vueNumberFormat(contribution[valueKey]) }}</td>
+          <td class="border border-zinc-200/50 right-0">
+            <span v-if="contribution[valueKeyIndex] == 0">--</span>
+            <span v-else>{{ contribution[valueKeyIndex] }}</span>
+          </td>
+          <td class="border border-zinc-200/50 right-0">
+            <span v-if="valueKey === 'finalValue' && contribution[valueKeyIndex] == 0">--</span>
+            <span v-else>{{ vueNumberFormat(contribution[valueKey]) }}</span>
+          </td>
         </tr>
       </tbody>
     </table>
