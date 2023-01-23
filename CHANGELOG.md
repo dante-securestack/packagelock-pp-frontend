@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.117](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.116...v0.0.117) (2023-01-22)
+
+
+### Features | Funcionalidades
+
+* Calcules ([9d848d0](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/9d848d0f5f2bcc33ae325729395bf55ec6cf3aa5))
+
 ### [0.0.116](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.115...v0.0.116) (2023-01-18)
 
 
