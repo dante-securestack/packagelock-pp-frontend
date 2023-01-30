@@ -81,7 +81,6 @@
   import { SHEET_TYPE } from './enum'
 
   const emitter = useEmitter()
-  const Graphql = useGraphQL()
   
   const sheetTypes = ref(SHEET_TYPE)
   const sheetTypeSelected = ref(SHEET_TYPE[0])
@@ -104,7 +103,7 @@
         }
       }
     `
-    Graphql({ query, caller: 'AdminContributionFactorIndex.getMonthsAvailable' })
+    useGraphQL({ query, caller: 'AdminContributionFactorIndex.getMonthsAvailable' })
       .then(({ data }) => {
         distinctContributionFactorByBaseMonths.value = data.distinctContributionFactorByBaseMonths.map((i) => {
           return { value: i.baseMonth, label: Dates.format(i.baseMonth, 'MM/yyyy') }

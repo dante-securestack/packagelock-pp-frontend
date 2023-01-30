@@ -108,7 +108,7 @@
       </AppCollapseItem>
 
       <AppAlert>
-        Utilizando a tabela {{ valueKey == 'monetaryCorrectionFinalValue' ? 'CORREÇÃO MONETÁRIA' : 'ÍNDICE DE CORREÇÃO' }} para correção dos valores das contribuições.
+        Utilizando a tabela {{ valueKey }} {{ valueKey == 'monetaryCorrectionFinalValue' ? 'CORREÇÃO MONETÁRIA' : 'ÍNDICE DE CORREÇÃO' }} para correção dos valores das contribuições.
       </AppAlert>
 
     </div>

@@ -5,6 +5,8 @@ import Contribution from '@/entities/Contribution'
 import SocialSecurityRelation from '@/entities/SocialSecurityRelation'
 import Dates from '@/services/Dates'
 import { ArrayHelpers, MathHelpers } from '@igortrindade/lazyfy'
+import ContributionFactorApiService from '@/services/api/ContributionFactorApiService'
+import ContributionLimitApiService from '@/services/api/ContributionLimitApiService'
 
 export const useSharedSimulationStore = defineStore('sharedSimulationStore', {
 
@@ -19,8 +21,11 @@ export const useSharedSimulationStore = defineStore('sharedSimulationStore', {
     endDate: null as string | null,
     valueKey: 'monetaryCorrectionFinalValue' as 'monetaryCorrectionFinalValue' | 'finalValue',
     valueKeyIndex: 'monetaryCorrectionIndexValue' as 'monetaryCorrectionIndexValue' | 'contributionFactorValue',
+    contributionFactorType: 'CORRECTION_FACTOR' as 'MONETARY_CORRECTION' | 'CORRECTION_FACTOR',
     includedContributionsTotal: 0,
     includedContributionsAvg: 0,
+    contributionFactors: [] as Array<any>,
+    contributionLimits: [] as Array<any>,
   }),
 
   getters: {
@@ -71,12 +76,16 @@ export const useSharedSimulationStore = defineStore('sharedSimulationStore', {
     },
     setValueKey(valueKey: 'monetaryCorrectionFinalValue' | 'finalValue') {
       this.valueKey = valueKey
+      this.contributionFactorType = valueKey === 'monetaryCorrectionFinalValue' ? 'MONETARY_CORRECTION' : 'CORRECTION_FACTOR'
     },
     setValueKeyIndex(valueKeyIndex: 'monetaryCorrectionIndexValue' | 'contributionFactorValue') {
       this.valueKeyIndex = valueKeyIndex
     },
 
-    processCalcules() {
+    async processCalcules() {
+      await this.getContributionFactors()
+      await this.getContributionLimits()
+      this.applyContributionLimit()
       const source = this.getterFilteredContributions
       this.includedContributions = source.slice(0, Math.round(source.length * (this.majorContributionsPercentage / 100)))
       this.majorContributionsQuantity = this.includedContributions.length
@@ -191,6 +200,7 @@ export const useSharedSimulationStore = defineStore('sharedSimulationStore', {
         this.simulation = new Simulation(data.simulation)
         this.orderSimulationItems()
         this.processCalcules()
+        this.getContributionFactors()
       })
     },
 
@@ -246,7 +256,29 @@ export const useSharedSimulationStore = defineStore('sharedSimulationStore', {
       }
 
       this.simulationIsReady = true
+    },
+
+    async getContributionFactors() {
+      this.contributionFactors = await ContributionFactorApiService.getContributionFactors(this.simulation.retirementDate, this.contributionFactorType)
+    },
+
+    async getContributionLimits() {
+      this.contributionLimits = await ContributionLimitApiService.getContributionLimits()
+    },
+
+    applyContributionLimit() {
+      for(const socialSecurityRelation of this.simulation.socialSecurityRelations) {
+        for(const contribution of socialSecurityRelation.contributions) {
+          const limit = this.contributionLimits.find((limit) => {
+            return limit.monthReference === contribution.monthReference
+          })
+          if(limit) {
+            contribution[this.valueKey] = contribution[this.valueKey] > limit.contributionLimit ? limit.contributionLimit : contribution[this.valueKey]
+          }
+        }
+      }
     }
+
   }
 
 })

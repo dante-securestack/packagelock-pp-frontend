@@ -19,7 +19,6 @@
   
   const emitter = useEmitter()
   const vueInstance = useVueInstance()
-  const GraphQL = useGraphQL()
 
   const showContentDrawer = ref(false)
   const contentItem = ref(false)
@@ -52,7 +51,7 @@
         }
       }
     `
-    GraphQL({ query, caller: 'ContentDrawer' })
+    useGraphQL({ query, caller: 'ContentDrawer' })
       .then(({ data }) => {
         contentItem.value = data[table][0]
         showContentDrawer.value = true

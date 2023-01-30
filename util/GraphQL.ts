@@ -1,6 +1,12 @@
 import Api from '@/util/Api'
+import{ AxiosRequestConfig } from 'axios'
 
-export default async (payload) => {
+export interface GraphQLInputInterface extends AxiosRequestConfig {
+  query: string
+  caller?: string
+  shouldCache?: boolean
+}
+export default async (payload: GraphQLInputInterface) => {
 
   const { query, caller = '' } = payload
   let url = `/graphql/query`

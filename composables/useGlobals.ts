@@ -1,6 +1,6 @@
 import emitter from '@/util/emitter'
 import Api from '@/util/Api'
-import GraphQL from '@/util/GraphQL'
+import { GraphQLInputInterface, default as  GraphQL}  from '@/util/GraphQL'
 import Dates from '@/services/Dates'
 import config from '@/config'
 
@@ -17,8 +17,8 @@ export const useApi = () => {
   return Api
 }
 
-export const useGraphQL = () => {
-  return GraphQL
+export const useGraphQL = (payload: GraphQLInputInterface) => {
+  return GraphQL(payload)
 }
 
 export const useDates = () => {
