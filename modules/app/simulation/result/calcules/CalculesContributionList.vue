@@ -58,14 +58,31 @@
             <span class="border-r mr-3 truncate ... max-w-[25vw]">{{ contribution.relationOrigin }}</span>
             <span>{{ contribution.monthReference }}</span>
           </td>
-          <td class="border border-zinc-200/50 right-0">{{ vueNumberFormat(contribution.baseValue, getCurrencyFormatter(contribution.monthReference)) }}</td>
-          <td class="border border-zinc-200/50 right-0">
+          <td class="border border-zinc-200/50">{{ vueNumberFormat(contribution.baseValue, getCurrencyFormatter(contribution.monthReference)) }}</td>
+          <td class="border border-zinc-200/50">
             <span v-if="contribution[valueKeyIndex] == 0">--</span>
             <span v-else>{{ contribution[valueKeyIndex] }}</span>
           </td>
-          <td class="border border-zinc-200/50 right-0">
+          <td class="border border-zinc-200/50">
             <span v-if="valueKey === 'finalValue' && contribution[valueKeyIndex] == 0">--</span>
             <span v-else>{{ vueNumberFormat(contribution[valueKey]) }}</span>
+
+            <AppDropdown ref="dropdown">
+              <template v-slot:trigger>
+                <div class="">
+                  <AppIcons icon="info" />
+                </div>
+              </template>
+              <template v-slot:items>
+                <div class="w-full flex flex-col bg-white p-3 space-y-3 rounded">
+                  <ul class="w-full list-disc pl-3 whitespace-normal">
+                    <li v-for="(history, index) in contribution.history" :key="`${contribution.id}_${index}`" >
+                      {{ history }}
+                    </li>
+                  </ul>
+                </div>
+              </template>
+            </AppDropdown>
           </td>
         </tr>
       </tbody>

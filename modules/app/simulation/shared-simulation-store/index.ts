@@ -1,10 +1,9 @@
 import { defineStore } from 'pinia'
-import GraphQL from '@/util/GraphQL'
 import Simulation from '@/entities/Simulation'
 import Contribution from '@/entities/Contribution'
-import SocialSecurityRelation from '@/entities/SocialSecurityRelation'
 import Dates from '@/services/Dates'
 import { ArrayHelpers, MathHelpers } from '@igortrindade/lazyfy'
+import SimulationApiService from '@/services/api/SimulationApiService'
 import ContributionFactorApiService from '@/services/api/ContributionFactorApiService'
 import ContributionLimitApiService from '@/services/api/ContributionLimitApiService'
 
@@ -24,7 +23,8 @@ export const useSharedSimulationStore = defineStore('sharedSimulationStore', {
     contributionFactorType: 'CORRECTION_FACTOR' as 'MONETARY_CORRECTION' | 'CORRECTION_FACTOR',
     includedContributionsTotal: 0,
     includedContributionsAvg: 0,
-    contributionFactors: [] as Array<any>,
+    contributionFactorPreform: [] as Array<any>,
+    contributionFactorLifetimeReview: [] as Array<any>,
     contributionLimits: [] as Array<any>,
   }),
 
@@ -83,9 +83,6 @@ export const useSharedSimulationStore = defineStore('sharedSimulationStore', {
     },
 
     async processCalcules() {
-      await this.getContributionFactors()
-      await this.getContributionLimits()
-      this.applyContributionLimit()
       const source = this.getterFilteredContributions
       this.includedContributions = source.slice(0, Math.round(source.length * (this.majorContributionsPercentage / 100)))
       this.majorContributionsQuantity = this.includedContributions.length
@@ -94,114 +91,13 @@ export const useSharedSimulationStore = defineStore('sharedSimulationStore', {
       this.includedContributionsAvg = this.includedContributionsTotal / this.includedContributions.length
     },
 
-    getSimulation(simulationId: string) {
-
-      const query = `
-        {
-
-          simulation ( 
-            where: [
-              { column: "id", value: "${ simulationId }" }
-            ]
-          ) {
-            id
-            retirementDate
-            isPendingUpdate
-            customInitialDate
-            customRetirementFactor
-            customContributionsPercentage
-            updatedAt
-            client {
-              id
-              name
-              motherName
-              email
-              phone
-              cpf
-              nit
-              gender
-              birthDate
-            }
-            simulationRetirementGroups  {
-              id
-              retirementGroup {
-                id
-                title
-                description
-                order
-                isPreReform
-              }
-              simulationRetirementOptions {
-                id
-                isGranted
-                contextDate
-                age
-                contributionTime
-                contributionsTotal
-                requirements
-                projectedRetirementDate
-                metaData
-                retirementOption {
-                  id
-                  title
-                  description
-                  order
-                  showForNotLoggedUsers
-                  rule
-                }
-              }
-            }
-            socialSecurityRelations {
-              id
-              simulationId
-              seqNumber
-              nit
-              relationDocument
-              relationOrigin
-              relationType
-              startAt
-              endAt
-              specialTime
-              lastPaymentAt
-              indicators
-              history
-              isIgnored
-              ignoredReason
-              contributionTime
-              contributions (
-                order: [
-                  { column: "key" }
-                ]
-              ) {
-                key
-                id
-                socialSecurityRelationId
-                monthReference
-                baseValue
-                valueAfterCheckLimit
-                valueAfterCorrection
-                finalValue
-                contributionFactorValue
-                isIgnored
-                ignoredReason
-                groupedContributionsQuantity
-                history
-                monetaryCorrectionIndexValue
-                monetaryCorrectionSelicValue
-                monetaryCorrectionFinalValue
-              }
-            }
-          }
-        }
-      
-      `
-
-      GraphQL({ query, caller: 'sharedSimulationStore.getSimulation' }).then(({ data }) => {
-        this.simulation = new Simulation(data.simulation)
-        this.orderSimulationItems()
-        this.processCalcules()
-        this.getContributionFactors()
-      })
+    async getSimulation(simulationId: string) {
+      this.simulation = await SimulationApiService.getSimulation(simulationId)
+      this.orderSimulationItems()
+      await this.getContributionFactors()
+      await this.getContributionLimits()
+      this.applyContributionCorrections()
+      this.processCalcules()
     },
 
     updateSocialSecurityRelation(socialSecurityRelation: any) {
@@ -259,22 +155,55 @@ export const useSharedSimulationStore = defineStore('sharedSimulationStore', {
     },
 
     async getContributionFactors() {
-      this.contributionFactors = await ContributionFactorApiService.getContributionFactors(this.simulation.retirementDate, this.contributionFactorType)
+      this.contributionFactorPreform = await ContributionFactorApiService.getContributionFactors(this.simulation.retirementDate, 'CORRECTION_FACTOR')
+      this.contributionFactorLifetimeReview = await ContributionFactorApiService.getContributionFactors(this.simulation.retirementDate, 'MONETARY_CORRECTION')
     },
 
     async getContributionLimits() {
       this.contributionLimits = await ContributionLimitApiService.getContributionLimits()
     },
 
-    applyContributionLimit() {
+
+    applyContributionCorrections() {
+      console.log('rodando')
       for(const socialSecurityRelation of this.simulation.socialSecurityRelations) {
         for(const contribution of socialSecurityRelation.contributions) {
-          const limit = this.contributionLimits.find((limit) => {
-            return limit.monthReference === contribution.monthReference
-          })
-          if(limit) {
-            contribution[this.valueKey] = contribution[this.valueKey] > limit.contributionLimit ? limit.contributionLimit : contribution[this.valueKey]
-          }
+          this.applyContributionFactor(contribution, 'preReform')
+          this.applyContributionLimit(contribution, 'preReform')
+          this.applyContributionFactor(contribution, 'lifetimeReview')
+          this.applyContributionLimit(contribution, 'lifetimeReview')
+        }
+      }
+    },
+
+    applyContributionFactor(contribution: any, type = 'preReform' as 'preReform' | 'lifetimeReview') {
+      const source = type === 'preReform' ? this.contributionFactorPreform : this.contributionFactorLifetimeReview
+      const valueKey = type === 'preReform' ? 'finalValue' : 'monetaryCorrectionFinalValue'
+
+      let contributionFactor = ArrayHelpers.find(source, { monthReference: contribution.monthReference })
+      if(!contributionFactor) {
+        contributionFactor = source[0]
+      }
+
+      if(contributionFactor) {
+        contribution.contributionFactor = contributionFactor
+        contribution[valueKey] = contribution.baseValue * contributionFactor.factor
+        contribution.history.push(`Aplicando fator de correção: ${contributionFactor.factor} (baseado em ${contributionFactor.monthReference }): Valor atualizado: ${ contribution[valueKey] }`)
+      }
+    },
+
+    applyContributionLimit(contribution: any, type = 'preReform' as 'preReform' | 'lifetimeReview') {
+      let contributionLimit = ArrayHelpers.find(this.contributionLimits, { monthReference: contribution.monthReference })
+      const valueKey = type === 'preReform' ? 'finalValue' : 'monetaryCorrectionFinalValue'
+
+      if(!contributionLimit) {
+        contributionLimit = this.contributionLimits[0]
+      }
+      if(contributionLimit) {
+        contribution.contributionLimit = contributionLimit
+        if(contribution[valueKey] > contributionLimit.contributionLimit) {
+          contribution[valueKey] = contributionLimit.contributionLimit
+          contribution.history.push(`Aplicando limite de contribuição: ${contributionLimit.contributionLimit} (baseado em ${contributionLimit.monthReference }): Valor atualizado: ${ contribution[valueKey] }`)
         }
       }
     }

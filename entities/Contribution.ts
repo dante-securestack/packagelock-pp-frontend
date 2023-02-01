@@ -27,6 +27,12 @@ export default class Contribution {
   groupedContributionsQuantity: number = 0
   createdAt: string = ''
   updatedAt: string = ''
+  monetaryCorrectionIndexValue: number = 0
+  monetaryCorrectionSelicValue: number = 0
+  monetaryCorrectionFinalValue: number = 0
+
+  contributionLimit: any = null
+  contributionFactor: any = null
   
   constructor(obj = {}) {
     Object.keys(obj).map((key) => {

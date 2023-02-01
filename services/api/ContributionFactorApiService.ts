@@ -1,7 +1,5 @@
 import Dates from '@/services/Dates'
 
-
-
 export default class ContributionFactorApiService {
 
 
@@ -61,7 +59,12 @@ export default class ContributionFactorApiService {
     `
     return useGraphQL({ query, caller: 'AdminContributionFactorIndex.getContributionFactors', shouldCache: true })
     .then(({ data }) => {
-      return data.contributionFactors
+      return data.contributionFactors.map((contributionFactor: any) => {
+        return {
+          ...contributionFactor,
+          monthReference: Dates.format(contributionFactor.monthReference, 'MM/yyyy')
+        }
+      })
     })
   }
 }

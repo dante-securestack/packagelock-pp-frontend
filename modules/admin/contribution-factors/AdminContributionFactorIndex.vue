@@ -108,6 +108,7 @@
         distinctContributionFactorByBaseMonths.value = data.distinctContributionFactorByBaseMonths.map((i) => {
           return { value: i.baseMonth, label: Dates.format(i.baseMonth, 'MM/yyyy') }
         })
+        baseMonth.value = distinctContributionFactorByBaseMonths.value[0]?.value
 
         getItems()
       })
@@ -135,7 +136,7 @@
         }
       `
   
-      Graphql({ query })
+      useGraphQL({ query })
         .then(({ data }) => {
           contributionFactors.value = data.contributionFactors.map((i) => {
             return {
@@ -144,7 +145,7 @@
               monthReference: Dates.format(i.monthReference, 'yyyy-MM-dd')
             }
           })
-  
+
           isEmpty.value = !contributionFactors.value.length
         })
     }, 200)

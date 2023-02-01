@@ -5,7 +5,11 @@ export default class ContributionLimitApiService {
   static getContributionLimits(): Promise<Array<any>> {
     const query = `
       {
-        contributionLimits {
+        contributionLimits (
+          order: [
+            { column: "monthReference", direction: "DESC" }
+          ]
+        ) {
           id
           monthReference
           contributionLimit

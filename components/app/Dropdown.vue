@@ -14,7 +14,7 @@
         leave-class="opacity-100 scale-100"
         leave-to-class="opacity-0 scale-95"
       >
-      <div class="origin-top-right absolute right-0 mt-2 w-56 rounded-sm shadow-lg z-10" v-if="value">
+      <div class="origin-top-right absolute right-0 mt-2 w-56 rounded-sm shadow-lg z-10" v-if="valueInside">
         <div class="rounded-sm bg-white shadow-xs" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
           <slot name="items"></slot>
         </div>
@@ -37,12 +37,16 @@
     }
   })
 
+  const valueInside = ref(false)
+
   const open = () => {
     emit('update:value', true)
+    valueInside.value = true
   }
 
   const close = () => {
     emit('update:value', false)
+    valueInside.value = false
   }
 
   defineExpose({ close, open })
