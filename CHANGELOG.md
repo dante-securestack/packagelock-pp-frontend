@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.123](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.122...v0.0.123) (2023-02-03)
+
+
+### Routine tasks | Implementações gerais
+
+* gitignore ([0f22c22](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/0f22c22332e28ea6527eaafe24f55713f4babdb8))
+* Merge ([c007668](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/c007668c2576841a877475fea9f31ae34f306e51))
+
+
+### Features | Funcionalidades
+
+* Adicionado calculo dinamico fator previdênciario ([662492e](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/662492ef9a18f3a5625e0f70b1f02a3363579d33))
+
 ### [0.0.122](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.121...v0.0.122) (2023-02-03)
 
 
