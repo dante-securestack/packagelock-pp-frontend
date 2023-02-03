@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.122](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.121...v0.0.122) (2023-02-03)
+
+
+### Bug Fixes | Melhorias
+
+* Fix erro ao atualizar valores sem as tabelas de referencia estarem devidamente populadas ([bb18786](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/bb1878613722ed355b03567e9fb01a75fe9368ad))
+
 ### [0.0.121](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.120...v0.0.121) (2023-02-01)
 
 
