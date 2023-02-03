@@ -4,6 +4,7 @@ export default class ContributionFactorApiService {
 
 
   static getContributionFactorAvailableByType(contextDate: string, type: string, getFallback: boolean = false): Promise<any> {
+    let tries = 0
     const baseMonth = Dates.format(contextDate, 'yyyy-MM') + '-01'
     const query = `
         {
@@ -27,7 +28,20 @@ export default class ContributionFactorApiService {
       `
       return useGraphQL({ query, caller: 'AdminContributionFactorIndex.getContributionFactorAvailableByType', shouldCache: true })
       .then(({ data }) => {
-        return data.contributionFactors.length ? data.contributionFactors[0] : ContributionFactorApiService.getContributionFactorAvailableByType(contextDate, type, true)
+
+        tries++
+        if(data.contributionFactors.length) {
+          return data.contributionFactors
+        }
+
+        if(getFallback && tries < 2) {
+          console.warn('Não encontrado contributionFactors para o tipo: ', type, 'e data base:', baseMonth, '. Tentando retornar o mais recente, por favor verifique a atualização das tabelas.')
+          return ContributionFactorApiService.getContributionFactorAvailableByType(contextDate, type, true)
+        }
+
+        console.warn('Não encontrado NENHUM contributionFactors para o tipo:', type, 'retornando array vazio, por favor alimente o sistema com as devidas tabelas.')
+
+        return []
       })
   }
 
