@@ -28,7 +28,7 @@ export default class ContributionFactorApiService {
       return useGraphQL({ query, caller: 'AdminContributionFactorIndex.getContributionFactorAvailableByType', shouldCache: true })
       .then(({ data }) => {
         if(data.contributionFactors.length) {
-          return data.contributionFactors
+          return data.contributionFactors[0]
         }
 
         if(!getFallback) {

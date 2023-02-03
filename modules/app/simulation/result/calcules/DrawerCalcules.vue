@@ -26,16 +26,6 @@
           @blur.capture="processCalcules()"
         />
 
-        <AppMoneyInput
-          v-model:value="retirementFactor" 
-          icon="calculate"
-          label="Fator previdênciário" 
-          placeholder="1" 
-          :inputOptions="{ prefix: '', suffix: ' %', decimals: ',', precision: 3 }"
-          @change="setRetirementFactor"
-          @blur.capture="processCalcules()"
-        />
-
         <AppInputWithIcon 
           v-model:value="initialDate" 
           icon="today"
@@ -57,6 +47,17 @@
           @update:value="setEndDate"
           @blur.capture="processCalcules()"
         />
+
+        <AppMoneyInput
+          v-model:value="retirementFactor" 
+          icon="calculate"
+          label="Fator previdênciário" 
+          placeholder="1" 
+          :inputOptions="{ prefix: '', suffix: ' %', decimals: ',', precision: 3 }"
+          @change="setRetirementFactor"
+          @blur.capture="processCalcules()"
+        />
+        
       </div>
 
       <!-- <div class="w-full flex justify-end">

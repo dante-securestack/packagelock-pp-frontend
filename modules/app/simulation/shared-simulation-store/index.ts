@@ -92,7 +92,7 @@ export const useSharedSimulationStore = defineStore('sharedSimulationStore', {
       this.majorContributionsQuantity = this.includedContributions.length
       this.excludedContributions = source.slice(Math.round(source.length * (this.majorContributionsPercentage / 100)))
       this.includedContributionsTotal = this.includedContributions.reduce((acc, contribution) => acc + contribution[this.valueKey], 0)
-      this.includedContributionsAvg = this.includedContributionsTotal / this.includedContributions.length
+      this.includedContributionsAvg = (this.includedContributionsTotal / this.includedContributions.length) * this.retirementFactor
     },
 
     async getSimulation(simulationId: string) {
