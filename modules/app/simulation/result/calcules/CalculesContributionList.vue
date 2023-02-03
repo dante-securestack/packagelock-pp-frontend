@@ -65,7 +65,7 @@
           </td>
           <td class="border border-zinc-200/50">
             <span v-if="valueKey === 'finalValue' && contribution[valueKeyIndex] == 0">--</span>
-            <span v-else>{{ vueNumberFormat(contribution[valueKey]) }}</span>
+            <span v-else>{{ vueNumberFormat(contribution[valueKey]) }}</span> {{ valueKey }}
 
             <AppDropdown ref="dropdown">
               <template v-slot:trigger>

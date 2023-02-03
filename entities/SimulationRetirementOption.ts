@@ -21,4 +21,6 @@ export default class SimulationRetirementOption {
   createdAt = ''
   updatedAt = ''
   retirementOption = new RetirementOption()
+  meta = {} as any
+  retirementFactor = 1
 }

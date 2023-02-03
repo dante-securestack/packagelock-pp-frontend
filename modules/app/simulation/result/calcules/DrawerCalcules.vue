@@ -156,6 +156,8 @@
     emitter.on('openModalResultContributionList', (payload) => {
       showModal.value = true
       simulationRetirementOption.value = payload.simulationRetirementOption
+
+      console.log(simulationRetirementOption.value)
       if(payload.simulationRetirementOption.retirementOption.rule !== 'getLifetimeReview') {
         setInitialDate('01/07/1994')
         sharedSimulationStore.setValueKey('finalValue')
@@ -166,6 +168,7 @@
         sharedSimulationStore.setValueKeyIndex('monetaryCorrectionIndexValue')
       }
       setEndDate(simulationRetirementOption.value.contextDate)
+      setRetirementFactor(simulationRetirementOption.value.retirementFactor)
       processCalcules()
     })
   })

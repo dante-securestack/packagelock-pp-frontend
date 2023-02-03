@@ -49,6 +49,7 @@ export default class SimulationApiService {
               requirements
               projectedRetirementDate
               metaData
+              retirementFactor
               retirementOption {
                 id
                 title
