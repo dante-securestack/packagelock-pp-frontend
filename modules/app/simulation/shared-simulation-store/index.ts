@@ -16,6 +16,7 @@ export const useSharedSimulationStore = defineStore('sharedSimulationStore', {
     excludedContributions: [] as Array<Contribution>,
     majorContributionsPercentage: 80 as string | number,
     majorContributionsQuantity: 180,
+    retirementFactor: 1,
     initialDate: null as string | null,
     endDate: null as string | null,
     valueKey: 'monetaryCorrectionFinalValue' as 'monetaryCorrectionFinalValue' | 'finalValue',
@@ -67,6 +68,9 @@ export const useSharedSimulationStore = defineStore('sharedSimulationStore', {
       console.log(majorContributionsQuantity)
       this.majorContributionsQuantity = majorContributionsQuantity
       this.majorContributionsPercentage = MathHelpers.getPercentageOfAmount(this.getterFilteredContributions.length, this.majorContributionsQuantity)
+    },
+    setRetirementFactor(retirementFactor: number = 1) {
+      this.retirementFactor = retirementFactor
     },
     setInitialDate(initialDate: string | null) {
       this.initialDate = initialDate

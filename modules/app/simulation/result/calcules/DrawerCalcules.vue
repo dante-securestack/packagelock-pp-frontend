@@ -26,6 +26,16 @@
           @blur.capture="processCalcules()"
         />
 
+        <AppMoneyInput
+          v-model:value="retirementFactor" 
+          icon="calculate"
+          label="Fator previdênciário" 
+          placeholder="1" 
+          :inputOptions="{ prefix: '', suffix: ' %', decimals: ',', precision: 3 }"
+          @change="setRetirementFactor"
+          @blur.capture="processCalcules()"
+        />
+
         <AppInputWithIcon 
           v-model:value="initialDate" 
           icon="today"
@@ -127,6 +137,7 @@
   const { 
     majorContributionsPercentage,
     majorContributionsQuantity,
+    retirementFactor,
     initialDate,
     endDate,
     includedContributions,
@@ -167,6 +178,7 @@
 
   const setMajorContributionsPercentage = (value) => sharedSimulationStore.setMajorContributionsPercentage(value)
   const setMajorContributionsQuantity = (value) => sharedSimulationStore.setMajorContributionsQuantity(value)
+  const setRetirementFactor = (value) => sharedSimulationStore.setRetirementFactor(value)
   const setInitialDate = (value) => sharedSimulationStore.setInitialDate(value)
   const setEndDate = (value) => sharedSimulationStore.setEndDate(value)
 
