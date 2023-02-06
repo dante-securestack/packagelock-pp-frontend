@@ -159,6 +159,10 @@
           action: '/admin/contribution-factors'
         },
         {
+          title: 'Limites contribuição',
+          action: '/admin/contribution-limits'
+        },
+        {
           title: 'Grupos de aposentadoria',
           action: '/admin/retirement-groups'
         },
