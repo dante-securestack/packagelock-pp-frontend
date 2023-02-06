@@ -1,5 +1,7 @@
 <template>
-  <div class="w-full flex flex-col">
+  <div class="w-full flex flex-col space-y-4">
+
+    <AppTitle>Limites de contribuição</AppTitle>
 
     <div class="w-full flex justify-end">
       <AppButton 
@@ -10,10 +12,10 @@
         <span class="ml-2">Adicionar novo</span>
       </AppButton>
     </div>
-    <div class="w-full overflow-x-auto">
+    <div class="w-full overflow-x-auto bg-white max-h-[60vh]">
       <table class="w-full table table-auto">
         <thead>
-          <tr>
+          <tr class="sticky top-0">
             <th>Mês</th>
             <th>Teto contribuição</th>
             <th>Mínimo</th>
@@ -72,3 +74,18 @@
   }
 
 </script>
+
+<style scoped>
+
+  table tr:first-child {
+    position: -webkit-sticky;
+    position: sticky;
+    left: 0;
+    z-index: 2;
+  }
+  thead th:first-child,
+  tfoot th:first-child {
+    z-index: 5;
+  }
+
+</style>

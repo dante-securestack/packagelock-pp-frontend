@@ -1,7 +1,6 @@
 <template>
   <div class="w-full flex flex-col">
 
-
     <AppTitle>Usuários</AppTitle>
 
     <AppSearchBar placeholder="Procurar" v-model:search="search" @search="get()" />

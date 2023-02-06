@@ -163,6 +163,10 @@
           action: '/admin/contribution-limits'
         },
         {
+          title: 'Expectativa de vida',
+          action: '/admin/life-expectations'
+        },
+        {
           title: 'Grupos de aposentadoria',
           action: '/admin/retirement-groups'
         },
