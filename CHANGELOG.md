@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.125](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.124...v0.0.125) (2023-02-06)
+
+
+### Features | Funcionalidades
+
+* Adicionado listagem e edição expectativa de vida ([9b27059](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/9b27059d619cd846aed8ac2ad2d3e129ba42cfd8))
+
 ### [0.0.124](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.123...v0.0.124) (2023-02-06)
 
 
