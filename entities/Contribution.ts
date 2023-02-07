@@ -30,6 +30,8 @@ export default class Contribution {
   monetaryCorrectionIndexValue: number = 0
   monetaryCorrectionSelicValue: number = 0
   monetaryCorrectionFinalValue: number = 0
+  
+  typedHistory = [] as Array<any>
 
   contributionLimit: any = null
   contributionFactor: any = null

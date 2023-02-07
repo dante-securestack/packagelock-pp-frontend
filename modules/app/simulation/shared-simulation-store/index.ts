@@ -172,6 +172,8 @@ export const useSharedSimulationStore = defineStore('sharedSimulationStore', {
       console.log('rodando')
       for(const socialSecurityRelation of this.simulation.socialSecurityRelations) {
         for(const contribution of socialSecurityRelation.contributions) {
+
+          contribution.typedHistory =[]
           this.applyContributionLimit(contribution, 'preReform')
           this.applyContributionFactor(contribution, 'preReform')
           this.applyContributionLimit(contribution, 'lifetimeReview')
@@ -192,9 +194,17 @@ export const useSharedSimulationStore = defineStore('sharedSimulationStore', {
 
       if(contributionFactor) {
         contribution.contributionFactor = contributionFactor
-        contribution[valueKey] = contribution.baseValue * contributionFactor.factor
+        contribution[valueKey] = contribution[valueKey] * contributionFactor.factor
         contribution[valueKeyIndex] = contributionFactor.factor
-        contribution.history.push(`Aplicando fator de correção: ${contributionFactor.factor} (baseado em ${contributionFactor.monthReference }): Valor atualizado: ${ contribution[valueKey] }`)
+        contribution.typedHistory.push({
+          type: valueKey,
+          content: `Aplicando fator de correção: ${contributionFactor.factor} (baseado em ${contributionFactor.monthReference }): Valor atualizado: ${ contribution[valueKey] }`
+        })
+      } else {
+        contribution.typedHistory.push({
+          type: valueKey,
+          content: `Fator de correção não encontrado baseado em ${contributionFactor.monthReference }`
+        })
       }
     },
 
@@ -208,8 +218,17 @@ export const useSharedSimulationStore = defineStore('sharedSimulationStore', {
       if(contributionLimit) {
         contribution.contributionLimit = contributionLimit
         if(contribution[valueKey] > contributionLimit.contributionLimit) {
+          const valueBeforeLimit = contribution[valueKey]
           contribution[valueKey] = contributionLimit.contributionLimit
-          contribution.history.push(`Aplicando limite de contribuição: ${contributionLimit.contributionLimit} (baseado em ${contributionLimit.monthReference }): Valor atualizado: ${ contribution[valueKey] }`)
+          contribution.typedHistory.push({
+            type: valueKey,
+            content: `Limite de contribuição: ${contributionLimit.contributionLimit} (baseado em ${contributionLimit.monthReference }): Valor antes: ${ valueBeforeLimit } - valor após limite: ${ contribution[valueKey] }`
+          })
+        } else {
+          contribution.typedHistory.push({
+            type: valueKey,
+            content: `Limite do teto (${ contributionLimit.contributionLimit }) é menor que o valor: ${ contribution[valueKey] }`
+          })
         }
       }
     }

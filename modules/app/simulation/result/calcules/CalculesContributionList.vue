@@ -63,7 +63,7 @@
             <span>{{ contribution[valueKeyIndex] }}</span>
           </td>
           <td class="border border-zinc-200/50">
-            <span>{{ vueNumberFormat(contribution[valueKey]) }}</span> {{ valueKey }}
+            <span>{{ vueNumberFormat(contribution[valueKey]) }}</span>
 
             <AppDropdown ref="dropdown">
               <template v-slot:trigger>
@@ -74,8 +74,8 @@
               <template v-slot:items>
                 <div class="w-full flex flex-col bg-white p-3 space-y-3 rounded">
                   <ul class="w-full list-disc pl-3 whitespace-normal">
-                    <li v-for="(history, index) in contribution.history" :key="`${contribution.id}_${index}`" >
-                      {{ history }}
+                    <li v-for="(history, index) in contribution.typedHistory.filter((item) => item.type == valueKey)" :key="`${contribution.id}_${index}`" >
+                      {{ history.content }}
                     </li>
                   </ul>
                 </div>
