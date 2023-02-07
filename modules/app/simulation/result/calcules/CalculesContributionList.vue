@@ -60,12 +60,10 @@
           </td>
           <td class="border border-zinc-200/50">{{ vueNumberFormat(contribution.baseValue, getCurrencyFormatter(contribution.monthReference)) }}</td>
           <td class="border border-zinc-200/50">
-            <span v-if="contribution[valueKeyIndex] == 0">--</span>
-            <span v-else>{{ contribution[valueKeyIndex] }}</span>
+            <span>{{ contribution[valueKeyIndex] }}</span>
           </td>
           <td class="border border-zinc-200/50">
-            <span v-if="valueKey === 'finalValue' && contribution[valueKeyIndex] == 0">--</span>
-            <span v-else>{{ vueNumberFormat(contribution[valueKey]) }}</span> {{ valueKey }}
+            <span>{{ vueNumberFormat(contribution[valueKey]) }}</span> {{ valueKey }}
 
             <AppDropdown ref="dropdown">
               <template v-slot:trigger>
