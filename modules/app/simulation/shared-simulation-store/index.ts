@@ -212,6 +212,8 @@ export const useSharedSimulationStore = defineStore('sharedSimulationStore', {
       let contributionLimit = ArrayHelpers.find(this.contributionLimits, { monthReference: contribution.monthReference })
       const valueKey = type === 'preReform' ? 'finalValue' : 'monetaryCorrectionFinalValue'
 
+      contribution[valueKey] = contribution.baseValue
+
       if(!contributionLimit) {
         contributionLimit = this.contributionLimits[0]
       }
@@ -227,7 +229,7 @@ export const useSharedSimulationStore = defineStore('sharedSimulationStore', {
         } else {
           contribution.typedHistory.push({
             type: valueKey,
-            content: `Limite do teto (${ contributionLimit.contributionLimit }) é menor que o valor: ${ contribution[valueKey] }`
+            content: `Limite do teto (${ contributionLimit.contributionLimit }) é maior que o valor: ${ contribution[valueKey] }`
           })
         }
       }
