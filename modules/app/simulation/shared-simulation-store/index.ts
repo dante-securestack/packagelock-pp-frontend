@@ -229,7 +229,7 @@ export const useSharedSimulationStore = defineStore('sharedSimulationStore', {
         } else {
           contribution.typedHistory.push({
             type: valueKey,
-            content: `Limite do teto (${ contributionLimit.contributionLimit }) é maior que o valor: ${ contribution[valueKey] }`
+            content: `Limite do teto (${ contributionLimit.contributionLimit }) é maior que o valor base: ${ contribution[valueKey] }`
           })
         }
       }
