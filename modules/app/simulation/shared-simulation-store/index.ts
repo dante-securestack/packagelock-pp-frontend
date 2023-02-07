@@ -172,10 +172,10 @@ export const useSharedSimulationStore = defineStore('sharedSimulationStore', {
       console.log('rodando')
       for(const socialSecurityRelation of this.simulation.socialSecurityRelations) {
         for(const contribution of socialSecurityRelation.contributions) {
-          this.applyContributionFactor(contribution, 'preReform')
           this.applyContributionLimit(contribution, 'preReform')
-          this.applyContributionFactor(contribution, 'lifetimeReview')
+          this.applyContributionFactor(contribution, 'preReform')
           this.applyContributionLimit(contribution, 'lifetimeReview')
+          this.applyContributionFactor(contribution, 'lifetimeReview')
         }
       }
     },
@@ -183,6 +183,7 @@ export const useSharedSimulationStore = defineStore('sharedSimulationStore', {
     applyContributionFactor(contribution: any, type = 'preReform' as 'preReform' | 'lifetimeReview') {
       const source = type === 'preReform' ? this.contributionFactorPreform : this.contributionFactorLifetimeReview
       const valueKey = type === 'preReform' ? 'finalValue' : 'monetaryCorrectionFinalValue'
+      const valueKeyIndex = type === 'preReform' ? 'contributionFactorValue' : 'monetaryCorrectionIndexValue'
 
       let contributionFactor = ArrayHelpers.find(source, { monthReference: contribution.monthReference })
       if(!contributionFactor) {
@@ -192,6 +193,7 @@ export const useSharedSimulationStore = defineStore('sharedSimulationStore', {
       if(contributionFactor) {
         contribution.contributionFactor = contributionFactor
         contribution[valueKey] = contribution.baseValue * contributionFactor.factor
+        contribution[valueKeyIndex] = contributionFactor.factor
         contribution.history.push(`Aplicando fator de correção: ${contributionFactor.factor} (baseado em ${contributionFactor.monthReference }): Valor atualizado: ${ contribution[valueKey] }`)
       }
     },
