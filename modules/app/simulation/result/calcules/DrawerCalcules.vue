@@ -81,7 +81,7 @@
           <template v-slot:value>{{ vueNumberFormat(includedContributionsTotal) }}</template>
         </AppLabelValue>
         <AppLabelValue>
-          <template v-slot:label>Média das contribuições</template>
+          <template v-slot:label>Renda mensal inicial na data da aposentadoria</template>
           <template v-slot:value>{{ vueNumberFormat(includedContributionsAvg) }}</template>
         </AppLabelValue>
       </div>
