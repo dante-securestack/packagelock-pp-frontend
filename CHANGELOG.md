@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.131](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.130...v0.0.131) (2023-02-09)
+
+
+### Bug Fixes | Melhorias
+
+* Text renda mensal inicial ([9bd9ae2](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/9bd9ae27bd1e4b2d073dd716a5ff605910ef4be0))
+
 ### [0.0.130](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.129...v0.0.130) (2023-02-07)
 
 
