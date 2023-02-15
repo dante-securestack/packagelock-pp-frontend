@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.133](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.132...v0.0.133) (2023-02-15)
+
+
+### Features | Funcionalidades
+
+* Adicionado valores default para calculos 80 e 100% e removido informação de direito ao beneficio da revisão vida toda ([1ec58b5](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/1ec58b50b2615994a340da3012b3de005971adbc))
+
 ### [0.0.132](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.131...v0.0.132) (2023-02-15)
 
 
