@@ -170,6 +170,8 @@
       }
       setEndDate(simulationRetirementOption.value.contextDate)
       setRetirementFactor(simulationRetirementOption.value.retirementFactor)
+      const contributionsPercentage = payload.simulationRetirementGroup.retirementGroup.isPreReform ? 80 : 100
+      setMajorContributionsPercentage(contributionsPercentage)
       processCalcules()
     })
   })

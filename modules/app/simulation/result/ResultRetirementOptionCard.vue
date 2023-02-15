@@ -33,21 +33,7 @@
       </AppLabelValue>
     </div>
 
-    <template v-if="loggedUser || simulationRetirementOption.retirementOption.showForNotLoggedUsers">
-      <!-- REQUIREMENTS RESULT -->
-      <!-- <div class="w-full flex flex-col" v-if="forceShowDetail">
-        <p class="p text-slate-400 leading-none mb-2">
-          Checklist de requisitos
-        </p>
-        <div 
-          class="w-full flex items-center"
-          v-for="(requirement, index) in simulationRetirementOption.requirements"
-          :key="`retirementOptionError${index}`"
-        >
-          <AppIcons :icon="requirement.isGranted ? 'check' : 'warning'" :class="[!requirement.isGranted ? 'text-red-400' : 'text-green-600']" />
-          <p class="ml-2 p truncate text-slate-600 leading-relaxed ...">{{ requirement.content }}</p>
-        </div>
-      </div> -->
+    <template v-if="simulationRetirementOption.retirementOption.rule !== 'getLifetimeReview' && (loggedUser || simulationRetirementOption.retirementOption.showForNotLoggedUsers)">
 
       <div class="w-full flex flex-col" v-if="showDetail">
         <p class="p text-slate-400 leading-none mb-2">
@@ -62,16 +48,9 @@
       
       <LabelIsGranted :isGranted="simulationRetirementOption.isGranted" />
 
-      <!-- <div class="flex mt-6">
-        <AppButton 
-          bg="bg-brand-gradient text-white" 
-          @click="emitter.emit('openDrawer', { component: 'SimulationRetirementOptionDetailDrawer', payload: simulationRetirementOption })">
-            Ver cálculo
-        </AppButton>
-      </div> -->
     </template>
 
-    <template v-else>
+    <template v-else-if="simulationRetirementOption.retirementOption.rule !== 'getLifetimeReview'">
       <div class="w-full p-8 bg-cyan-800/5 p-8 shadow-md bg-cyan-800/5 flex flex-wrap">
         <p class="p">
           <button 
@@ -86,15 +65,10 @@
       </div>
     </template>
     
-    <!-- <template v-if="showOnlyAdmin">
-      <p class="leading-none border-b border-orange-600">Apenas usuários admin's podem ver:</p>
-      <pre class="w-full p-4 bg-zinc-200 text-black">{{ simulationRetirementOption.metaData }}</pre>
-    </template> -->
-
     <div class="w-full">
       <AppButton 
           bg="bg-brand-gradient text-white text-sm px-2 py-1 mr-4 sm:mr-0 mt-2"
-          @click="emitter.emit('openModalResultContributionList', { simulationRetirementOption })" 
+          @click="emitter.emit('openModalResultContributionList', { simulationRetirementOption, simulationRetirementGroup })" 
         >
         <AppIcons icon="calculate" />
         <span class="ml-2">Ver cálculos</span>
@@ -116,6 +90,7 @@
 
   const props = defineProps({
     simulationRetirementOption: Object,
+    simulationRetirementGroup: Object,
   })
 
   const getProjectedRetirementDate = computed(() => {

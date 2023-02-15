@@ -22,6 +22,7 @@
         <ResultRetirementOptionCard
           v-for="(simulationRetirementOption, index) in simulationRetirementGroup.simulationRetirementOptions" 
           :simulationRetirementOption="simulationRetirementOption"
+          :simulationRetirementGroup="simulationRetirementGroup"
           :key="`simulationRetirementOption${index}`"
         />
 
