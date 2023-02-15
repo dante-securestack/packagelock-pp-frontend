@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.132](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.131...v0.0.132) (2023-02-15)
+
+
+### Bug Fixes | Melhorias
+
+* Alterar regra de atualização de contribuições ([9e89d0d](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/9e89d0dc195cdccae2f193083a5a51b7f37a0fca))
+
 ### [0.0.131](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.130...v0.0.131) (2023-02-09)
 
 
