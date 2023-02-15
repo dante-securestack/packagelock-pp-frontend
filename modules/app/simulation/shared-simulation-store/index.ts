@@ -183,9 +183,11 @@ export const useSharedSimulationStore = defineStore('sharedSimulationStore', {
     },
 
     applyContributionFactor(contribution: any, type = 'preReform' as 'preReform' | 'lifetimeReview') {
-      const source = type === 'preReform' ? this.contributionFactorPreform : this.contributionFactorLifetimeReview
-      const valueKey = type === 'preReform' ? 'finalValue' : 'monetaryCorrectionFinalValue'
-      const valueKeyIndex = type === 'preReform' ? 'contributionFactorValue' : 'monetaryCorrectionIndexValue'
+
+      const contributionIsBeforeJuly1994 = Boolean(Dates.parse(contribution.monthReference) < new Date('1994-07-01'))
+      const source = !contributionIsBeforeJuly1994 ? this.contributionFactorPreform : this.contributionFactorLifetimeReview
+      const valueKey = !contributionIsBeforeJuly1994 ? 'finalValue' : 'monetaryCorrectionFinalValue'
+      const valueKeyIndex = !contributionIsBeforeJuly1994 ? 'contributionFactorValue' : 'monetaryCorrectionIndexValue'
 
       let contributionFactor = ArrayHelpers.find(source, { monthReference: contribution.monthReference })
       if(!contributionFactor) {
@@ -198,7 +200,7 @@ export const useSharedSimulationStore = defineStore('sharedSimulationStore', {
         contribution[valueKeyIndex] = contributionFactor.factor
         contribution.typedHistory.push({
           type: valueKey,
-          content: `Aplicando fator de correção: ${contributionFactor.factor} (baseado em ${contributionFactor.monthReference }): Valor atualizado: ${ contribution[valueKey] }`
+          content: `Aplicando fator de correção: ${contributionFactor.factor} (baseado em ${contributionFactor.monthReference }): Valor atualizado: ${ contribution[valueKey] } - contributionIsBeforeJuly1994: ${ contributionIsBeforeJuly1994 }`
         })
       } else {
         contribution.typedHistory.push({
