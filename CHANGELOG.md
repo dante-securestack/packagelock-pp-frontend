@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.135](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.134...v0.0.135) (2023-02-20)
+
+
+### Bug Fixes | Melhorias
+
+* Fixed ordem grupos de aposentadoria ([f61f120](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/f61f12050d6f0fcfd101e0ee09409c6b99fa2cd0))
+
 ### [0.0.134](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.133...v0.0.134) (2023-02-20)
 
 
