@@ -32,7 +32,7 @@ export default class Simulation extends BaseModel {
   constructor(attributes = {}) {
 		super()
 		this.setFillableKeys(this, Simulation.fillable, attributes)
-
+    this.ordenateSimulationRelationships()
     this.setSimulationContributionsRelationOrigin()
 	}
 
@@ -70,6 +70,35 @@ export default class Simulation extends BaseModel {
   getProjectedRetirementDateIsAfterToday (simulationRetirementOption) {
     if(Dates.parse(simulationRetirementOption.projectedRetirementDate) <= new Date()) return false
     return true
+  }
+
+  ordenateSimulationRelationships() {
+      
+    this.simulationRetirementGroups.sort((a, b) => {
+      return a.retirementGroup.order - b.retirementGroup.order
+    })
+
+    this.simulationRetirementGroups.forEach((simulationRetirementGroup) => {
+      simulationRetirementGroup.simulationRetirementOptions.sort((a, b) => {
+        return a.retirementOption.order - b.retirementOption.order
+      })
+    })
+
+    this.simulationRetirementGroups = this.simulationRetirementGroups.sort((a, b) => {
+      return a.retirementGroup.order - b.retirementGroup.order
+    })
+
+    this.socialSecurityRelations.sort((a, b) => {
+      return a.seqNumber - b.seqNumber
+    })
+
+    for(const socialSecurityRelation of this.socialSecurityRelations) {
+      socialSecurityRelation.contributions.sort((a, b) => {
+        return Dates.parse(a.monthReference) - Dates.parse(b.monthReference)
+      })
+    }
+
+
   }
 
   setSimulationContributionsRelationOrigin() {
