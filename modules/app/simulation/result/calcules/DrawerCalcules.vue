@@ -60,21 +60,12 @@
         
       </div>
 
-      <!-- <div class="w-full flex justify-end">
-        <AppButton 
-          @click="processCalcules()" 
-          bg="bg-brand-gradient text-white text-sm px-2 py-1 mr-4 sm:mr-0 flex space-x-3">
-          <AppIcons icon="update" />
-          <span>Processar</span>
-        </AppButton>
-      </div> -->
-
       <hr />
 
       <div class="flex justify-between">
         <AppLabelValue>
           <template v-slot:label>Total contribuições</template>
-          <template v-slot:value>{{ getterMappedContributtions.length }}</template>
+          <template v-slot:value>{{ contributionsByMonthReference.length }}</template>
         </AppLabelValue>
         <AppLabelValue>
           <template v-slot:label>Soma contribuições incluídas</template>
@@ -94,7 +85,7 @@
           <p class="text-xs italic">{{ includedContributions.length }} contribuições</p>
         </template>
         <template v-slot:content>
-          <CalculesContributionList :contributions="includedContributions"/>
+          <CalculesContributionList :contributionsByMonthReference="includedContributions"/>
         </template>
       </AppCollapseItem>
       
@@ -104,7 +95,7 @@
           <p class="text-xs italic">{{ excludedContributions.length }} contribuições</p>
         </template>
         <template v-slot:content>
-          <CalculesContributionList :contributions="excludedContributions" />
+          <CalculesContributionList :contributionsByMonthReference="excludedContributions" />
         </template>
       </AppCollapseItem>
       
@@ -114,7 +105,7 @@
           <p class="text-xs italic">{{ getterFilteredExcludedContributions.length }} contribuições</p>
         </template>
         <template v-slot:content>
-          <CalculesContributionList :contributions="getterFilteredExcludedContributions" />
+          <CalculesContributionList :contributionsByMonthReference="getterFilteredExcludedContributions" />
         </template>
       </AppCollapseItem>
 
@@ -146,7 +137,7 @@
     valueKey,
     includedContributionsTotal,
     includedContributionsAvg,
-    getterMappedContributtions,
+    contributionsByMonthReference,
     getterFilteredExcludedContributions
   } = storeToRefs(sharedSimulationStore)
 
@@ -161,12 +152,8 @@
       console.log(simulationRetirementOption.value)
       if(payload.simulationRetirementOption.retirementOption.rule !== 'getLifetimeReview') {
         setInitialDate('01/07/1994')
-        sharedSimulationStore.setValueKey('finalValue')
-        sharedSimulationStore.setValueKeyIndex('contributionFactorValue')
       } else {
         setInitialDate(null)
-        sharedSimulationStore.setValueKey('monetaryCorrectionFinalValue')
-        sharedSimulationStore.setValueKeyIndex('monetaryCorrectionIndexValue')
       }
       setEndDate(simulationRetirementOption.value.contextDate)
       setRetirementFactor(simulationRetirementOption.value.retirementFactor)

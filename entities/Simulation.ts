@@ -32,6 +32,8 @@ export default class Simulation extends BaseModel {
   constructor(attributes = {}) {
 		super()
 		this.setFillableKeys(this, Simulation.fillable, attributes)
+
+    this.setSimulationContributionsRelationOrigin()
 	}
 
 	public static fillable =  [
@@ -68,6 +70,14 @@ export default class Simulation extends BaseModel {
   getProjectedRetirementDateIsAfterToday (simulationRetirementOption) {
     if(Dates.parse(simulationRetirementOption.projectedRetirementDate) <= new Date()) return false
     return true
+  }
+
+  setSimulationContributionsRelationOrigin() {
+    this.socialSecurityRelations.forEach((relation) => {
+      relation.contributions.forEach((contribution) => {
+        contribution.relationOrigin = relation.relationOrigin
+      })
+    })
   }
 
 }

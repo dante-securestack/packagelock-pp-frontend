@@ -35,6 +35,8 @@ export default class Contribution {
 
   contributionLimit: any = null
   contributionFactor: any = null
+
+  relationOrigin: string = ''
   
   constructor(obj = {}) {
     Object.keys(obj).map((key) => {
