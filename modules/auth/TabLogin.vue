@@ -6,7 +6,8 @@
         icon="email" 
         type="email" 
         label="Email" 
-        placeholder="Insira seu email" 
+        placeholder="Insira seu email"
+        id="sign-in-email"
       />
       <AppInputWithIcon 
         v-model:value="user.unencryptedPassword" 
@@ -15,6 +16,7 @@
         label="Senha" 
         placeholder="Insira sua senha"
         @keydown.enter="login()"
+        id="sign-in-password"
       />
 
       <div class="w-full flex justify-end">

@@ -14,7 +14,7 @@
       <input
         v-if="!mask"
         :type="type"
-        :id="id_input"
+        :id="id"
         :placeholder="placeholder || label"
         :value="value"
         @input="$emit('update:value', $event.target.value)"
@@ -26,7 +26,7 @@
       <input
         v-else
         :type="type"
-        :id="id_input"
+        :id="id"
         :placeholder="placeholder"
         :value="value"
         @input="$emit('update:value', $event.target.value)"
@@ -49,7 +49,7 @@
   const props = defineProps({
     icon: String,
     type: String,
-    id_input: String,
+    id: String,
     placeholder: String,
     label: String,
     action: String,
