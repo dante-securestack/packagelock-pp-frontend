@@ -8,9 +8,13 @@
 
     <div v-if="!importMonetaryAndFactorCorrection?.result.length" class="w-full flex flex-wrap space-y-6">
       <AppAlert>
-        <p>Acesse este documento para obter mais informações sobre a importação de tabelas de correção.
+        <p>Acesse este documento para obter mais informações sobre a importação de tabelas de correção: 
           <a class="font-bold text-sky-500" href="/docs/pop_importacao_correcao.pdf" target="_blank">
             Instruções de importação
+          </a>
+          e utilize este template para importação: 
+          <a class="font-bold text-sky-500" href="https://docs.google.com/spreadsheets/d/1Iih2OlFsm24WIZJiXG5TizITOlZqimRI4SgoSP7P04o/edit?usp=sharing" target="_blank">
+            Planilha modelo para importação
           </a>
         </p>
       </AppAlert>
