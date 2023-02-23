@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.137](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.136...v0.0.137) (2023-02-23)
+
+
+### Features | Funcionalidades
+
+* Adicionado pop importação ([0eee4e0](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/0eee4e011982bfe992a43b55c15523d0e56ecafb))
+
 ### [0.0.136](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.135...v0.0.136) (2023-02-21)
 
 
