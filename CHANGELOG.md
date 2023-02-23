@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.136](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.135...v0.0.136) (2023-02-21)
+
+
+### Features | Funcionalidades
+
+* Added id to login input ([ceffc86](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/ceffc8686692358366d96d8cba9e1945ba0ae2a0))
+
 ### [0.0.135](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.134...v0.0.135) (2023-02-20)
 
 
