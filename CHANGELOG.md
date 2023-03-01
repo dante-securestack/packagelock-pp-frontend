@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.140](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.139...v0.0.140) (2023-03-01)
+
+
+### Bug Fixes | Melhorias
+
+* Moeda dinamica de acordo com data de minimo e teto na edição admin ([9f0200a](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/9f0200a61ffe3df8d8cba5577175a6262074cb5a))
+
 ### [0.0.139](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.138...v0.0.139) (2023-03-01)
 
 
