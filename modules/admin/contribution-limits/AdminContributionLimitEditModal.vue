@@ -22,6 +22,7 @@
         icon="badge"
         label="Valor teto (limite)" 
         placeholder="Valor teto (limite)"
+        :dateReference="contributionLimit.monthReference"
       >
       </AppMoneyInput>
 
@@ -30,6 +31,7 @@
         icon="badge"
         label="Valor mínimo (limite)" 
         placeholder="Valor mínimo (limite)"
+        :dateReference="contributionLimit.monthReference"
       >
       </AppMoneyInput>
 
