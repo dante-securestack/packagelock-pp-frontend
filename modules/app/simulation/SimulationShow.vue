@@ -57,6 +57,7 @@
     </div>
 
     <ClientEditModal :simulation="simulation || null"/>
+    <ContributionEditModal />
     <SimulationWarningModal/>
   </div>
 </template>
@@ -66,6 +67,7 @@
   import Simulation from '@/entities/Simulation'
   import ResultTab from'@/modules/app/simulation/result/ResultTab'
   import SimulationClientCard from'@/modules/app/simulation/SimulationClientCard'
+  import ContributionEditModal from'@/modules/app/simulation/ContributionEditModal'
   import RelationTab from'@/modules/app/simulation/relation/RelationTab'
   import ClientEditModal from '@/modules/app/simulation/ClientEditModal.vue'
   import SimulationWarningModal from '@/modules/app/simulation/SimulationWarningModal.vue'

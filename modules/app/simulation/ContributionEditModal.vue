@@ -64,9 +64,9 @@
   import Api from '@/util/Api'
   import FormContribution from '@/forms/FormContribution'
   import emitter from '@/util/emitter'
-  import { useAuthStore } from "@/modules/auth/store"
   
   const authStore = useAuthStore()
+  const sharedSimulationStore = useSharedSimulationStore()
   const route = useRoute()
 
   onMounted(() => {
@@ -122,17 +122,22 @@
   }
 
   const update = () => {
+    if(isLoading.value) return
 
     if(formContribution.value.hasError) {
       formContribution.value.tried = true
       return
     }
     
+    isLoading.value = true
     Api.post(`/app/contribution/updateOrCreate`, formContribution.value).then(({ data }) => {
-      isLoading.value = true
-      emitter.emit('contributionUpdated', { contribution: data.contribution })
-      emitter.emit('simulationIsPending')
       close()
+      console.log('finalizou')
+      isLoading.value = false
+      setTimeout(() => {
+        emitter.emit('contributionUpdated', { contribution: data.contribution })
+        sharedSimulationStore.updateContribution(data.contribution)
+      }, 50)
     })
     .catch((err) => {
       console.log(err)

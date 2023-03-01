@@ -91,11 +91,29 @@
         <tr v-for="contributionByMonthReference in getOrderedContributionsByMonthReference" :key="contributionByMonthReference">
           <td class="border border-zinc-200/50 border-b-2 border-b-zinc-300 md:sticky left-0 bg-gray-200 ">
             <div class="flex flex-col space-y-1 items-start min-w-[25vw] w-[25vw] max-w-[25vw]">
-              <span class="... truncate" v-for="(contribution, index) in contributionByMonthReference.contributions" :key="contribution">{{ index + 1 }} - {{ contribution.relationOrigin }}</span>
+              <div 
+                class="flex space-x-1 items-center" 
+                v-for="(contribution, index) in contributionByMonthReference.contributions"
+                :key="contribution"
+              >
+                <span class="... truncate min-w-[22vw] max-w-[22vw]">{{ index + 1 }} - {{ contribution.relationOrigin }}</span>
+                <AppButton 
+                  title="Editar contribuição"
+                  :disabled="!loggedUser"
+                  @click="openContributionModal(contribution)"
+                  class="text-sky-600 hover:text-orange-600"
+                >
+                  <AppIcons size="16" icon="edit" />
+                </AppButton>
+              </div>
             </div>
           </td>
           <td class="border border-zinc-200/50">{{ contributionByMonthReference.monthReference }}</td>
-          <td class="border border-zinc-200/50">{{ vueNumberFormat(contributionByMonthReference.baseValue, getCurrencyFormatter(contributionByMonthReference.monthReference)) }}</td>
+          <td class="border border-zinc-200/50">
+            <div>
+              {{ vueNumberFormat(contributionByMonthReference.baseValue, getCurrencyFormatter(contributionByMonthReference.monthReference)) }}
+            </div>
+          </td>
           <td class="border border-zinc-200/50">{{ vueNumberFormat(contributionByMonthReference.limitValue, getCurrencyFormatter(contributionByMonthReference.monthReference)) }}</td>
           <td class="border border-zinc-200/50">{{ vueNumberFormat(contributionByMonthReference.valueAfterCheckLimit, getCurrencyFormatter(contributionByMonthReference.monthReference)) }}</td>
           <td class="border border-zinc-200/50">{{ contributionByMonthReference.contributionFactorValue }}</td>
@@ -114,6 +132,10 @@
   import Dates from '@/services/Dates'
   
   const sharedSimulationStore = useSharedSimulationStore()
+  const emitter = useEmitter()
+  const route = useRoute()
+
+  const authStore = useAuthStore()
 
   const props = defineProps({
     contributionsByMonthReference: {
@@ -124,6 +146,7 @@
 
   const orderColumn = ref('monthReference')
   const orderColumnDirection = ref('asc')
+  const { loggedUser } = storeToRefs(authStore)
 
   const getOrderedContributionsByMonthReference = computed(() => {
     return props.contributionsByMonthReference.sort((a, b) => {
@@ -158,6 +181,17 @@
   const getContributionRelationOrigin = (contributionByMonthReference) => {
     const a = contributionByMonthReference.contributions.map((contribution) => contribution.relationOrigin)
     return [a.slice(0, -1).join(', '), a.slice(-1)[0]].join(a.length < 2 ? '' : ' e ')
+  }
+
+  const openContributionModal = (contribution) => {
+    const id = contribution.id
+    const socialSecurityRelationId = contribution.socialSecurityRelationId
+    const simulationId = route.params.simulationId
+    const monthReference = contribution.monthReference
+    const isIgnored = contribution.isIgnored
+    const ignoredReason = contribution.ignoredReason
+    const baseValue = contribution.baseValue
+    emitter.emit('openModalEditContribution', { id, simulationId, socialSecurityRelationId, monthReference, isIgnored, ignoredReason, baseValue })
   }
 
 </script>

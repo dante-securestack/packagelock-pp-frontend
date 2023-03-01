@@ -67,6 +67,14 @@ export const useSharedSimulationStore = defineStore('sharedSimulationStore', {
       this.endDate = endDate
     },
 
+    async prepareCalcules() {
+      this.groupContributionsByMonthReferences()
+      await this.getContributionFactors()
+      await this.getContributionLimits()
+      this.applyContributionCorrections()
+      this.processCalcules()
+    },
+
     async processCalcules() {
       const source = this.getterFilteredContributions
       this.includedContributions =  source.slice(0, Math.round(source.length * (this.majorContributionsPercentage / 100)))
@@ -78,11 +86,7 @@ export const useSharedSimulationStore = defineStore('sharedSimulationStore', {
 
     async getSimulation(simulationId: string) {
       this.simulation = await SimulationApiService.getSimulation(simulationId)
-      this.groupContributionsByMonthReferences()
-      await this.getContributionFactors()
-      await this.getContributionLimits()
-      this.applyContributionCorrections()
-      this.processCalcules()
+      await this.prepareCalcules()
     },
 
     updateSocialSecurityRelation(socialSecurityRelation: any) {
@@ -97,7 +101,7 @@ export const useSharedSimulationStore = defineStore('sharedSimulationStore', {
       this.groupContributionsByMonthReferences()
     },
 
-    updateContribution(contribution: any) {
+    async updateContribution(contribution: any) {
       const socialSecurityRelation = ArrayHelpers.find(this.simulation.socialSecurityRelations, { id: contribution.socialSecurityRelationId })
       const finded = ArrayHelpers.find(socialSecurityRelation.contributions, { id: contribution.id })
       if(finded) {
@@ -106,10 +110,9 @@ export const useSharedSimulationStore = defineStore('sharedSimulationStore', {
         })
       } else {
         socialSecurityRelation.contributions.push(contribution)
-        this.groupContributionsByMonthReferences()
-        this.applyContributionCorrections()
-        this.processCalcules()
       }
+      await this.prepareCalcules()
+      this.processCalcules()
     },
 
     groupContributionsByMonthReferences() {
