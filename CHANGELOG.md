@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.139](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.138...v0.0.139) (2023-03-01)
+
+
+### Features | Funcionalidades
+
+* Editar contribuição da lista de contribuições dos calculos e simplificar lista de contribuições dos registros previdênciarios ([ec1ed59](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/ec1ed59167d62e7616229f98be62be05f165060b))
+
 ### [0.0.138](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.137...v0.0.138) (2023-02-23)
 
 
