@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.143](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.142...v0.0.143) (2023-03-09)
+
+
+### Features | Funcionalidades
+
+* esconder calculos e adicionar texto no lugar quando não admin ([96d437c](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/96d437c73ce40e286f52b2c4ef4cd54c6ca0014f))
+
 ### [0.0.142](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.141...v0.0.142) (2023-03-09)
 
 
