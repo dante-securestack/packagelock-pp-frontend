@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.142](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.141...v0.0.142) (2023-03-09)
+
+
+### Features | Funcionalidades
+
+* Adicionado botão simule agora na home intro ([cf48ad1](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/cf48ad181d09f7ab8ff06287aa30c8801f6eaaf9))
+
 ### [0.0.141](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.140...v0.0.141) (2023-03-09)
 
 
