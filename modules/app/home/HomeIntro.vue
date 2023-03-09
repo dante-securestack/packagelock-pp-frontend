@@ -24,12 +24,20 @@
         <h4 class="h4 font-normal">
           Saiba se você tem direito à revisão da sua aposentadoria!
         </h4>
-        <AppButton 
-          @click="emitter.emit('openContactModal')"
-          class="w-auto bg-amber-600 text-white rounded-full px-6"
-        >
-          Fale com o analista previdenciário
-        </AppButton>
+        <div class="w-full flex flex-wrap">
+          <AppButton 
+            @click="emitter.emit('openContactModal')"
+            class="w-auto bg-amber-600 text-white rounded-full px-6 mr-3 mb-3"
+          >
+            Fale com o analista previdenciário
+          </AppButton>
+
+          <NuxtLink to="/calcule-sua-aposentadoria">
+            <AppButton class="lg:block bg-amber-600 text-white rounded-full px-6">
+              Simule agora
+            </AppButton>
+          </NuxtLink> 
+        </div>
       </div>    
     </div>
 
