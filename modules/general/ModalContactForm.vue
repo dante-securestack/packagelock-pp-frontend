@@ -48,6 +48,12 @@
           </div>
         </AppButton>
 
+        <div class="w-full p-2 flex items-center justify-center">
+          <AppButton @click="goToCnisUpload()" class="hidden lg:block bg-amber-600 text-white rounded-full px-8 py-3">
+            Simule agora
+          </AppButton>
+        </div>
+
       </div>
     </div>
   </AppBaseModal>
@@ -57,6 +63,7 @@
   
   const emitter = useEmitter()
   const vueInstance = useVueInstance()
+  const router = useRouter()
 
   const showContactModal = ref(false)
 
@@ -95,6 +102,11 @@
       window.open( `mailto:calculoeprevidencia@gmail.com`, '_system', null)
       vueInstance.config.globalProperties.$gtag.event('CONTATO_EMAIL', { event_category: 'INTERAÇÕES' })
     },100)
+  }
+
+  const goToCnisUpload = () => {
+    showContactModal.value = false
+    router.push('/calcule-sua-aposentadoria')
   }
 
 </script>
