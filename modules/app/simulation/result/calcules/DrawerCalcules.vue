@@ -77,41 +77,46 @@
         </AppLabelValue>
       </div>
 
-      
+      <div v-if="showOnlyAdmin" class="w-full flex flex-col space-y-4">
+        <AppCollapseItem>
+          <template v-slot:header-left>
+            <h3 class="h3 flex-none text-slate-400">Contribuições incluídas no cálculo</h3>
+            <p class="text-xs italic">{{ includedContributions.length }} contribuições</p>
+          </template>
+          <template v-slot:content>
+            <CalculesContributionList :contributionsByMonthReference="includedContributions"/>
+          </template>
+        </AppCollapseItem>
+        
+        <AppCollapseItem>
+          <template v-slot:header-left>
+            <h3 class="h3 flex-none text-slate-400">Contribuições excluídas no cálculo</h3>
+            <p class="text-xs italic">{{ excludedContributions.length }} contribuições</p>
+          </template>
+          <template v-slot:content>
+            <CalculesContributionList :contributionsByMonthReference="excludedContributions" />
+          </template>
+        </AppCollapseItem>
+        
+        <AppCollapseItem>
+          <template v-slot:header-left>
+            <h3 class="h3 flex-none text-slate-400">Contribuições fora do período selecionado</h3>
+            <p class="text-xs italic">{{ getterFilteredExcludedContributions.length }} contribuições</p>
+          </template>
+          <template v-slot:content>
+            <CalculesContributionList :contributionsByMonthReference="getterFilteredExcludedContributions" />
+          </template>
+        </AppCollapseItem>
 
-      <AppCollapseItem>
-        <template v-slot:header-left>
-           <h3 class="h3 flex-none text-slate-400">Contribuições incluídas no cálculo</h3>
-          <p class="text-xs italic">{{ includedContributions.length }} contribuições</p>
-        </template>
-        <template v-slot:content>
-          <CalculesContributionList :contributionsByMonthReference="includedContributions"/>
-        </template>
-      </AppCollapseItem>
-      
-      <AppCollapseItem>
-        <template v-slot:header-left>
-           <h3 class="h3 flex-none text-slate-400">Contribuições excluídas no cálculo</h3>
-          <p class="text-xs italic">{{ excludedContributions.length }} contribuições</p>
-        </template>
-        <template v-slot:content>
-          <CalculesContributionList :contributionsByMonthReference="excludedContributions" />
-        </template>
-      </AppCollapseItem>
-      
-      <AppCollapseItem>
-        <template v-slot:header-left>
-           <h3 class="h3 flex-none text-slate-400">Contribuições fora do período selecionado</h3>
-          <p class="text-xs italic">{{ getterFilteredExcludedContributions.length }} contribuições</p>
-        </template>
-        <template v-slot:content>
-          <CalculesContributionList :contributionsByMonthReference="getterFilteredExcludedContributions" />
-        </template>
-      </AppCollapseItem>
+        <AppAlert>
+          Utilizando a tabela {{ valueKey }} {{ valueKey == 'monetaryCorrectionFinalValue' ? 'CORREÇÃO MONETÁRIA' : 'ÍNDICE DE CORREÇÃO' }} para correção dos valores das contribuições.
+        </AppAlert>
+      </div>
 
-      <AppAlert>
-        Utilizando a tabela {{ valueKey }} {{ valueKey == 'monetaryCorrectionFinalValue' ? 'CORREÇÃO MONETÁRIA' : 'ÍNDICE DE CORREÇÃO' }} para correção dos valores das contribuições.
+      <AppAlert v-else>
+        Simulação do cálculo com a regra dos descartes (tempo e contribuição), consulte nossos analistas previdenciários.
       </AppAlert>
+
 
     </div>
   </AppBaseDrawer>
@@ -125,6 +130,10 @@
   import FormCalcules from '@/forms/FormCalcules'
   import SimulationRetirementOption from '@/entities/SimulationRetirementOption'
   const sharedSimulationStore = useSharedSimulationStore()
+
+  const authStore = useAuthStore()
+
+  const { loggedUser } = storeToRefs(authStore)
 
   const { 
     majorContributionsPercentage,
@@ -175,5 +184,9 @@
   const setEndDate = (value) => sharedSimulationStore.setEndDate(value)
 
   const processCalcules = () => sharedSimulationStore.processCalcules()
+
+  const showOnlyAdmin = computed(() => {
+    return loggedUser.value && loggedUser.value.role == 'ADMIN'
+  })
 
 </script>
