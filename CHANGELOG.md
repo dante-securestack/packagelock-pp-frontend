@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.141](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.140...v0.0.141) (2023-03-09)
+
+
+### Features | Funcionalidades
+
+* Added simule agora botão no formulario de contato ([7170d31](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/7170d31809311c406a2f38c3c71ef123e744a1b6))
+
 ### [0.0.140](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.139...v0.0.140) (2023-03-01)
 
 
