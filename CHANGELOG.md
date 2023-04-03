@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.144](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.143...v0.0.144) (2023-04-03)
+
+
+### Features | Funcionalidades
+
+* Aplicar aliquotas de calculo nas regras de transição e permanente ([736f660](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/736f6609318b6858a5ae7ad9d96eced4c21dcc04))
+
 ### [0.0.143](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.142...v0.0.143) (2023-03-09)
 
 
