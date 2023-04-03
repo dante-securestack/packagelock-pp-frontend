@@ -2,7 +2,7 @@
   <div class="w-full flex flex-col">
     <AppTitle>Simulações</AppTitle>
 
-    <div class="w-full flex space-x-2 mt-4">
+    <div class="w-full overflow-x-auto flex space-x-2 mt-4">
       <AppButton
         class="border border-zinc-200"
         :class="[statusTypesSelected.includes(status) ? 'bg-brand-gradient text-white' : '' ]"
@@ -65,8 +65,8 @@
           </template>
         </AppLabelValue>
 
-        <div class="w-full flex space-x-4">
-          <LabelIsGranted class="" :isGranted="simulation.isGranted" />
+        <div class="w-full flex flex-col md:flex-row items-start gap-4">
+          <LabelIsGranted class="w-auto" :isGranted="simulation.isGranted" />
           <NuxtLink :to="`/simulacao/${simulation.id}`" class="w-auto">
             <AppButton class="bg-brand-gradient text-white px-5">
               <AppIcons icon="zoom_in" />

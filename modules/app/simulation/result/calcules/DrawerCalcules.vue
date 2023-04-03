@@ -51,7 +51,7 @@
         <AppMoneyInput
           v-model:value="retirementFactor" 
           icon="calculate"
-          label="Fator previdênciário" 
+          :label="getRetirementFactorLabel" 
           placeholder="1" 
           :inputOptions="{ prefix: '', suffix: ' %', decimals: ',', precision: 3 }"
           @change="setRetirementFactor"
@@ -152,6 +152,19 @@
 
   const showModal = ref(false)
   const simulationRetirementOption = ref(new SimulationRetirementOption())
+
+  const getRetirementFactorLabel = computed(() => {
+    if([
+      'getPreReformByContributionTime',
+      'getPreReformByAge',
+      'getLifetimeReview',
+      'getTransitionToll50Percent',
+    ].includes(simulationRetirementOption.value.retirementOption.rule)) {
+      return 'Fator previdênciário'
+    } else {
+      return 'Aliquota de cálculo'
+    }
+  })
 
   onMounted(() => {
     emitter.on('openModalResultContributionList', (payload) => {

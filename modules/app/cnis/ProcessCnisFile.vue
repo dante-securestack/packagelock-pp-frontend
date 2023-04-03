@@ -22,13 +22,13 @@
 
     <AppCard>
       <template v-slot:header>
-        <div class="w-full flex flex-col pr-12">
+        <div class="w-full flex flex-col pr-12 p-2">
         <h3 class="h3 truncate leading-relaxed ...">Calcular aposentadoria manualmente</h3>
         <h5>Informe os dados do segurado para calcular a sua aposentadoria.</h5>
       </div>
       </template>
       <template v-slot:content>
-        <div class="flex flex-col items-start space-y-6">
+        <div class="flex flex-col items-start space-y-6 p-2">
           
           <p class="text-lg">
             Não possui o arquivo CNIS fornecido pelo INSS em mãos? Não tem problema! Simule sua aposentadoria informando os dados manualmente.

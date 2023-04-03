@@ -48,32 +48,33 @@
       
       <LabelIsGranted :isGranted="simulationRetirementOption.isGranted" />
 
+      <div class="w-full">
+        <AppButton 
+            bg="bg-brand-gradient text-white text-sm px-2 py-1 mr-4 sm:mr-0 mt-2"
+            @click="emitter.emit('openModalResultContributionList', { simulationRetirementOption, simulationRetirementGroup })" 
+          >
+          <AppIcons icon="calculate" />
+          <span class="ml-2">Ver cálculos</span>
+        </AppButton>
+      </div>
+
     </template>
 
     <template v-else-if="simulationRetirementOption.retirementOption.rule !== 'getLifetimeReview'">
       <div class="w-full p-8 bg-cyan-800/5 p-8 shadow-md bg-cyan-800/5 flex flex-wrap">
         <p class="p">
-          <button 
+          <span 
             @click="emitter.emit('openAuthModal')"
             class="font-bold italic text-blue-500"
           >
             Clique aqui e cadastre-se gratuitamente
-          </button> 
+          </span> 
           para ver o resultado de sua aposentadoria na 
           <b>{{ simulationRetirementOption.retirementOption.title }}</b>.
         </p>
       </div>
     </template>
     
-    <div class="w-full">
-      <AppButton 
-          bg="bg-brand-gradient text-white text-sm px-2 py-1 mr-4 sm:mr-0 mt-2"
-          @click="emitter.emit('openModalResultContributionList', { simulationRetirementOption, simulationRetirementGroup })" 
-        >
-        <AppIcons icon="calculate" />
-        <span class="ml-2">Ver cálculos</span>
-      </AppButton>
-    </div>
   </div>
 </template>
 

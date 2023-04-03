@@ -11,7 +11,7 @@
         icon="badge"
         label="Início competência" 
         placeholder="Início competência"
-        disabled="true" 
+        :disabled="true" 
         :mask="'##/####'"
         :hasError="formMultipleContribution.tried && formMultipleContribution.validateInput('startMonthReference')"
       >
@@ -23,7 +23,7 @@
         icon="badge"
         label="Término competência" 
         placeholder="Término competência"
-        disabled="true" 
+        :disabled="true" 
         :mask="'##/####'"
         :hasError="formMultipleContribution.tried && formMultipleContribution.validateInput('endMonthReference')"
       >

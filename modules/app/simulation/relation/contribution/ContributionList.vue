@@ -16,7 +16,7 @@
         </div>
       </div>
 
-      <div class="ml-auto flex space-x-2">
+      <div class="md:ml-auto mt-2 flex space-x-2">
         <AppButton 
           bg="bg-brand-gradient text-white text-sm px-2 py-1"
           @click="openContributionModal({ socialSecurityRelation })"

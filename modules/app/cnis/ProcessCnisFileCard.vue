@@ -2,13 +2,13 @@
   <div class="">
     <AppCard>
       <template v-slot:header>
-        <div class="w-full flex flex-col pr-12">
-        <h3 class="h3 truncate leading-relaxed ...">Calcular aposentadoria com o CNIS</h3>
-        <h5>Utilize o arquivo CNIS fornecido pelo INSS para calcular de forma automática a sua aposentadoria</h5>
-      </div>
+        <div class="w-full flex flex-col pr-12 p-2">
+          <h3 class="h3">Calcular aposentadoria com o CNIS</h3>
+          <h5>Utilize o arquivo CNIS fornecido pelo INSS para calcular de forma automática a sua aposentadoria</h5>
+        </div>
       </template>
       <template v-slot:content>
-        <div class="flex flex-col space-y-6">
+        <div class="flex flex-col space-y-6 p-2">
           
           <p class="text-lg">
             Insira seu extrato do INSS (arquivo CNIS) para calcular sua aposentadoria gratuitamente.
@@ -72,7 +72,7 @@
 
 
         </div>
-        <div class="w-full flex justify-end mt-10 block">
+        <div class="w-full flex justify-end mt-10 block p-2">
           <AppButton 
             bg="bg-brand-gradient" 
             text="text-white" 
