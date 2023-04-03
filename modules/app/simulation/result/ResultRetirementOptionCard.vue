@@ -65,7 +65,7 @@
         <p class="p">
           <span 
             @click="emitter.emit('openAuthModal')"
-            class="font-bold italic text-blue-500"
+            class="font-bold italic text-blue-500 cursor-pointer"
           >
             Clique aqui e cadastre-se gratuitamente
           </span> 
