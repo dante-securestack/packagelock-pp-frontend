@@ -60,7 +60,7 @@
 
     </template>
 
-    <template v-else-if="simulationRetirementOption.retirementOption.rule !== 'getLifetimeReview'">
+    <template v-else>
       <div class="w-full p-8 bg-cyan-800/5 p-8 shadow-md bg-cyan-800/5 flex flex-wrap">
         <p class="p">
           <span 
