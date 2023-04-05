@@ -33,9 +33,9 @@
       </AppLabelValue>
     </div>
 
-    <template v-if="simulationRetirementOption.retirementOption.rule !== 'getLifetimeReview' && (loggedUser || simulationRetirementOption.retirementOption.showForNotLoggedUsers)">
+    <template v-if="(loggedUser || simulationRetirementOption.retirementOption.showForNotLoggedUsers)">
 
-      <div class="w-full flex flex-col" v-if="showDetail">
+      <div class="w-full flex flex-col" v-if="simulationRetirementOption.retirementOption.rule !== 'getLifetimeReview' && showDetail">
         <p class="p text-slate-400 leading-none mb-2">
           Projeção de aposentadoria
         </p>
