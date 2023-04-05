@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.145](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.144...v0.0.145) (2023-04-03)
+
+
+### Bug Fixes | Melhorias
+
+* Added cursor-pointer ([9319117](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/9319117e3010afc1bb14b91435c2ca995840e52a))
+
 ### [0.0.144](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.143...v0.0.144) (2023-04-03)
 
 
