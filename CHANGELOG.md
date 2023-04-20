@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.149](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.148...v0.0.149) (2023-04-20)
+
+
+### Bug Fixes | Melhorias
+
+* No cálculo, a última contribuição deve ser o mês anterior a data do pedido. Ex. Se a data do pedido foi 29/07/2022, a última contribuição deve ser a do mês 06/2022 ([f2f3687](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/f2f36873cd2c1d5b17d21194c6bfb029b34dcd44))
+* Updated dependency ([d197588](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/d197588052d7e5888f5a0b1ff864eb5f6afee192))
+
+
+### Features | Funcionalidades
+
+* Mostrar detalhes fator previdênciario ([d79df2a](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/d79df2a3fb68d685ce01177a6caf374cc81d5460))
+
 ### [0.0.148](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.147...v0.0.148) (2023-04-09)
 
 
