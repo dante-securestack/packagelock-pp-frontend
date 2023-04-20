@@ -33,7 +33,7 @@ export const useSharedSimulationStore = defineStore('sharedSimulationStore', {
     getterFilteredContributions(state) {
       return state.contributionsByMonthReference.filter((contribution: any) => {
         const isAfterInitialDate = !state.initialDate || !Dates.isValid(state.initialDate) ? true : Dates.parse(contribution.monthReference) >= Dates.parse(state.initialDate)
-        const isBeforeEndDate = !state.endDate || !Dates.isValid(state.endDate) ? true : Dates.parse(contribution.monthReference) <= Dates.parse(state.endDate)
+        const isBeforeEndDate = !state.endDate || !Dates.isValid(state.endDate) ? true : Dates.parse(contribution.monthReference) < Dates.parse(state.endDate)
         return isAfterInitialDate && isBeforeEndDate
       }).sort((a, b) => b.finalValue - a.finalValue)
     },
@@ -41,7 +41,7 @@ export const useSharedSimulationStore = defineStore('sharedSimulationStore', {
     getterFilteredExcludedContributions(state) {
       return state.contributionsByMonthReference.filter((contribution: any) => {
         const isAfterInitialDate = !state.initialDate || !Dates.isValid(state.initialDate) ? true : Dates.parse(contribution.monthReference) >= Dates.parse(state.initialDate)
-        const isBeforeEndDate = !state.endDate || !Dates.isValid(state.endDate) ? true : Dates.parse(contribution.monthReference) <= Dates.parse(state.endDate)
+        const isBeforeEndDate = !state.endDate || !Dates.isValid(state.endDate) ? true : Dates.parse(contribution.monthReference) < Dates.parse(state.endDate)
         return !isAfterInitialDate || !isBeforeEndDate
       }).sort((a, b) => b.finalValue - a.finalValue)
     }
