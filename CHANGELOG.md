@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.148](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.147...v0.0.148) (2023-04-09)
+
+
+### Features | Funcionalidades
+
+* Adicionado sitemap para melhorar exibição no Google ([ebbe821](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/ebbe821891ee87ea78e8aaace953d06eb1be065d))
+
 ### [0.0.147](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.146...v0.0.147) (2023-04-05)
 
 
