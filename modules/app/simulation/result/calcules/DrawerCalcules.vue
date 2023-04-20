@@ -53,12 +53,33 @@
           icon="calculate"
           :label="getRetirementFactorLabel" 
           placeholder="1" 
-          :inputOptions="{ prefix: '', suffix: ' %', decimals: ',', precision: 3 }"
+          :inputOptions="{ prefix: '', suffix: ' %', decimals: ',', precision: 4 }"
           @change="setRetirementFactor"
           @blur.capture="processCalcules()"
         />
         
       </div>
+
+      <AppCollapseItem v-if="simulationRetirementOption.metaData?.retirementFactorDebugInfo">
+        <template v-slot:header-left>
+          <h3 class="h3 flex-none text-slate-400">Informações sobre {{ getRetirementFactorLabel }}</h3>
+        </template>
+        <template v-slot:content>
+          <div class="w-full grid grid-cols-2 gap-2">
+            <AppLabelValue>
+            <template v-slot:label>Tempo de contribuição</template>
+            <template v-slot:value>{{ simulationRetirementOption.contributionTime.time.timeText }}</template>
+          </AppLabelValue>
+            <AppLabelValue
+              v-for="item in getRetirementFactorDebugInfoKeyValues"
+              :key="item.key"
+            >
+              <template v-slot:label>{{ item.key }}</template>
+              <template v-slot:value>{{ item.value }}</template>
+            </AppLabelValue>
+          </div>
+        </template>
+      </AppCollapseItem>
 
       <hr />
 
@@ -164,6 +185,15 @@
     } else {
       return 'Aliquota de cálculo'
     }
+  })
+
+  const getRetirementFactorDebugInfoKeyValues = computed(() => {
+    return Object.keys(simulationRetirementOption.value.metaData?.retirementFactorDebugInfo).map((key) => {
+      return {
+        key,
+        value: simulationRetirementOption.value.metaData?.retirementFactorDebugInfo[key]
+      }
+    })
   })
 
   onMounted(() => {

@@ -172,7 +172,7 @@ export const useSharedSimulationStore = defineStore('sharedSimulationStore', {
       }
 
       if(contributionFactor) {
-        contributionByMonthReference.finalValue = contributionByMonthReference.finalValue * contributionFactor.factor
+        contributionByMonthReference.finalValue = MathHelpers.round(contributionByMonthReference.finalValue * MathHelpers.round(contributionFactor.factor, 4), 4)
         contributionByMonthReference.valueAfterCorrection = contributionByMonthReference.finalValue
         contributionByMonthReference.contributionFactorValue = contributionFactor.factor
         contributionByMonthReference.contributionFactor = contributionFactor
