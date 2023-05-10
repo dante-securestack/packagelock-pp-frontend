@@ -140,7 +140,6 @@ export default {
           this.finishedImageLoad = true
         })
         .catch((err) => {
-          console.log(err)
           this.imageLoadError = true
         })
     }
