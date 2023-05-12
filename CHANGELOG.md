@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.151](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.150...v0.0.151) (2023-05-12)
+
+
+### Features | Funcionalidades
+
+* Adicionado regra fator menor que um ([6b9dc70](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/commit/6b9dc709717ddc706d61a19850dd70cda1b6eb12))
+
 ### [0.0.150](https://github.com/PROJETO-PREVIDENCIA/pp-frontend/compare/v0.0.149...v0.0.150) (2023-05-10)
 
 
