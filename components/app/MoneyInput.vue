@@ -19,6 +19,7 @@
         class="input-classes"
         :class="[icon ? 'pl-9' : 'pl-4']"
         :options="getVueNumberFormatOptions"
+        :disabled="disabled"
       />
     </div>
     <p class="text-red-600 h-4" v-if="hasError">
@@ -48,6 +49,10 @@
     value: [String, Number],
     dateReference: [String, Number],
     hasError: {
+      type: Boolean,
+      default: false
+    },
+    disabled: {
       type: Boolean,
       default: false
     }

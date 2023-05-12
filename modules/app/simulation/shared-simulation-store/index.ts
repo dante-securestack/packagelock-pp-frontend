@@ -44,6 +44,10 @@ export const useSharedSimulationStore = defineStore('sharedSimulationStore', {
         const isBeforeEndDate = !state.endDate || !Dates.isValid(state.endDate) ? true : Dates.parse(contribution.monthReference) <= Dates.sub(Dates.parse(state.endDate), 1, 'months')
         return !isAfterInitialDate || !isBeforeEndDate
       }).sort((a, b) => b.finalValue - a.finalValue)
+    },
+
+    getterRetirementFactor(state) {
+      return state.retirementFactor >= 1 ? state.retirementFactor : 1
     }
   },
 
@@ -81,7 +85,7 @@ export const useSharedSimulationStore = defineStore('sharedSimulationStore', {
       this.majorContributionsQuantity = this.includedContributions.length
       this.excludedContributions = source.slice(Math.round(source.length * (this.majorContributionsPercentage / 100)))
       this.includedContributionsTotal = this.includedContributions.reduce((acc, contribution) => acc + contribution.finalValue, 0)
-      this.includedContributionsAvg = (this.includedContributionsTotal / this.includedContributions.length) * this.retirementFactor
+      this.includedContributionsAvg = (this.includedContributionsTotal / this.includedContributions.length) * this.getterRetirementFactor
     },
 
     async getSimulation(simulationId: string) {

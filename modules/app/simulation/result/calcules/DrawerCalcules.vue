@@ -57,6 +57,17 @@
           @change="setRetirementFactor"
           @blur.capture="processCalcules()"
         />
+
+        <AppMoneyInput
+          v-model:value="getterRetirementFactor" 
+          icon="calculate"
+          label="Fator utilizado no cálculo" 
+          placeholder="1" 
+          :inputOptions="{ prefix: '', suffix: ' %', decimals: ',', precision: 4 }"
+          @change="setRetirementFactor"
+          @blur.capture="processCalcules()"
+          :disabled="true"
+        />
         
       </div>
 
@@ -168,7 +179,8 @@
     includedContributionsTotal,
     includedContributionsAvg,
     contributionsByMonthReference,
-    getterFilteredExcludedContributions
+    getterFilteredExcludedContributions,
+    getterRetirementFactor,
   } = storeToRefs(sharedSimulationStore)
 
   const showModal = ref(false)
